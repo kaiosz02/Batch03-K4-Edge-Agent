@@ -1,117 +1,243 @@
-# 📋 Câu Hỏi Thuyết Trình & Bug Report — V-Pet Tutor
+# Bộ phản biện nhanh — V-Pet Tutor
 
----
+> Mục tiêu: trả lời trung thực, ngắn và đưa cuộc trao đổi trở lại giá trị mà
+> prototype đã chứng minh được.
 
-## 🎯 PHẦN 1: Câu Hỏi & Trả Lời Chuẩn Bị Thuyết Trình
+## 1. Công thức xử lý khi bị hỏi khó
 
----
+Không tranh luận ngay. Trả lời theo bốn nhịp:
 
-### ❓ Q1: Làm sao dám khẳng định LLM tạo ra câu trả lời chính xác?
+1. **Xác nhận:** “Anh/chị bắt đúng một giới hạn của bản MVP.”
+2. **Khoanh phạm vi:** “Điều prototype hôm nay chứng minh là…”
+3. **Đưa bằng chứng:** Chỉ nói số liệu hoặc tính năng có thể mở ra kiểm tra.
+4. **Chốt bước tiếp theo:** “Để kết luận về tác động, team sẽ đo…”
 
-**Trả lời ngắn:** "Chúng tôi không khẳng định LLM luôn đúng 100%, nhưng có 3 lớp kiểm soát để đảm bảo chất lượng."
+Mẫu trả lời cứu nguy:
 
-**3 lớp kiểm soát:**
-- **Lớp 1 — Grounding (Bám context):** System Prompt ép AI chỉ dựa vào đoạn text học viên bôi đen, không được bịa thêm.
-- **Lớp 2 — Eval tự động:** Bộ 20 test case với `expected_action` (generate / reject) kiểm tra tỉ lệ đúng trên tập mẫu đã xác nhận bởi con người.
-- **Lớp 3 — Giải thích hiển thị:** Sau mỗi câu trả lời, AI phải giải thích lý do bằng cách trích dẫn trực tiếp từ đoạn slide. Học viên có thể đọc lại để tự kiểm chứng.
+> “Anh/chị bắt đúng điểm này. Bản MVP chưa chứng minh **[điều bị hỏi]**;
+> điều chúng em đã chứng minh là **[flow hoặc kết quả đang chạy được]**, thể
+> hiện qua **[bằng chứng]**. Bước tiếp theo chúng em sẽ **[cách đo cụ thể]**
+> trước khi đưa ra kết luận.”
 
----
+Nếu chưa biết câu trả lời:
 
-### ❓ Q2: Nếu học sinh trả lời sai liên tục → hệ thống vận hành như thế nào?
+> “Em chưa có đủ dữ liệu để khẳng định điểm đó và không muốn đoán. Trong phạm
+> vi prototype, team đang kiểm soát bằng **[cơ chế hiện có]**; em xin ghi nhận
+> đây là giả thuyết cần kiểm chứng tiếp.”
 
-**Trả lời ngắn:** "Hệ thống Adaptive Quiz sẽ tự điều chỉnh độ khó và bổ sung thêm giải thích."
+## 2. Ba câu phải nhớ
 
-**Luồng chi tiết:**
-```
-Trả lời Sai Lần 1 → +2 EXP khích lệ → AI ghi vào history
-Trả lời Sai Lần 2 → AI đọc history (2 lần sai) → sinh câu Dễ hơn
-Trả lời Sai Lần 3+ → AI nhận diện vùng khó → sinh câu kèm gợi ý (Hint)
-```
-Tất cả lịch sử được lưu phía server (trong session), AI đọc lại mỗi lần generate câu mới.
+- **Pain:** Trong 1.261 câu hỏi được mining, 358 câu (28,4%) là yêu cầu giải
+  thích thụ động; khảo sát 40 học viên cho thấy 64% gần như chỉ xem bài giảng.
+- **Lát cắt:** Bôi đen đoạn khó → Pet hỏi xác nhận → AI sinh quiz từ đúng đoạn
+  đó → backend chấm và cộng EXP → log được tổng hợp thành Heatmap.
+- **Giới hạn:** Đây là prototype kiểm chứng flow và tính khả thi kỹ thuật, chưa
+  phải bằng chứng rằng kết quả học tập đã tăng.
 
----
+## 3. Câu hỏi tấn công vào ý tưởng
 
-### ❓ Q3: Làm sao biết chắc LLM nhận diện được đáp án đó là chính xác?
+### Q1. Pet có phải chỉ là gimmick, bỏ Pet đi vẫn làm quiz được?
 
-**Trả lời ngắn:** "Không dựa vào model tự đánh giá — Backend kiểm soát logic chấm bài hoàn toàn."
+**Trả lời 20 giây:**
 
-**Cơ chế:**
-- AI chỉ có nhiệm vụ sinh ra câu hỏi + đáp án + đáp án đúng (chuỗi "A", "B", "C", "D").
-- `correct_answer` được lưu kín phía Backend, không gửi xuống Frontend.
-- Khi học viên nộp bài, Backend tự so sánh `selected_answer` với `correct_answer` đã lưu. AI không tham gia vào khâu chấm.
-- **Chất lượng** đáp án được đảm bảo bởi System Prompt + bộ Eval 20 case có con người xác nhận.
+> “Đúng, quiz vẫn chạy nếu bỏ Pet. Pet không phải bộ não AI mà là lớp tương tác:
+> nó xin xác nhận trước khi gọi AI, báo trạng thái, hiển thị EXP và tạo phản hồi
+> cảm xúc. Giả thuyết của team là lớp đồng hành này làm người học chủ động làm
+> quiz hơn chatbot thuần; giả thuyết đó cần A/B test Pet và không Pet để kết
+> luận.”
 
----
+Không nói Pet đã làm tăng retention nếu chưa có A/B test.
 
-### ❓ Q4: Nếu người dùng cố tình gian lận (cậy điểm)?
+### Q2. Vì sao cần AI, sao không dùng ngân hàng câu hỏi?
 
-**Trả lời ngắn:** "Chúng tôi đã đóng các lỗ hổng hack điểm nghiêm trọng."
+> “Ngân hàng câu hỏi tốt khi nội dung cố định, nhưng chi phí soạn tăng theo số
+> slide. AI ở đây xử lý phần biến thiên: sinh một câu hỏi từ đúng đoạn người học
+> vừa chọn và có thể dùng lịch sử đúng/sai để điều chỉnh mức khó. Backend vẫn
+> giữ phần cần chắc chắn như chấm đáp án, chống nộp trùng và cộng EXP.”
 
-**Các cơ chế chống gian lận đang có:**
-| Kỹ thuật tấn công | Cơ chế phòng thủ |
-|---|---|
-| Gửi `exp_earned=9999` | API `/pet/update` đã bị xóa. Không còn endpoint cho client tự bơm điểm |
-| Inspect Network → lấy đáp án trước | `/quiz/generate` chỉ trả về câu hỏi, đáp án lưu ở server |
-| Gửi `is_correct=true` với đáp án sai | Backend tự chấm bài, không tin tham số từ client |
-| Submit nhiều lần cùng 1 quiz | Sau khi submit, quiz_id bị xóa khỏi `active_quizzes` |
+Nếu bị hỏi sâu: production nên cache câu hỏi theo `slide + page + text hash`,
+review các câu phổ biến và chỉ gọi model khi cache miss.
 
----
+### Q3. Tại sao không cho AI giải thích luôn mà lại bắt học viên làm quiz?
 
-### ❓ Q5: Có phát triển thêm "thú cưng có quần áo đẹp" không?
+> “Pain team chọn là hành vi học thụ động. Nếu giải thích ngay, hệ thống tiếp tục
+> làm thay việc tư duy. Quiz ngắn buộc người học truy hồi kiến thức trước; sau
+> khi nộp, hệ thống mới đưa đáp án và giải thích. Người học vẫn có quyền từ chối
+> ngay ở speech bubble của Pet.”
 
-**Trả lời ngắn:** "Đây là một trong những Roadmap hấp dẫn nhất của sản phẩm và đã được ghi trong backlog."
+### Q4. EXP có chứng minh người học hiểu bài không?
 
-**Roadmap Gamification mở rộng:**
-- **Skin / Outfit:** Mở khóa trang phục khi đạt mốc EXP. VD: Level 3 → Thú cưng đội mũ tốt nghiệp 🎓
-- **Accessory NFT-style:** Phần thưởng đặc biệt khi hoàn thành chuỗi streak dài
-- **Cạnh tranh bạn bè:** Leaderboard EXP giữa các học viên cùng lớp
+> “Không. EXP chỉ là tín hiệu khuyến khích hành vi, không phải thước đo năng lực.
+> Chỉ số học tập phải đo riêng bằng tỷ lệ đúng ở câu mới, pre-test/post-test và
+> khả năng nhớ lại sau một khoảng thời gian.”
 
----
+### Q5. Các mục tiêu giảm 50%, tăng 30% lấy ở đâu?
 
-## 🐛 PHẦN 2: Các Bug Thực Tế Trong Code (Cần Biết Khi Bị Hỏi)
+> “Đó là mục tiêu validation, không phải kết quả đã đạt. Baseline hiện có là
+> 28,4% câu hỏi thụ động và 64% học viên ít tương tác. Team chỉ công bố mức cải
+> thiện sau khi A/B test với nhóm đối chứng.”
 
-> [!WARNING]
-> Các bug dưới đây em tìm thấy trực tiếp trong code hiện tại. Anh nên chuẩn bị câu trả lời để xử lý nếu Ban Giám Khảo phát hiện ra.
+### Q6. 40 người khảo sát có đủ đại diện không?
 
----
+> “N=40 đủ cho discovery ban đầu của hackathon, chưa đủ để suy rộng cho toàn bộ
+> học viên. Team dùng thêm mining 1.261 câu hỏi để kiểm tra pain từ một nguồn
+> hành vi khác. Bước tiếp theo là mở rộng mẫu và phân tầng theo cohort, môn học
+> và mức độ sử dụng VLearn.”
 
-### 🐛 Bug #1: `submit` vẫn trả về `exp_reward` khi sai bài (ít nghiêm trọng)
-- **File:** [`quiz.py:47`](file:///home/laptop_wii/Desktop/La_VIN/Batch03-K4-Edge-Agent/backend/routers/quiz.py#L47)
-- **Vấn đề:** `exp_added = quiz_data["exp_reward"] if is_correct else 2` nhưng `award_exp` lại luôn nhận `quiz_data["exp_reward"]` vào tham số, hàm nội bộ mới xử lý +2 khi sai. Giá trị `exp_added` trong response bị sai khi is_correct=False.
-- **Ảnh hưởng:** Giao diện Frontend có thể hiển thị "Bạn nhận +10 EXP" dù thực tế chỉ cộng +2.
-- **Chuẩn bị:** *"Đây là lỗi hiển thị nhỏ về UX, logic cộng điểm vẫn đúng. Chúng tôi sẽ fix trong sprint tiếp theo."*
+### Q7. Khác gì Duolingo hoặc Khanmigo?
 
----
+> “Team không tuyên bố phát minh gamification hay AI tutor. Lát cắt khác biệt là
+> gắn ba phía trong cùng một vòng lặp: đoạn PDF người học đang vướng → quiz động
+> có Pet khuyến khích → dữ liệu khó được trả lại cho giảng viên dưới dạng
+> Heatmap. Giá trị nằm ở vòng phản hồi trên chính tài liệu của lớp.”
 
-### 🐛 Bug #2: `active_quizzes` sẽ bị mất sau khi restart server (thiết kế biết trước)
-- **File:** [`quiz.py:11`](file:///home/laptop_wii/Desktop/La_VIN/Batch03-K4-Edge-Agent/backend/routers/quiz.py#L11)
-- **Vấn đề:** `active_quizzes = {}` lưu trên RAM. Nếu server bị restart giữa chừng, học viên submit với quiz_id cũ sẽ nhận 404.
-- **Chuẩn bị:** *"Chúng tôi biết hạn chế này. MVP1 dành cho demo 1 phiên, Production sẽ dùng Redis hoặc SQLite để persistent state."*
+### Q8. Nếu người học bôi đen linh tinh hoặc đoạn quá ngắn?
 
----
+> “Request hiện bị giới hạn độ dài; prompt yêu cầu từ chối nội dung mơ hồ, ngoài
+> phạm vi hoặc có ý định gian lận. UI giữ quyền kiểm soát ở người học: Pet hỏi
+> xác nhận trước khi gọi AI. Production sẽ thêm bộ lọc deterministic và thông
+> báo yêu cầu chọn lại đoạn có đủ ngữ nghĩa.”
 
-### 🐛 Bug #3: `allow_origins=["*"]` kết hợp `allow_credentials=True` là thiếu bảo mật
-- **File:** [`main.py:12-13`](file:///home/laptop_wii/Desktop/La_VIN/Batch03-K4-Edge-Agent/backend/main.py#L12)
-- **Vấn đề:** Theo chuẩn RFC, kết hợp này bị browser chặn (CORS error) và còn mở cửa cho tấn công CSRF.
-- **Chuẩn bị:** *"Chúng tôi đã nhận diện vấn đề CORS/CSRF này và sẽ siết lại origin khi deploy staging."*
+## 4. Câu hỏi tấn công vào AI và đo lường
 
----
+### Q9. Làm sao dám khẳng định LLM tạo câu hỏi chính xác?
 
-### 🐛 Bug #4: EXP vượt quá cấp độ tối đa (Level 3) không được kiểm soát
-- **File:** [`pet.py:30-34`](file:///home/laptop_wii/Desktop/La_VIN/Batch03-K4-Edge-Agent/backend/routers/pet.py#L30)
-- **Vấn đề:** `calculate_level_info` trả về `max_exp=300` khi EXP đạt 300+, nhưng học viên vẫn tiếp tục cộng EXP. `current_exp` có thể vượt `max_exp` mà không có cơ chế reset hoặc "Prestige".
-- **Chuẩn bị:** *"Đây là MVP nên giới hạn thiết kế ở 3 level. Prestige system là ý tưởng cho phiên bản sau."*
+> “Team không khẳng định LLM đúng 100%. Hiện có grounding vào đoạn bôi đen,
+> structured output, validation schema và bộ eval cho routing/định dạng. Báo cáo
+> 20/20 trước đây được chạy trên Gemini và không nên được diễn giải thành 100%
+> chính xác ngữ nghĩa của model DeepSeek hiện tại. Trước production cần bộ câu
+> hỏi được giảng viên chấm và đo factual accuracy riêng.”
 
----
+Điểm quan trọng: bộ 20 case hiện chủ yếu kiểm tra `generate/reject`, đủ bốn lựa
+chọn và định dạng đáp án; nó chưa thay thế đánh giá chuyên môn.
 
-### 🐛 Bug #5: Import vòng tròn (Circular Import) tiềm ẩn
-- **File:** [`gemini_service.py:62`](file:///home/laptop_wii/Desktop/La_VIN/Batch03-K4-Edge-Agent/backend/services/gemini_service.py#L62)
-- **Vấn đề:** `gemini_service.py` import `get_session` từ `routers/pet.py`. Nếu sau này `pet.py` import bất kỳ thứ gì từ `services/`, sẽ gây lỗi `ImportError: circular import` khó debug.
-- **Chuẩn bị:** *"Đúng, đây là technical debt về kiến trúc. Pattern đúng là tách `session_store.py` thành module riêng. Chúng tôi sẽ refactor trước khi mở rộng thêm feature."*
+### Q10. Model hiện tại là Gemini hay DeepSeek?
 
----
+> “Bản code hiện tại dùng DeepSeek; nếu không có API key thì chạy mock để flow
+> không bị vỡ. Báo cáo 20/20 trong tài liệu cũ là lần eval trên Gemini. Team
+> không dùng kết quả của Gemini để khẳng định chất lượng DeepSeek.”
 
-### 🐛 Bug #6: Root endpoint vẫn liệt kê `POST /pet/update` đã bị xóa
-- **File:** [`main.py:30`](file:///home/laptop_wii/Desktop/La_VIN/Batch03-K4-Edge-Agent/backend/main.py#L30)
-- **Vấn đề:** Swagger documentation tự động sẽ đúng, nhưng endpoint `"POST /pet/update"` trong `read_root()` response là thông tin sai vì API này đã bị xóa.
-- **Chuẩn bị:** *"Lỗi typo trong tài liệu, API thực tế đã được cập nhật. Swagger docs là nguồn sự thật duy nhất."*
+### Q11. AI tự chấm thì có thiên vị hoặc chấm sai không?
+
+> “Model không tham gia lúc nộp bài. Khi sinh quiz, đáp án đúng được giữ ở
+> backend và không gửi xuống frontend. Lúc nộp, backend so sánh lựa chọn với đáp
+> án đã lưu. Rủi ro còn lại là model sinh đáp án gốc sai kiến thức; rủi ro đó
+> phải kiểm soát bằng grounding và eval có giảng viên duyệt.”
+
+### Q12. Adaptive ở đâu, hay chỉ là từ marketing?
+
+> “Prototype gửi lịch sử câu đúng/sai của phiên vào prompt và yêu cầu model tăng
+> hoặc hạ độ khó. Đây là adaptive ở mức MVP, chưa phải mô hình năng lực người
+> học. Production cần luật chuyển level kiểm chứng được hoặc mô hình như IRT,
+> kèm metric xem độ khó thực tế có thay đổi đúng không.”
+
+### Q13. Heatmap có thật không hay toàn dữ liệu fake?
+
+> “Pipeline thật: highlight và kết quả quiz được ghi telemetry, backend tổng hợp
+> số lượt bôi đen và tỷ lệ sai. Vì lượng người dùng demo còn ít, dashboard có
+> thêm một bộ dữ liệu mô phỏng được gắn nhãn DEMO rõ ràng; file demo tách khỏi
+> log thật và có thể tắt bằng `enabled=false`. Team không dùng số demo làm bằng
+> chứng tác động.”
+
+### Q14. Heatmap dùng AI ở đâu?
+
+> “Heatmap hiện không cần AI; backend tổng hợp telemetry bằng logic xác định để
+> dễ kiểm tra và tránh tốn chi phí. AI được dùng ở quyết định sinh nội dung và
+> độ khó quiz. Đây là lựa chọn có chủ ý: không dùng AI ở nơi một phép tổng hợp
+> deterministic đã giải quyết tốt.”
+
+### Q15. Highlight nhiều có chắc là đoạn khó không?
+
+> “Không chắc nếu chỉ nhìn highlight count. Vì vậy heatmap kết hợp thêm tỷ lệ
+> trả lời sai. Ngay cả vậy, đây vẫn là tín hiệu ưu tiên để giảng viên xem lại,
+> không phải kết luận tự động rằng slide dạy kém.”
+
+## 5. Câu hỏi tấn công vào kỹ thuật và kinh doanh
+
+### Q16. Người dùng có thể hack EXP không?
+
+> “Client không được gửi số EXP hoặc `is_correct`. Đáp án đúng lưu phía server,
+> backend tự chấm, và quiz bị pop atomically sau lần nộp đầu nên double-click
+> hoặc request đồng thời không thể cộng EXP hai lần. Đây là các case đã có smoke
+> test.”
+
+### Q17. Restart server thì có mất dữ liệu không?
+
+> “Có hai loại state. Telemetry và hotspot của demo hiện ghi file JSON; session
+> Pet và quiz đang làm dở lưu RAM nên sẽ mất khi restart. Đây là giới hạn MVP đã
+> biết. Production sẽ dùng Redis cho quiz/session ngắn hạn và PostgreSQL cho
+> tiến trình, telemetry.”
+
+### Q18. Nếu nhiều người dùng cùng lúc thì sao?
+
+> “Kiến trúc MVP chưa được load test và file JSON không phù hợp cho tải lớn.
+> Hướng mở rộng là API stateless, Redis/PostgreSQL, queue cho telemetry, cache
+> quiz theo đoạn và rate limit model. Team chưa tuyên bố hệ thống hiện tại sẵn
+> sàng production.”
+
+### Q19. Chi phí gọi LLM có quá cao không?
+
+> “Pet chỉ gọi AI sau khi người học xác nhận, không gọi ngay khi vừa bôi đen.
+> Production sẽ hash đoạn chọn để tái sử dụng câu hỏi đã kiểm duyệt, cache các
+> hotspot phổ biến và giới hạn tần suất. Cần đo token/request và cache-hit rate
+> trước khi chốt unit economics.”
+
+### Q20. Quyền riêng tư dữ liệu học viên xử lý thế nào?
+
+> “Prototype dùng session ID ẩn danh và log đoạn được bôi đen cùng kết quả quiz,
+> chưa thu tên thật. Tuy nhiên production vẫn cần consent, chính sách retention,
+> quyền xóa dữ liệu, mã hóa và không gửi PII lên model. Đây là yêu cầu bắt buộc,
+> không phải phần có thể để sau vô thời hạn.”
+
+### Q21. Giảng viên được lợi gì ngoài một dashboard đẹp?
+
+> “Dashboard ưu tiên những đoạn vừa được chọn nhiều vừa có tỷ lệ sai cao, giúp
+> giảng viên biết nên xem lại trang nào trước thay vì đọc toàn bộ phản hồi rời
+> rạc. Giá trị kinh doanh cần đo bằng thời gian giảng viên tiết kiệm và số chỉnh
+> sửa giáo trình hữu ích sau mỗi cohort.”
+
+### Q22. Tại sao đây là sản phẩm chứ không chỉ là một feature?
+
+> “Ở MVP, đây đúng là một lát cắt tính năng trên VLearn. Tiềm năng sản phẩm đến
+> từ vòng dữ liệu: càng nhiều phiên học thì thư viện câu hỏi được kiểm duyệt và
+> insight giáo trình càng tốt. Team ưu tiên chứng minh một lát cắt chạy trọn vẹn
+> trước, chưa tuyên bố đã có product-market fit.”
+
+## 6. Trạng thái kỹ thuật hiện tại — nói đúng, không dùng thông tin cũ
+
+Các lỗi được ghi trong phiên bản cũ của file này đã được cập nhật:
+
+- EXP trả về và EXP thực cộng đã thống nhất: sai nhận +2.
+- Quiz được xóa atomically sau lần nộp đầu để chống cộng điểm hai lần.
+- CORS không còn dùng wildcard; origin lấy từ cấu hình.
+- EXP được chặn ở trần level hiện tại.
+- Session store đã tách khỏi AI service, không còn circular import cũ.
+- Root endpoint không còn liệt kê `/pet/update`.
+
+Giới hạn còn thật:
+
+- Quiz và trạng thái Pet vẫn lưu RAM.
+- Chưa có auth, database, rate limit và load test production.
+- Demo Heatmap có dữ liệu mô phỏng nhưng được gắn nhãn và lưu tách biệt.
+- Eval 20/20 cũ thuộc Gemini; model chạy hiện tại là DeepSeek.
+- Chưa có A/B test chứng minh Pet cải thiện retention hoặc learning outcome.
+
+## 7. Những câu tuyệt đối không nói
+
+- “AI của team chính xác 100%.”
+- “Pet chắc chắn tăng retention.”
+- “Heatmap là 100% dữ liệu người dùng thật.”
+- “Team đã giảm 50% thời gian hoặc tăng 30% năng suất.”
+- “20/20 nghĩa là mọi câu hỏi AI đều đúng kiến thức.”
+- “Hệ thống đã sẵn sàng production.”
+- “Dữ liệu demo cũng là evidence.”
+
+## 8. Câu kết khi bị dí liên tục
+
+> “Team xin tách rõ ba lớp: pain đã có evidence, flow đã có prototype chạy được,
+> còn impact vẫn là giả thuyết cần validation. Chúng em sẵn sàng mở code, log và
+> demo từng bước; điều chưa đo được, team sẽ không khẳng định quá dữ liệu.”
+
+
+
+chưa đến nhóm tôi có mấy nhóm trước tôi họ còn bị hỏi là nhóm bạn có gì hot, search agnet của bạn chưa có gì nổi bật thì cần dùng gì thich hợp vào thay vif dùng perplexity, hay nhóm khác bị hỏi là cái ai tóm tắt slide ai của em có tóm tắt được, và để llm nó quyết định hết, là sai khi app dụng kiến thưcs chuyen môn, và không thể llm có thể quêts đinihj tất cả. sự liên kết giữa các slide giữa các phần, nhóm hỏi về 
