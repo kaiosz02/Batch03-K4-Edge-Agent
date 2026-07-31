@@ -2,7 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import Sidebar from "@/components/layout/Sidebar";
 import SlideViewer from "@/components/slide-viewer/SlideViewer";
 import TutorPanel from "@/components/tutor/TutorPanel";
-import VPetWidget from "@/components/gamification/VPetWidget";
+import AnimatedPet from "@/components/gamification/AnimatedPet";
 
 export default function Home() {
   return (
@@ -18,9 +18,8 @@ export default function Home() {
           <TutorPanel />
         </main>
       </div>
-      
-      <VPetWidget />
+
+      <AnimatedPet />
     </>
   );
 }
-
