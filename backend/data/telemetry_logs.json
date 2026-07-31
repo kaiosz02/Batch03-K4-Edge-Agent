@@ -459,5 +459,2041 @@
       "page_num": 3,
       "text": "LM không phải toàn bộ AI — nhưng nó là tầng nền của gần hết trải nghiệm AI b"
     }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:20:01.884Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 14716
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:20:08.415Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 6531
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:20:12.038Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 3622
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:20:13.157Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1119
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:20:16.807Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 3649
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:20:29.942Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 13135
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:01.716Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_len": 87
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:01.715Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text": "AI & LLM Foundation Bạn đang dùng AI mỗi ngày — nhưng thực sự bên trong nó đang làm gì?"
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:04.482Z",
+    "payload": {
+      "accepted": false,
+      "slide_id": "static_0",
+      "page_num": 1
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:08.912Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 9870
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:13.355Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text": "Bức tranh AI & các tầng của AI • Lịch sử AI 70 năm • Bên trong LLM: cơ chế vận hành • Từ LLM đến AI Agent • Landscape: model hôm nay & cuộc đua hiện tại • Chọn model & chi phí token • Gọi API lần đầu • Tổng kết — những ý để mang về"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:13.355Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text_len": 231
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:17.757Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "dwell_ms": 8845
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:19.365Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "dwell_ms": 1608
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:36.549Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "dwell_ms": 17184
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:37.162Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 4,
+      "dwell_ms": 613
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:37.793Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 5,
+      "dwell_ms": 631
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:41.610Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "text": "ng quát và tập trung giải thật tốt một miền hẹp bằng cách mã hóa tri thức chuyên gia thành luật A"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:41.611Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "text_len": 97
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:43.435Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "text": "Đặt lại vấn đề: \"Nếu AI chỉ giải thật tốt một loại bài toán chuyên môn hẹp thì sao?\" → Sự ra đời của expert systems AI đổi chiến lược: thôi theo đuổi trí tuệ tổng quát và tập trung giải thật tốt một miền hẹp bằng cách mã hóa tri thức chuyên gia thành luật"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:21:43.435Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "text_len": 255
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:22:06.814Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 6
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:22:06.814Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "text_len": 255,
+      "started": true
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:22:12.404804+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 5269,
+      "slide_id": "static_0",
+      "page_num": 6,
+      "quiz_id": "c406c470-419b-4666-b5bd-2ea8fec2ca02",
+      "difficulty_level": 1
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:22:41.025698+00:00",
+    "payload": {
+      "quiz_id": "c406c470-419b-4666-b5bd-2ea8fec2ca02",
+      "is_correct": true,
+      "difficulty": 1,
+      "exp_added": 5,
+      "slide_id": "static_0",
+      "page_num": 6,
+      "text_snippet": "Đặt lại vấn đề: \"Nếu AI chỉ giải thật tốt một loại bài toán chuyên môn hẹp thì sao?\" → Sự ra đời của expert systems AI đổi chiến lược: thôi theo đuổi trí tuệ tổng quát và tập trung giải thật tốt một miền hẹp bằng cách mã hóa tri thức chuyên gia thành luật",
+      "selected_answer": "A"
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:22:47.276Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "dwell_ms": 69483
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:22:53.308Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 7,
+      "text": "ợc gán nhãn tay, hơn 20.000 loại vật. Ba năm sau, chính bộ dữ liệu đó là sân khấu cho cú nổ AlexNet 2012 → bài học định hình cả kỷ nguyên: đôi khi dữ liệu tốt hơn đánh bại thuật toán khôn hơn. Deng, J. et al. 2009, “ImageNet: A Large-Scale Hierarchical Image Databaseˮ, CVPR — doi.org/10.1109/CVPR.2009.5206848 · Fei-Fei Li, TED 2015 — ted.com A"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:22:53.308Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 7,
+      "text_len": 347
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:22:55.908Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 7,
+      "text": "n. Deng, J. et al. 2009, “ImageNet: A Large-Scale Hierarchical Image Databaseˮ, CVPR — doi.org/10.1109/CVPR.2009.5206848 · Fei-Fei Li, TED 2015 — ted.com A"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:22:55.909Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 7,
+      "text_len": 157
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:22:57.442Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 7,
+      "dwell_ms": 10166
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:22:58.167Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 725
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:22:59.507Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 9,
+      "dwell_ms": 1340
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:23:00.542Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 1035
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:23:02.782Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 2026
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:23:22.069Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 19281
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:23:49.229Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 27160
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:23:50.498Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1269
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:25:29.899Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 99400
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:26:26.931Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 51251
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:26:29.583Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text": "ức tranh AI & các tầng của AI • Lịch sử AI 70 năm • Bên trong LLM: cơ chế vận hành • Từ LLM đến AI Agent • Landscape: model hôm nay & cuộc đua hiện tại • Chọn model & chi phí token • Gọi API lần đầu • Tổng kết — những ý để mang về AI & LLM Foundation Từ \"nghe AI\" đến \"gọi AI\" trong một ngày A I I N A"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:26:29.583Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text_len": 301
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:26:32.212Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text": "Bức tranh AI & các tầng của AI • Lịch sử AI 70 năm • Bên trong LLM: cơ chế vận hành • Từ LLM đến AI Agent • Landscape: model hôm nay & cuộc đua hiện tại • Chọn model & chi phí token • Gọi API lần đầu • Tổng kết — những ý để mang về"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:26:32.213Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text_len": 231
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:26:33.760Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text_len": 231,
+      "started": true
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:26:33.760Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 2
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:26:44.548741+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 10779,
+      "slide_id": "static_0",
+      "page_num": 2,
+      "quiz_id": "2c5b7cb0-65b0-440f-84fe-d46647c676a7",
+      "difficulty_level": 2
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:26:51.992Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "dwell_ms": 25060
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:26:53.452Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "dwell_ms": 1459
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:27:36.962Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "dwell_ms": 43504
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:28:02.343Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "dwell_ms": 25380
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:28:03.373Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 4,
+      "dwell_ms": 817
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:28:14.401Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 4,
+      "dwell_ms": 11026
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:28:17.396Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 4,
+      "dwell_ms": 2994
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:28:40.822Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text": "Bạn đang dùng AI mỗi ngày — nhưng thực sự bên trong nó đang làm gì?"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:28:40.823Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_len": 67
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:28:44.707Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 1
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:28:44.707Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_len": 67,
+      "started": true
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:28:55.650Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 32411
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:28:58.526612+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 13813,
+      "slide_id": "static_0",
+      "page_num": 1,
+      "quiz_id": "91dd0a6c-6457-4457-8166-7b71d4562ef9",
+      "difficulty_level": 3
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:29:01.794930+00:00",
+    "payload": {
+      "quiz_id": "91dd0a6c-6457-4457-8166-7b71d4562ef9",
+      "is_correct": false,
+      "difficulty": 3,
+      "exp_added": 2,
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_snippet": "Bạn đang dùng AI mỗi ngày — nhưng thực sự bên trong nó đang làm gì?",
+      "selected_answer": "A"
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:29:12.533Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 16880
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:29:15.439Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "dwell_ms": 2906
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:29:47.781Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "dwell_ms": 32341
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:29:49.971Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1896
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:29:58.948Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 8974
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:30:00.600Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1652
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:30:11.023Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 10417
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:30:13.778Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 2425
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:30:14.550Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 4,
+      "dwell_ms": 660
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:30:15.359Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "dwell_ms": 714
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:30:15.872Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 5,
+      "dwell_ms": 513
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:30:17.781Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1520
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:30:22.979Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 5198
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:30:30.556Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 6560
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:30:50.622Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 19749
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:30:51.619Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 4,
+      "dwell_ms": 506
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:31:02.578Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 4,
+      "dwell_ms": 10958
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:31:18.329Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 4,
+      "dwell_ms": 15750
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:31:25.563Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 4,
+      "dwell_ms": 7234
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:31:30.305Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 4,
+      "dwell_ms": 4741
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:31:57.806Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 27285
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:32:08.157Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 10349
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:32:09.573Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1205
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:32:29.313Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 19739
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:32:42.817Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 13504
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:32:50.344Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1685
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:32:55.272Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 4424
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:33:12.788Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 17515
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:33:31.563Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 18774
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:33:32.604Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 708
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:33:33.981Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 574
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:33:35.237Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1255
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:34:01.728Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 2067
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:34:03.506Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 514
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:36:38.223Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1739
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:36:39.415Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1003
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:36:59.874Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 20288
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:37:12.352Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 12477
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:38:00.155Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 47802
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:38:05.683Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 5528
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:38:51.960Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 46276
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:38:54.049Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 5,
+      "dwell_ms": 1746
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:38:54.707Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "dwell_ms": 658
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:38:58.417Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "text_len": 254,
+      "started": true
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:38:57.475Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "text_len": 254
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:38:57.474Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "text": "Transformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó."
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:38:58.417Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 8
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:39:07.865870+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 8069,
+      "slide_id": "static_0",
+      "page_num": 8,
+      "quiz_id": "e5d1fbba-92a7-4df9-bfec-d24aeb0c3ff4",
+      "difficulty_level": 1
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:39:12.392782+00:00",
+    "payload": {
+      "quiz_id": "e5d1fbba-92a7-4df9-bfec-d24aeb0c3ff4",
+      "is_correct": true,
+      "difficulty": 1,
+      "exp_added": 5,
+      "slide_id": "static_0",
+      "page_num": 8,
+      "text_snippet": "Transformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó.",
+      "selected_answer": "B"
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:39:28.391Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 33647
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:40:05.139Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 36745
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:40:31.591Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "text": "ansformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó."
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:40:31.592Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "text_len": 252
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:40:32.500Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 8
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:40:32.501Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "text_len": 252,
+      "started": true
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:40:39.903590+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 7400,
+      "slide_id": "static_0",
+      "page_num": 8,
+      "quiz_id": "81083be8-c466-4dd9-bef4-a2ff3537aaf2",
+      "difficulty_level": 2
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:40:42.534571+00:00",
+    "payload": {
+      "quiz_id": "81083be8-c466-4dd9-bef4-a2ff3537aaf2",
+      "is_correct": false,
+      "difficulty": 2,
+      "exp_added": 2,
+      "slide_id": "static_0",
+      "page_num": 8,
+      "text_snippet": "ansformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó.",
+      "selected_answer": "C"
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:40:50.830Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 45690
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:41:01.349Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 10492
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:41:06.217Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 4864
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:41:42.647Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 31967
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:41:55.143Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 12495
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:42:14.390Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 18330
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:42:56.689Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 42299
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:43:04.424Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 7735
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:43:10.306Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 5882
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:43:51.994Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 41687
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:44:11.521Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 10624
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:44:16.743Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 5222
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:44:28.916Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 12172
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:44:36.557Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 7248
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:44:47.696Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 10771
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:44:53.581Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 5507
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:45:04.487Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 10897
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:46:25.088Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 79789
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:46:27.079Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 4,
+      "dwell_ms": 1636
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:46:27.905Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 5,
+      "dwell_ms": 825
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:46:32.953Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "text": "Đặt lại vấn đề: \"Nếu AI chỉ giải thật tốt một loại bài toán chuyên môn hẹp thì sao?\" → Sự ra đời của expert systems AI đổi chiến lược: thôi theo đuổi trí tuệ tổng quát và tập trung giải thật tốt một miền hẹp bằng cách mã hóa tri thức chuyên gia thành luật"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:46:32.954Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "text_len": 255
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:46:34.289Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 6
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:46:34.290Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "text_len": 255,
+      "started": true
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:46:45.100318+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 10805,
+      "slide_id": "static_0",
+      "page_num": 6,
+      "quiz_id": "cee200ec-bd7c-4fd3-b491-df8694822399",
+      "difficulty_level": 2
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:46:52.411308+00:00",
+    "payload": {
+      "quiz_id": "cee200ec-bd7c-4fd3-b491-df8694822399",
+      "is_correct": true,
+      "difficulty": 2,
+      "exp_added": 10,
+      "slide_id": "static_0",
+      "page_num": 6,
+      "text_snippet": "Đặt lại vấn đề: \"Nếu AI chỉ giải thật tốt một loại bài toán chuyên môn hẹp thì sao?\" → Sự ra đời của expert systems AI đổi chiến lược: thôi theo đuổi trí tuệ tổng quát và tập trung giải thật tốt một miền hẹp bằng cách mã hóa tri thức chuyên gia thành luật",
+      "selected_answer": "B"
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:46:55.404Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "dwell_ms": 27499
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:46:59.724Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "text": "Transformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó."
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:46:59.725Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "text_len": 254
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:05.931Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 10492
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:19.750Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 13819
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:23.381Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 3630
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:32.569Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 9188
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:41.558Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 8988
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:45.025Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 9,
+      "text": "ChatGPT xuất hiện như một trải nghiệm đại chúng Lần đầu tiên rất đông người dùng phổ thông có thể trực tiếp chạm vào một mô hình ngôn ngữ mạnh, thông qua một giao diện đơn giản đến mức ai cũng hiểu cách dùng"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:45.025Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 9,
+      "text_len": 207
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:46.211Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 9,
+      "dwell_ms": 4653
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:50.994Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 9,
+      "dwell_ms": 4780
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:55.222Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 9,
+      "text": "ChatGPT xuất hiện như một trải nghiệm đại chúng Lần đầu tiên rất đông người dùng phổ thông có thể trực tiếp chạm vào một mô hình ngôn ngữ mạnh, thông qua một giao diện đơn giản đến mức ai cũng hiểu cách d"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:55.223Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 9,
+      "text_len": 204
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:56.418Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 9,
+      "dwell_ms": 5424
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:58.697Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 5,
+      "text": "lần mùa đông, cách tiếp cận chạm trần"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:47:58.698Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 5,
+      "text_len": 37
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:00.019Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 5,
+      "dwell_ms": 3516
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:03.401Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text": "Bạn đang dùng AI mỗi ngày — nhưng thực sự bên trong nó đang làm gì?"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:03.402Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_len": 67
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:04.350Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_len": 67,
+      "started": true
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:04.349Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 1
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:06.771Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 6465
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:10.844604+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 6491,
+      "slide_id": "static_0",
+      "page_num": 1,
+      "quiz_id": "45e4bcc9-e153-4593-92e2-5e5156db3f76",
+      "difficulty_level": 2
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:32.063837+00:00",
+    "payload": {
+      "quiz_id": "45e4bcc9-e153-4593-92e2-5e5156db3f76",
+      "is_correct": false,
+      "difficulty": 2,
+      "exp_added": 2,
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_snippet": "Bạn đang dùng AI mỗi ngày — nhưng thực sự bên trong nó đang làm gì?",
+      "selected_answer": "A"
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:35.405Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 28632
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:38.129Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text": "Generative AI — sinh nội dung mới: văn bản, ảnh, code."
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:38.130Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_len": 54
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:38.835Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "dwell_ms": 3371
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:49.504Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "dwell_ms": 10668
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:54.293Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 3
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:48:54.294Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_len": 54,
+      "started": true
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:49:01.314615+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 7005,
+      "slide_id": "static_0",
+      "page_num": 3,
+      "quiz_id": "9ae303ae-631f-4aad-977d-9194ab83d192",
+      "difficulty_level": 1
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:49:02.891996+00:00",
+    "payload": {
+      "quiz_id": "9ae303ae-631f-4aad-977d-9194ab83d192",
+      "is_correct": false,
+      "difficulty": 1,
+      "exp_added": 2,
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_snippet": "Generative AI — sinh nội dung mới: văn bản, ảnh, code.",
+      "selected_answer": "C"
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:49:06.109Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text": "LLM — model nền chuyên ngôn ngữ, tim của làn sóng hiện nay."
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:49:06.109Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_len": 59
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:49:07.005Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 3
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:49:07.005Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_len": 59,
+      "started": true
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:49:13.322066+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 6310,
+      "slide_id": "static_0",
+      "page_num": 3,
+      "quiz_id": "c5014630-5c3f-43a9-9be0-4377a5ffdedf",
+      "difficulty_level": 1
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:50:30.302Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "dwell_ms": 100794
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:50:54.526231+00:00",
+    "payload": {
+      "quiz_id": "c5014630-5c3f-43a9-9be0-4377a5ffdedf",
+      "is_correct": false,
+      "difficulty": 1,
+      "exp_added": 2,
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_snippet": "LLM — model nền chuyên ngôn ngữ, tim của làn sóng hiện nay.",
+      "selected_answer": "D"
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:51:07.656Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "dwell_ms": 37354
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:52:10.164Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "dwell_ms": 62505
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:52:11.549Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1027
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:52:12.243Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "dwell_ms": 644
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:52:12.922Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 4,
+      "dwell_ms": 679
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:52:13.956Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 5,
+      "dwell_ms": 1033
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:52:14.740Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "dwell_ms": 783
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:52:15.600Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 7,
+      "dwell_ms": 860
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:52:29.732Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "dwell_ms": 14130
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:53:43.883Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 73942
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:55:52.361Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 128478
+    }
   }
 ]

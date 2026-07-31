@@ -18,6 +18,7 @@ import {
   getTelemetrySessionId,
   track,
 } from "@/features/telemetry/useTelemetry";
+import { getNextPetIndex, PET_CHARACTERS } from "@/lib/petCharacters";
 
 export default function Home() {
   const tutor = useTutorChat();
@@ -25,6 +26,7 @@ export default function Home() {
     useState<SlideSelection | null>(null);
   const [petStatus, setPetStatus] = useState<PetStatusResponse | null>(null);
   const [petBubble, setPetBubble] = useState<PetBubbleState | null>(null);
+  const [petIndex, setPetIndex] = useState(0);
   const dismissTimerRef = useRef<number | null>(null);
   const activeInteractionRef = useRef<string | null>(null);
 
@@ -192,19 +194,43 @@ export default function Home() {
     [showTemporaryBubble]
   );
 
+  const handleChangePet = useCallback(() => {
+    if (petBubble?.kind === "confirm" || petBubble?.kind === "thinking") return;
+    setPetIndex((previous) => getNextPetIndex(previous));
+  }, [petBubble?.kind]);
+
+  const hasQuizOnScreen = tutor.messages.some(
+    (message) =>
+      message.quiz &&
+      (message.quiz.phase === "pending" ||
+        message.quiz.phase === "submitting" ||
+        message.quiz.phase === "answered")
+  );
+
+  // Tránh che chat khi đang xem/làm quiz; nhưng ưu tiên bubble xác nhận & đang tạo quiz
+  const shouldPetAvoidChat =
+    hasQuizOnScreen &&
+    petBubble?.kind !== "confirm" &&
+    petBubble?.kind !== "thinking";
+
   return (
     <>
       <div className="bg-ambient" />
       <Navbar />
 
-      <div className="flex h-full flex-1 overflow-hidden pt-16">
+      <div className="box-border flex h-dvh min-h-0 overflow-hidden pt-16">
         <Sidebar />
 
-        <main className="relative flex flex-1 flex-col overflow-hidden md:flex-row">
+        <main className="relative flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden md:flex-row">
           <SlideViewer onTextSelected={handleTextSelected} />
           <TutorPanel
             chat={tutor}
             onPetUpdate={handlePetUpdate}
+            currentPet={PET_CHARACTERS[petIndex]}
+            onChangePet={handleChangePet}
+            canChangePet={
+              petBubble?.kind !== "confirm" && petBubble?.kind !== "thinking"
+            }
           />
         </main>
       </div>
@@ -212,6 +238,8 @@ export default function Home() {
       <AnimatedPet
         bubble={petBubble}
         petStatus={petStatus}
+        petIndex={petIndex}
+        isQuizActive={shouldPetAvoidChat}
         onAccept={() => void handleAcceptPetTask()}
         onDecline={handleDeclinePetTask}
         onClose={dismissPetBubble}
