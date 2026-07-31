@@ -153,20 +153,93 @@ export default function SlideViewer({
     };
   }, []);
 
-  const handleNextPage = () => {
+  const handleNextPage = useCallback(() => {
     setPdfError(null);
     nextPage();
-  };
+  }, [nextPage]);
 
-  const handlePrevPage = () => {
+  const handlePrevPage = useCallback(() => {
     setPdfError(null);
     prevPage();
-  };
+  }, [prevPage]);
 
   const handleChangeSlide = (slideId: string) => {
     setPdfError(null);
     changeSlide(slideId);
   };
+
+  useEffect(() => {
+    pdfContainerRef.current?.scrollTo({ top: 0, behavior: "auto" });
+  }, [currentPageNumber, currentSlide?.slide_id]);
+
+  useEffect(() => {
+    if (isLoading || !currentSlide) return;
+
+    const container = pdfContainerRef.current;
+    if (!container) return;
+
+    const onWheel = (event: WheelEvent) => {
+      const atTop = container.scrollTop <= 0;
+      const atBottom =
+        container.scrollTop + container.clientHeight >=
+        container.scrollHeight - 2;
+
+      if (event.deltaY > 0 && atBottom && !isLastPage) {
+        event.preventDefault();
+        handleNextPage();
+        container.scrollTop = 0;
+      } else if (event.deltaY < 0 && atTop && !isFirstPage) {
+        event.preventDefault();
+        handlePrevPage();
+        requestAnimationFrame(() => {
+          if (pdfContainerRef.current) {
+            pdfContainerRef.current.scrollTop =
+              pdfContainerRef.current.scrollHeight;
+          }
+        });
+      }
+    };
+
+    container.addEventListener("wheel", onWheel, { passive: false });
+    return () => container.removeEventListener("wheel", onWheel);
+  }, [
+    currentSlide,
+    handleNextPage,
+    handlePrevPage,
+    isFirstPage,
+    isLastPage,
+    isLoading,
+  ]);
+
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+
+  const handleTouchStart = useCallback((event: React.TouchEvent) => {
+    const touch = event.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    (event: React.TouchEvent) => {
+      window.setTimeout(captureSelection, 0);
+
+      const start = touchStartRef.current;
+      touchStartRef.current = null;
+      if (!start) return;
+
+      const touch = event.changedTouches[0];
+      const deltaX = touch.clientX - start.x;
+      const deltaY = touch.clientY - start.y;
+
+      if (Math.abs(deltaX) < 48 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+
+      if (deltaX < 0 && !isLastPage) {
+        handleNextPage();
+      } else if (deltaX > 0 && !isFirstPage) {
+        handlePrevPage();
+      }
+    },
+    [captureSelection, handleNextPage, handlePrevPage, isFirstPage, isLastPage]
+  );
 
   if (isLoading) {
     return (
@@ -188,7 +261,7 @@ export default function SlideViewer({
   }
 
   return (
-    <div className="flex-1 flex flex-col p-4 md:p-8 overflow-hidden h-full">
+    <div className="flex h-full min-h-0 min-w-0 flex-1 flex-col overflow-hidden p-4 md:p-8">
       <div className="flex justify-between items-center mb-6">
         <div className="flex flex-col flex-1 max-w-md">
           <span className="text-tertiary text-label-sm uppercase tracking-widest font-bold mb-1">
@@ -213,12 +286,13 @@ export default function SlideViewer({
         </div>
       </div>
 
-      <div className="flex-1 glass-panel rounded-3xl relative group overflow-hidden shadow-2xl border border-white/10 min-h-0">
+      <div className="group relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 glass-panel shadow-2xl">
         <div
           ref={pdfContainerRef}
-          className="absolute inset-0 z-0 overflow-auto bg-white p-4 custom-scrollbar"
+          className="min-h-0 flex-1 overflow-x-auto overflow-y-auto overscroll-contain bg-white p-4 custom-scrollbar touch-pan-y"
           onMouseUp={() => window.setTimeout(captureSelection, 0)}
-          onTouchEnd={() => window.setTimeout(captureSelection, 0)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           {pdfError ? (
             <div className="flex h-full items-center justify-center px-6 text-center text-red-500">
@@ -236,7 +310,7 @@ export default function SlideViewer({
         </div>
 
         {/* Navigation overlay */}
-        <div className="absolute inset-x-0 bottom-0 p-8 flex justify-between items-center bg-gradient-to-t from-background/90 to-transparent pt-32 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-center justify-between bg-gradient-to-t from-background/90 to-transparent p-6 pt-24 opacity-90 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100">
           <button
             onClick={handlePrevPage}
             disabled={isFirstPage}

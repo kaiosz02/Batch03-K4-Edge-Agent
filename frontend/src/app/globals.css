@@ -142,6 +142,7 @@ body {
   background-color: var(--color-background);
   font-family: "Segoe UI", Arial, sans-serif;
   color: var(--color-on-surface);
+  height: 100%;
   overflow: hidden;
 }
 
@@ -193,6 +194,11 @@ body {
   box-shadow: 0 0 12px rgba(47, 217, 244, 0.5);
 }
 
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+.pdf-page .textLayer {
+  touch-action: pan-y;
+}
+
+.pdf-page canvas {
+  display: block;
+  max-width: none;
 }

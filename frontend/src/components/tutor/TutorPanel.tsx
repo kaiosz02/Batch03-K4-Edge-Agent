@@ -4,15 +4,22 @@ import { useState } from "react";
 import type { TutorChatHook } from "@/features/tutor/useTutorChat";
 import QuizCard from "@/components/tutor/QuizCard";
 import type { PetStatusResponse } from "@/lib/api";
+import type { PetCharacter } from "@/lib/petCharacters";
 
 interface TutorPanelProps {
   chat: TutorChatHook;
   onPetUpdate: (pet: PetStatusResponse) => void;
+  currentPet: PetCharacter;
+  onChangePet: () => void;
+  canChangePet?: boolean;
 }
 
 export default function TutorPanel({
   chat,
   onPetUpdate,
+  currentPet,
+  onChangePet,
+  canChangePet = true,
 }: TutorPanelProps) {
   const {
     messages,
@@ -30,15 +37,25 @@ export default function TutorPanel({
   };
 
   return (
-    <aside className="w-full md:w-80 lg:w-96 glass-panel border-l border-white/10 flex flex-col h-full bg-surface-container-low/30 relative z-20">
-      <div className="p-6 border-b border-white/10 flex items-center justify-between relative z-20">
+    <aside className="relative z-20 flex min-h-0 w-full max-h-full flex-1 flex-col overflow-hidden border-l border-white/10 bg-surface-container-low/30 glass-panel md:h-full md:w-80 md:flex-none lg:w-96">
+      <div className="relative z-20 flex shrink-0 items-center justify-between border-b border-white/10 p-6">
         <div className="flex flex-col">
           <h2 className="font-headline-md text-[18px] text-on-surface">V-Pet Tutor</h2>
           <div className="font-label-sm text-[11px] text-tertiary flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
-            Đang trực tuyến
+            Đang trực tuyến · {currentPet.name}
           </div>
         </div>
+        <button
+          type="button"
+          onClick={onChangePet}
+          disabled={!canChangePet}
+          title={canChangePet ? "Đổi pet" : "Không thể đổi pet lúc này"}
+          aria-label="Đổi pet"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-tertiary transition-colors hover:border-tertiary/40 hover:bg-tertiary/10 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          <span className="material-symbols-outlined text-[20px]">pets</span>
+        </button>
       </div>
 
       {/* Quick Actions */}
@@ -57,7 +74,7 @@ export default function TutorPanel({
       </div>
 
       {/* Messages */}
-      <div className="flex-1 p-6 flex flex-col gap-4 overflow-y-auto custom-scrollbar min-h-0 relative z-20">
+      <div className="relative z-20 flex min-h-0 flex-1 flex-col gap-4 overflow-x-hidden overflow-y-auto overscroll-contain p-6 custom-scrollbar">
         {messages.map((msg) => (
           <div key={msg.id} className={`flex gap-3 ${msg.sender === "user" ? "flex-row-reverse" : ""}`}>
             <div
