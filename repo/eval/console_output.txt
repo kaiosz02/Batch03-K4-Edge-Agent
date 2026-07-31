@@ -1,0 +1,24 @@
+=== ĐANG CHẠY BỘ KIỂM THỬ EVAL (20 CASES) ===
+✅ Case #1 [happy_path]: PASSED (Expected: generate)
+✅ Case #2 [happy_path]: PASSED (Expected: generate)
+✅ Case #3 [out_of_scope]: PASSED (Expected: reject)
+✅ Case #4 [out_of_scope]: PASSED (Expected: reject)
+✅ Case #5 [out_of_scope]: PASSED (Expected: reject)
+✅ Case #6 [hallucination]: PASSED (Expected: generate)
+✅ Case #7 [hallucination]: PASSED (Expected: generate)
+✅ Case #8 [ambiguity]: PASSED (Expected: reject)
+✅ Case #9 [ambiguity]: PASSED (Expected: reject)
+✅ Case #10 [ambiguity]: PASSED (Expected: reject)
+✅ Case #11 [domain_risk]: PASSED (Expected: generate)
+✅ Case #12 [domain_risk]: PASSED (Expected: generate)
+✅ Case #13 [happy_path]: PASSED (Expected: generate)
+✅ Case #14 [happy_path]: PASSED (Expected: generate)
+✅ Case #15 [out_of_scope]: PASSED (Expected: reject)
+✅ Case #16 [out_of_scope]: PASSED (Expected: reject)
+✅ Case #17 [hallucination]: PASSED (Expected: generate)
+✅ Case #18 [domain_risk]: PASSED (Expected: generate)
+✅ Case #19 [ambiguity]: PASSED (Expected: reject)
+✅ Case #20 [happy_path]: PASSED (Expected: generate)
+
+KẾT QUẢ: 20/20 cases hoàn thành.
+Đã lưu báo cáo chi tiết vào D:\thuc_hanh_vinAI\Batch03-K4-AI-Product-Hackathon\backend\eval\eval_report.json
