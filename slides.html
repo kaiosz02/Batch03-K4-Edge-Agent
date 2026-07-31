@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V-Pet Tutor — Slide Thuyết Trình 6 Trang (Chuẩn 02-guide.md)</title>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #fdf2f8;
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --bg-card-hover: rgba(253, 242, 248, 0.98);
+      --border-color: rgba(244, 114, 182, 0.25);
+      --border-accent: rgba(236, 72, 153, 0.4);
+      --primary: #ec4899;
+      --primary-gradient: linear-gradient(135deg, #ec4899 0%, #d946ef 50%, #e11d48 100%);
+      --accent-cyan: #0284c7;
+      --accent-green: #16a34a;
+      --accent-orange: #ea580c;
+      --accent-rose: #e11d48;
+      --text-main: #0f172a;
+      --text-sub: #1e293b;
+      --text-muted: #475569;
+      --glass-shadow: 0 20px 50px rgba(219, 39, 119, 0.15), 0 4px 20px rgba(0, 0, 0, 0.05);
+      --radius-lg: 20px;
+      --radius-md: 12px;
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-code: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: #fdf2f8;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, #fde8ef 0%, transparent 45%),
+        radial-gradient(circle at 90% 80%, #fbcfe8 0%, transparent 45%),
+        linear-gradient(135deg, #fff0f5 0%, #fce7f3 50%, #fff1f2 100%);
+    }
+
+    /* Top Navigation Bar */
+    header {
+      height: 64px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--primary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.35);
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 1.15rem;
+      background: linear-gradient(135deg, #831843 0%, #be185d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-tag {
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: #fce7f3;
+      color: #9d174d;
+      border: 1px solid #f472b6;
+      font-weight: 700;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid #f472b6;
+      background: #ffffff;
+      color: #831843;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(236, 72, 153, 0.1);
+    }
+
+    .btn:hover {
+      background: #fdf2f8;
+      border-color: #db2777;
+      color: #831843;
+    }
+
+    .btn-primary {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.35);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.95;
+      color: #ffffff;
+    }
+
+    /* Main Slide Stage */
+    main {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .slide-container {
+      width: 100%;
+      max-width: 1240px;
+      height: 690px;
+      position: relative;
+      perspective: 1000px;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--glass-shadow);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(40px) scale(0.97);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+    }
+
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .slide-number-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #9d174d;
+      background: #fce7f3;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid #f472b6;
+    }
+
+    .slide-title {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #831843 0%, #9d174d 60%, #be185d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.25rem;
+    }
+
+    .slide-subtitle {
+      font-size: 1.05rem;
+      color: #0369a1;
+      font-weight: 600;
+    }
+
+    /* Grids */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 0.75rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 0.75rem; }
+
+    /* Cards & Stats */
+    .card {
+      background: #fff0f5;
+      border: 1px solid rgba(244, 114, 182, 0.3);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      color: #0f172a;
+      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.05);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: #831843;
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .badge-green { background: #dcfce7; color: #14532d; border: 1px solid #4ade80; }
+    .badge-purple { background: #f3e8ff; color: #581c87; border: 1px solid #c084fc; }
+    .badge-cyan { background: #e0f2fe; color: #0c4a6e; border: 1px solid #38bdf8; }
+    .badge-rose { background: #ffe4e6; color: #881337; border: 1px solid #fb7185; }
+    .badge-orange { background: #ffedd5; color: #7c2d12; border: 1px solid #fb923c; }
+
+    /* Impact Table */
+    table.impact-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+    table.impact-table th, table.impact-table td {
+      padding: 10px 12px;
+      border: 1px solid rgba(244, 114, 182, 0.3);
+      text-align: left;
+      color: #0f172a;
+    }
+    table.impact-table th {
+      background: #fce7f3;
+      color: #831843;
+      font-weight: 800;
+    }
+
+    /* Presenter Notes Overlay Modal */
+    .notes-modal {
+      position: fixed;
+      bottom: 80px;
+      right: 30px;
+      width: 440px;
+      max-height: 340px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 2px solid #ec4899;
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 15px 35px rgba(236, 72, 153, 0.25);
+      z-index: 200;
+      display: none;
+      overflow-y: auto;
+    }
+    .notes-modal.open { display: block; }
+    .notes-header { font-weight: 800; font-size: 0.9rem; color: #831843; margin-bottom: 0.5rem; display: flex; justify-content: space-between; }
+    .notes-text { font-size: 0.88rem; color: #1e293b; line-height: 1.6; }
+
+    /* Footer */
+    footer {
+      height: 64px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+    }
+
+    .progress-bar-container { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: rgba(244, 114, 182, 0.2); }
+    .progress-bar-fill { height: 100%; background: var(--primary-gradient); width: 16.666%; transition: width 0.4s ease; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-logo">🐥</div>
+      <div>
+        <span class="brand-title">V-Pet Tutor</span>
+        <span class="brand-tag">Chuẩn 02-guide.md §5.1</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn" onclick="toggleNotes()">🎤 Kịch Bản Nói (Presenter Notes)</button>
+      <button class="btn btn-primary" onclick="toggleFullscreen()">🖥️ Fullscreen</button>
+    </div>
+  </header>
+
+  <!-- Slide Stage -->
+  <main>
+    <div class="slide-container">
+
+      <!-- SLIDE 1: User & Job -->
+      <div class="slide active" id="slide-1">
+        <div>
+          <div class="slide-header">
+            <span class="slide-number-badge">Slide 01 / 06 — User & Job</span>
+            <span class="badge-pill badge-rose">Chatlog Mining & Survey N=40</span>
+          </div>
+          <h1 class="slide-title">User & Job: Học Viên K4 Tự Học Bài Giảng</h1>
+          <p class="slide-subtitle">JTBD: "Đọc tài liệu bài giảng, bắt gặp khái niệm khó và cần xác nhận kiến thức để nắm chắc bài."</p>
+        </div>
+
+        <div class="grid-2">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="card" style="border-color: rgba(244, 114, 182, 0.4); background: #fff0f5;">
+              <div class="card-title" style="color: #9d174d;">📌 5. Con Số Bằng Chứng Mạnh Nhất Của Nhóm (Q5)</div>
+              <p style="font-size: 0.86rem; line-height: 1.5; color: #1e293b; margin-bottom: 8px;">
+                Con số thuyết phục nhất là: <b style="color: #be123c; font-size: 0.95rem;">28.4% (358/1.261)</b> câu hỏi của học viên trên nền tảng chỉ là các lệnh hoàn toàn thụ động như <i>"Giải thích đoạn bôi đen ở Trang X"</i>.
+              </p>
+              <div style="font-size: 0.8rem; color: #1e293b; background: rgba(253, 242, 248, 0.9); border: 1px solid rgba(244, 114, 182, 0.3); padding: 8px; border-radius: 6px; line-height: 1.4;">
+                • <b>Cách đếm:</b> Lấy dữ liệu chatlog thực tế, lọc các prompt yêu cầu giải thích nguyên văn đoạn text đã highlight.<br>
+                • <b>Khảo sát (N=40):</b> Chỉ ra <b>64% học viên (26/40)</b> xác nhận họ <i>"chỉ xem bài giảng, không tương tác gì khác"</i> và đánh giá <b>3.5/5 điểm</b> mong muốn có cơ chế ghi nhận tiến trình học (streak).<br>
+                • <b>Ý nghĩa:</b> Hai con số này chứng minh sự thụ động nghiêm trọng khi gặp vùng kiến thức khó và khao khát có động lực học tập.
+              </div>
+            </div>
+
+            <div class="card" style="font-size: 0.85rem; color: #1e293b; background: #fff0f5; border: 1px solid rgba(244, 114, 182, 0.4); display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                🔥 <b>Thống Kê Học Thụ Động Tổng Thể:</b> <b style="color:#b45309; font-size:1.1rem;">39.02%</b> (492/1,261 turns)<br>
+                <span style="font-size: 0.78rem;">• Thiếu trích dẫn số trang (citations = []): <b style="color:#be123c;">46.15%</b> (582/1,261)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: #fff0f5;">
+            <div style="font-size: 0.85rem; font-weight: 800; color: #831843; margin-bottom: 6px;">Tỷ Lệ Học Thụ Động (28.4% - 39.02%) & Ungrounded</div>
+            <div style="height: 210px; width: 100%;">
+              <canvas id="chartSlide1"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: Vì sao chọn tính năng này -->
+      <div class="slide" id="slide-2">
+        <div>
+          <div class="slide-header">
+            <span class="slide-number-badge">Slide 02 / 06 — Vì sao chọn tính năng</span>
+            <span class="badge-pill badge-purple">Ý Tưởng Cân Nhắc (Q6) & Impact Table</span>
+          </div>
+          <h1 class="slide-title">Vì Sao Chọn V-Pet Tutor & Adaptive Quiz Engine</h1>
+          <p class="slide-subtitle">6. Nhóm đã cân nhắc những ý tưởng nào? Vì sao chọn ý tưởng này?</p>
+        </div>
+
+        <div class="card" style="background: #fff0f5; border-color: rgba(244, 114, 182, 0.4); margin-bottom: 0.75rem; padding: 10px 14px;">
+          <div class="card-title" style="color: #831843; font-size: 0.95rem; margin-bottom: 4px;">💡 6. Quyết Định Chọn Ý Tưởng (Trích spec Q6):</div>
+          <p style="font-size: 0.83rem; color: #1e293b; line-height: 1.45;">
+            Nhóm đã cân nhắc 3 ý tưởng: <b>(1) Bảng xếp hạng Leaderboard:</b> Bị loại vì khảo sát cho thấy dễ tạo áp lực tiêu cực cho người học yếu. <b>(2) AI tóm tắt toàn bộ bài:</b> Bị loại vì đi ngược triết lý giáo dục chủ động, làm học viên lười thêm. <b>(3) V-Pet Tutor (Nuôi thú bằng cách giải Adaptive Quiz tại các đoạn highlight):</b> Nhóm quyết định <b>CHỌN V-Pet Tutor</b> vì nó giải quyết triệt để 28.4% case lười tư duy (bắt người dùng tự suy nghĩ thay vì đưa đáp án ngay), đồng thời đáp ứng mong muốn có yếu tố đồng hành và ghi nhận nỗ lực qua điểm EXP/Streak.
+          </p>
+        </div>
+
+        <table class="impact-table">
+          <thead>
+            <tr>
+              <th>Ý tưởng cân nhắc</th>
+              <th>Đối tượng (Evidence)</th>
+              <th>Tần suất</th>
+              <th>Mỗi lần tốn gì</th>
+              <th>Quyết định & Lý do</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>(1) Leaderboard Tổng</b></td>
+              <td>64% học viên (26/40)</td>
+              <td>Cao</td>
+              <td>Áp lực so sánh tiêu cực cho người học yếu</td>
+              <td><span class="badge-pill badge-rose">LOẠI (Áp lực tiêu cực)</span></td>
+            </tr>
+            <tr>
+              <td><b>(2) AI Tóm Tắt Toàn Bài</b></td>
+              <td>28.4% - 39.02% chatlog</td>
+              <td>Rất cao</td>
+              <td>Tạo thói quen lười tư duy, học vẹt</td>
+              <td><span class="badge-pill badge-rose">LOẠI (Đi ngược chủ động)</span></td>
+            </tr>
+            <tr style="background: #fbcfe8; font-weight: 600;">
+              <td><b>(3) V-Pet Tutor (Adaptive Quiz)</b></td>
+              <td><b>28.4%</b> lười bôi đen + <b>39.02%</b> thụ động</td>
+              <td>Mỗi buổi học</td>
+              <td>Mất động lực & đứt mạch tư duy</td>
+              <td><span class="badge-pill badge-green">CHỌN (28.4% Lười + EXP/Streak)</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="display: flex; gap: 1rem; margin-top: 0.5rem; align-items: center; justify-content: space-between;">
+          <div class="card" style="flex: 1; padding: 8px 12px; background: #fff0f5;">
+            <div style="font-size: 0.82rem; color: #15803d; font-weight: 800;">🎯 Con Số Động Lực: 3.5 / 5 Điểm Streak</div>
+            <div style="font-size: 0.78rem; color: #475569;">Biến 28.4% lệnh thụ động thành trải nghiệm giải Quiz thăng cấp Thú Cưng</div>
+          </div>
+          <div class="card" style="display: flex; align-items: center; gap: 12px; padding: 6px 16px; background: #fff0f5;">
+            <div><span style="font-size: 1.3rem;">🥚</span> <span style="font-size: 0.75rem; color:#7e22ce; font-weight:700;">Trứng</span></div>
+            <div style="color:#ec4899; font-weight:bold;">➔</div>
+            <div><span style="font-size: 1.3rem;">🐥</span> <span style="font-size: 0.75rem; color:#0369a1; font-weight:700;">Gà Con</span></div>
+            <div style="color:#ec4899; font-weight:bold;">➔</div>
+            <div><span style="font-size: 1.3rem;">🐓</span> <span style="font-size: 0.75rem; color:#15803d; font-weight:700;">Gà Trống</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: Giải pháp & Demo live -->
+      <div class="slide" id="slide-3">
+        <div>
+          <div class="slide-header">
+            <span class="slide-number-badge">Slide 03 / 06 — Giải pháp & Architecture Flow</span>
+            <span class="badge-pill badge-cyan">Conditional Automation</span>
+          </div>
+          <h1 class="slide-title">Giải Pháp & Sơ Đồ Luồng Kiến Trúc V-Pet Tutor</h1>
+          <p class="slide-subtitle">Lát cắt MỘT CÂU: Bôi đen tại Vùng nóng -> Adaptive Quiz -> V-Pet nhận EXP tiến hóa</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1rem; margin-top: 0.5rem;">
+          <div class="card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fff0f5; border-color: rgba(244, 114, 182, 0.4);">
+            <div class="card-title" style="color: #831843; font-size: 0.9rem; margin-bottom: 6px;">📐 Sơ Đồ Luồng Giải Pháp V-Pet Tutor Flow</div>
+            <img src="1785472177339_2362611285678318538_g652526740064374029_2f8d2269ac72c3a13e7d131ab2ab6d24.jpg" alt="V-Pet Tutor Architecture Diagram" style="max-width: 100%; max-height: 250px; border-radius: 8px; border: 1px solid rgba(244,114,182,0.4); object-fit: contain; box-shadow: 0 8px 25px rgba(236,72,153,0.15);">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="card" style="padding: 10px 12px; background: #fff0f5;">
+              <div class="card-title" style="color: #831843; font-size: 0.9rem;">🎮 Demo Live 2 Cases</div>
+              <div style="font-size: 0.78rem; display: flex; flex-direction: column; gap: 6px;">
+                <div style="background: #dcfce7; border-left: 3px solid #16a34a; padding: 6px 8px; color: #14532d;">
+                  <b>Case 1 (Happy Path):</b> Bôi đen "Grounding RAG" Trang 12 -> Adaptive Quiz -> Đúng: <code>[Slide 12]</code> + V-Pet +50 EXP Gà con.
+                </div>
+                <div style="background: #ffe4e6; border-left: 3px solid #e11d48; padding: 6px 8px; color: #881337;">
+                  <b>Case 2 (Edge Case):</b> Bôi đen quá ngắn hoặc đòi hack EXP -> Backend API chặn, V-Pet từ chối nhã nhặn.
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="padding: 10px 12px; background: #fff0f5;">
+              <div class="card-title" style="color: #0284c7; font-size: 0.9rem;">⚙️ Conditional Automation</div>
+              <p style="font-size: 0.78rem; color: #1e293b; line-height: 1.4;">
+                AI tự động sinh Quiz khi bôi đen tại Vùng nóng. Bôi đen quá ngắn (<2 từ) hoặc sai căn cứ -> AI từ chối sinh đề để bảo vệ độ chính xác kiến thức.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: Kết quả đo -->
+      <div class="slide" id="slide-4">
+        <div>
+          <div class="slide-header">
+            <span class="slide-number-badge">Slide 04 / 06 — Kết quả đo</span>
+            <span class="badge-pill badge-green">Golden Set 20/20 Passed</span>
+          </div>
+          <h1 class="slide-title">Kết Quả Đo Bằng Máy: 20/20 Test Cases Passed</h1>
+          <p class="slide-subtitle">Đối chiếu với Quality Bar đã chốt lúc 23:59 N1 (Quality Bar: ≥ 80% pass, cấm bịa đáp án)</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; background: #fff0f5;">
+            <div>
+              <div class="card-title" style="color: #15803d;">✅ Benchmark Result: 100% Passed</div>
+              <div style="font-size: 0.85rem; color: #1e293b; line-height: 1.6;">
+                Model: <b>gemini-3.1-flash-lite</b> | eval_report_final.json<br>
+                • <code>happy_path</code>: 5/5 | <code>out_of_scope</code>: 5/5 | <code>ambiguity</code>: 4/4<br>
+                • <code>hallucination</code>: 3/3 | <code>domain_risk</code>: 3/3
+              </div>
+            </div>
+            <div style="background: #ffe4e6; border-left: 3px solid #e11d48; padding: 8px; font-size: 0.8rem; color: #9f1239; margin-top: 8px; border-radius: 4px;">
+              <b>⚠️ 1 Failure Đáng Kể (True Failure):</b> Lượt 1 bị <b>429 Quota Exceeded</b> do hardcode model 2.0. Đã khắc phục chuyển sang Gemini 3.1 Flash Lite qua <code>.env</code>.
+            </div>
+          </div>
+
+          <div class="card" style="display: flex; flex-direction: column; align-items: center; background: #fff0f5;">
+            <div style="font-size: 0.85rem; font-weight: 800; color: #831843; margin-bottom: 6px;">Phân Phối Độ Trễ Phản Hồi (Latency Median: 1.76s)</div>
+            <div style="height: 200px; width: 100%;">
+              <canvas id="chartSlide4"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: User thật nói gì -->
+      <div class="slide" id="slide-5">
+        <div>
+          <div class="slide-header">
+            <span class="slide-number-badge">Slide 05 / 06 — User thật nói gì</span>
+            <span class="badge-pill badge-cyan">CP5 Validation Log</span>
+          </div>
+          <h1 class="slide-title">User Thật Nói Gì: Phản Hồi Vòng Validation CP5</h1>
+          <p class="slide-subtitle">Thử nghiệm trực tiếp với ≥ 5 người dùng ngoài nhóm (Willing users Khóa 3 & Khóa 4)</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card" style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; background: #fff0f5;">
+            <div class="card-title" style="color: #831843;">💬 Quotes Nguyên Văn Từ User Thật</div>
+            <div style="background: #fdf2f8; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #ec4899; color: #1e293b;">
+              <i>"Lúc học mà có pet đồng hành cùng mình cảm thấy vui hơn hẳn. "</i><br>
+              <b style="color: #15803d;">— Trịnh Bá Khánh Trình (Học viên Khóa 3)</b>
+            </div>
+            <div style="background: #fdf2f8; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #ec4899; color: #1e293b;">
+              <i>"Học slide nào cũng có quiz theo trình độ của bản thân, nên dễ tiếp thu hơn. "</i><br>
+              <b style="color: #0369a1;">— Nguyễn Tuấn Vũ (Học viên Khóa 4)</b>
+            </div>
+          </div>
+
+          <div class="card" style="background: #fff0f5; border-color: rgba(244, 114, 182, 0.4);">
+            <div class="card-title" style="color: #831843;">🛠️ Thay Đổi Đã Làm Vào Sản Phẩm (Changelog §9)</div>
+            <ul style="padding-left: 1.2rem; font-size: 0.85rem; line-height: 1.6; color: #1e293b;">
+              <li><b>Thêm nút "Bỏ qua thử thách" (HAX G8):</b> Cho phép học viên bypass bài quiz nếu thực sự muốn hỏi thẳng AI Tutor.</li>
+              <li><b>Chống Spam EXP (Domain Risk):</b> Khóa thử thách 1 phút nếu học viên cố tình click lụi đáp án quá 3 lần.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6: Nếu có thêm 1 tuần -->
+      <div class="slide" id="slide-6">
+        <div>
+          <div class="slide-header">
+            <span class="slide-number-badge">Slide 06 / 06 — Nếu có thêm 1 tuần</span>
+            <span class="badge-pill badge-orange">Backlog & Lesson Learned</span>
+          </div>
+          <h1 class="slide-title">Nếu Có Thêm 1 Tuần: Backlog & Bài Học Rút Ra</h1>
+          <p class="slide-subtitle">Ưu tiên 3 việc dựa trên feedback & failure thực tế</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card" style="background: #fff0f5;">
+            <div class="card-icon">⚡</div>
+            <div class="card-title" style="color: #831843;">1. Redis Session Storage</div>
+            <div style="font-size: 0.85rem; color: #1e293b; line-height: 1.5;">
+              Chuyển In-Memory RAM sang Redis + PostgreSQL để bảo tồn EXP/Level V-Pet khi server restart.
+            </div>
+          </div>
+
+          <div class="card" style="background: #fff0f5;">
+            <div class="card-icon">💰</div>
+            <div class="card-title" style="color: #831843;">2. Vector Caching 90%</div>
+            <div style="font-size: 0.85rem; color: #1e293b; line-height: 1.5;">
+              Cache Quiz cho cùng đoạn text bôi đen -> Giảm 90% chi phí API LLM khi scale.
+            </div>
+          </div>
+
+          <div class="card" style="background: #fff0f5;">
+            <div class="card-icon">🧠</div>
+            <div class="card-title" style="color: #831843;">3. Proactive Check 20%</div>
+            <div style="font-size: 0.85rem; color: #1e293b; line-height: 1.5;">
+              Nâng tỷ lệ AI chủ động hỏi lại học sinh (<code>validate_understanding</code>) từ 0.08% lên ≥ 20%.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.25rem; text-align: center; background: #fce7f3; border-color: #f472b6;">
+          <h3 style="color: #9d174d; font-size: 1.1rem; margin-bottom: 4px; font-weight: 800;">🎓 BÀI HỌC LỚN NHẤT CỦA NHÓM (LESSON LEARNED)</h3>
+          <p style="color: #831843; font-size: 0.9rem; font-style: italic; line-height: 1.5; font-weight: 600;">
+            "Đừng đoán nhu cầu người dùng bằng cảm tính hay xây UI hoành tráng từ đầu; hãy bắt đầu bằng mining chatlog thật, chốt Quality Bar khắt khe và lắng nghe feedback nguyên văn từ những học viên thật."
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Presenter Notes Overlay Modal -->
+  <div class="notes-modal" id="notesModal">
+    <div class="notes-header">
+      <span>🎤 KỊCH BẢN NÓI (PRESENTER NOTES - 02-GUIDE.MD)</span>
+      <button style="background:none; border:none; color:#94a3b8; cursor:pointer; font-size:1.1rem;" onclick="toggleNotes()">✕</button>
+    </div>
+    <div class="notes-text" id="notesContent">Loading...</div>
+  </div>
+
+  <!-- Footer Controls -->
+  <footer>
+    <div class="progress-bar-container"><div class="progress-bar-fill" id="progressBar"></div></div>
+    <div style="font-size: 0.8rem; color: #475569;">Dùng phím <kbd>←</kbd> <kbd>→</kbd> hoặc <kbd>Space</kbd> để chuyển slide</div>
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <button class="btn" onclick="prevSlide()">◀ Trước</button>
+      <span style="font-family: var(--font-code); font-weight:800; color:#831843;" id="slideIndicator">01 / 06</span>
+      <button class="btn btn-primary" onclick="nextSlide()">Sau ▶</button>
+    </div>
+  </footer>
+
+  <script>
+    const totalSlides = 6;
+    let currentSlide = 1;
+
+    const presenterNotes = {
+      1: `<b>Slide 1 Notes (45s):</b><br>"Con số bằng chứng thuyết phục nhất là: 28.4% (358/1.261) câu hỏi của học viên trên nền tảng chỉ là các lệnh hoàn toàn thụ động như 'Giải thích đoạn bôi đen ở Trang X'. Cách đếm: Lấy dữ liệu chatlog thực tế, lọc các prompt yêu cầu giải thích nguyên văn đoạn text đã highlight. Thêm vào đó, khảo sát (N=40) chỉ ra 64% học viên (26/40) xác nhận họ 'chỉ xem bài giảng, không tương tác gì khác' và đánh giá 3.5/5 điểm mong muốn có cơ chế ghi nhận tiến trình học (streak). Hai con số này chứng minh sự thụ động nghiêm trọng (39.02% thụ động tổng thể) khi gặp vùng kiến thức khó và khao khát có động lực học tập."`,
+      2: `<b>Slide 2 Notes (45s):</b><br>"Nhóm đã cân nhắc 3 ý tưởng: (1) Bảng xếp hạng Leaderboard: Bị loại vì khảo sát cho thấy dễ tạo áp lực tiêu cực cho người học yếu. (2) AI tóm tắt toàn bộ bài: Bị loại vì đi ngược triết lý giáo dục chủ động, làm học viên lười thêm. (3) V-Pet Tutor (Nuôi thú bằng cách giải Adaptive Quiz tại các đoạn highlight). Nhóm quyết định CHỌN V-Pet Tutor vì nó giải quyết triệt để 28.4% case lười tư duy (bắt người dùng tự suy nghĩ thay vì đưa đáp án ngay), đồng thời đáp ứng mong muốn có yếu tố đồng hành và ghi nhận nỗ lực qua điểm EXP/Streak."`,
+      3: `<b>Slide 3 Notes (2 min):</b><br>"Sơ đồ luồng giải pháp V-Pet Tutor: Khi học viên bôi đen đoạn khó, chú thú cưng V-Pet xuất hiện mời làm Quiz nhận EXP. Khi đồng ý, Gemini AI sinh Quiz Thích ứng. Làm đúng -> Thú cưng tăng EXP/Lên cấp & log vị trí bôi đen cho Giảng viên xem Heatmap. Live demo: Case 1 bôi đen 'Grounding RAG' nhận EXP + trích dẫn [Slide 12]; Case 2 bôi đen quá ngắn / hack EXP bị API chặn nhã nhặn."`,
+      4: `<b>Slide 4 Notes (45s):</b><br>"Đo bằng máy: Mô hình Gemini 3.1 Flash Lite đạt 100% (20/20 cases passed) so với Quality Bar 80% chốt từ 23:59 N1. Nhóm thừa nhận 1 failure lượt 1 bị 429 Quota Exceeded do hardcode model 2.0 và đã khắc phục ngay. Chatlog chỉ ra độ trễ P50 1.76s rất mượt!"`,
+      5: `<b>Slide 5 Notes (45s):</b><br>"Validation CP5 với ≥5 user ngoài nhóm: Học viên đánh giá cao tính minh bạch trích dẫn [Slide 12] và sự hào hứng của chú gà V-Pet. Từ feedback thật, nhóm đã làm ngay 2 nâng cấp: Thêm nút 'Bỏ qua thử thách' bypass quiz & Khóa thử thách 1 phút chống click lụi!"`,
+      6: `<b>Slide 6 Notes (30s):</b><br>"Nếu có thêm 1 tuần: Nhóm ưu tiên gắn Redis Session lưu state bền vững, áp dụng Semantic Vector Caching tiết kiệm 90% chi phí API LLM, và nâng tỷ lệ AI chủ động hỏi từ 0.08% lên 20%. Bài học lớn nhất: Hãy để dữ liệu chatlog & feedback thật dẫn dắt sản phẩm!"`
+    };
+
+    function updateSlide() {
+      document.querySelectorAll('.slide').forEach((slide, idx) => {
+        slide.classList.toggle('active', idx + 1 === currentSlide);
+      });
+      document.getElementById('slideIndicator').innerText = `0${currentSlide} / 06`;
+      document.getElementById('progressBar').style.width = `${(currentSlide / totalSlides) * 100}%`;
+      document.getElementById('notesContent').innerHTML = presenterNotes[currentSlide];
+    }
+
+    function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; updateSlide(); } }
+    function prevSlide() { if (currentSlide > 1) { currentSlide--; updateSlide(); } }
+    function toggleNotes() { document.getElementById('notesModal').classList.toggle('open'); }
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else if (document.exitFullscreen) document.exitFullscreen();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      else if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Render Charts
+    Chart.defaults.color = '#334155';
+    Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+
+    new Chart(document.getElementById('chartSlide1'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Thiếu Cite (Ungrounded)', 'Có Cite [Slide X]', 'Hỏi Thụ Động', 'Hỏi Chủ Động'],
+        datasets: [{
+          data: [582, 679, 492, 769],
+          backgroundColor: ['#e11d48', '#10b981', '#d97706', '#ec4899'],
+          borderWidth: 0
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+    });
+
+    new Chart(document.getElementById('chartSlide4'), {
+      type: 'bar',
+      data: {
+        labels: ['1s - 2s', '2s - 5s', '5s - 10s', '> 10s'],
+        datasets: [{
+          label: 'Số lượt turn',
+          data: [1870, 554, 92, 6],
+          backgroundColor: '#ec4899',
+          borderRadius: 6
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+    });
+
+    updateSlide();
+  </script>
+</body>
+</html>
