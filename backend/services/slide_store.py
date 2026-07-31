@@ -8,7 +8,7 @@ from typing import Dict, Optional
 _slide_store: Dict[str, dict] = {}
 
 
-def store_slide(slide_id: str, title: str, pages: list[dict]):
+def store_slide(slide_id: str, title: str, pages: list[dict], pdf_url: str = ""):
     """
     Lưu thông tin slide vào memory sau khi parse PDF.
     pages = [{ "page_num": 1, "text": "..." }, ...]
@@ -16,6 +16,7 @@ def store_slide(slide_id: str, title: str, pages: list[dict]):
     _slide_store[slide_id] = {
         "slide_id": slide_id,
         "title": title,
+        "pdf_url": pdf_url,
         "total_pages": len(pages),
         "pages": {str(p["page_num"]): p["text"] for p in pages}
     }
@@ -56,6 +57,6 @@ def get_slide_context_summary(slide_id: str, page_num: int) -> str:
 def list_slides() -> list:
     """Trả về danh sách tất cả slide đã upload."""
     return [
-        {"slide_id": s["slide_id"], "title": s["title"], "total_pages": s["total_pages"]}
+        {"slide_id": s["slide_id"], "title": s["title"], "pdf_url": s.get("pdf_url", ""), "total_pages": s["total_pages"]}
         for s in _slide_store.values()
     ]

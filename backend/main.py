@@ -5,7 +5,11 @@ from routers.pet import router as pet_router
 from routers.analytics import router as analytics_router
 from routers.slide import router as slide_router
 import uvicorn
-
+import os
+import glob
+from fastapi.staticfiles import StaticFiles
+from routers.slide import _parse_pdf_bytes
+from services.slide_store import store_slide
 app = FastAPI(title="V-Pet Tutor Backend API")
 
 # Allow CORS for Next.js frontend
@@ -21,6 +25,29 @@ app.include_router(quiz_router)
 app.include_router(pet_router)
 app.include_router(analytics_router)
 app.include_router(slide_router)
+
+# Mount thư mục tĩnh cho PDF
+slides_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "vlearn-pack", "slides"))
+if not os.path.exists(slides_dir):
+    os.makedirs(slides_dir)
+app.mount("/static/slides", StaticFiles(directory=slides_dir), name="slides")
+
+@app.on_event("startup")
+async def load_static_slides():
+    pdf_files = glob.glob(os.path.join(slides_dir, "*.pdf"))
+    print(f"🔄 Đang load {len(pdf_files)} slides từ {slides_dir}...")
+    for idx, pdf_path in enumerate(pdf_files):
+        filename = os.path.basename(pdf_path)
+        slide_id = f"static_{idx}"
+        pdf_url = f"http://localhost:8000/static/slides/{filename}"
+        
+        with open(pdf_path, "rb") as f:
+            pdf_bytes = f.read()
+        
+        pages = _parse_pdf_bytes(pdf_bytes)
+        store_slide(slide_id, filename.replace(".pdf", ""), pages, pdf_url=pdf_url)
+        print(f"✅ Đã nạp slide: {filename} (ID: {slide_id}, {len(pages)} trang)")
+
 
 @app.get("/")
 def read_root():
