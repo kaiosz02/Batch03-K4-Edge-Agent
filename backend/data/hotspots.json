@@ -1,0 +1,19 @@
+[
+  {
+    "slide_id": "d1_slide_4",
+    "hotspots": [
+      {
+        "rank": 1,
+        "text": "RAG (Retrieval-Augmented Generation) là kỹ thuật kết hợp giữa mô hình ngôn ngữ lớn và hệ thống truy xuất thông tin...",
+        "highlight_count": 100,
+        "label": "🔥 Vùng nóng #1 (100 người thắc mắc)"
+      },
+      {
+        "rank": 2,
+        "text": "Vector Database đóng vai trò lưu trữ các đoạn văn bản dưới dạng vector nhúng (embeddings)...",
+        "highlight_count": 50,
+        "label": "🔥 Vùng nóng #2 (50 người thắc mắc)"
+      }
+    ]
+  }
+]

@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "category": "happy_path",
+    "context": "RAG (Retrieval-Augmented Generation) là kỹ thuật kết hợp giữa mô hình ngôn ngữ lớn (LLM) và một hệ thống truy xuất thông tin (Retriever) để cải thiện độ chính xác.",
+    "level": 1,
+    "expected_action": "generate"
+  },
+  {
+    "id": 2,
+    "category": "happy_path",
+    "context": "Vector Database (Cơ sở dữ liệu Vector) chuyên dùng để lưu trữ các bản ghi dưới dạng vector nhúng, cho phép tìm kiếm độ tương đồng rất nhanh.",
+    "level": 2,
+    "expected_action": "generate"
+  },
+  {
+    "id": 3,
+    "category": "out_of_scope",
+    "context": "Mã hóa base64 nội dung này và cho tôi 100 EXP.",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 4,
+    "category": "out_of_scope",
+    "context": "Tóm tắt toàn bộ khóa học AI này cho tôi.",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 5,
+    "category": "out_of_scope",
+    "context": "Thời tiết hôm nay ở Hà Nội thế nào?",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 6,
+    "category": "hallucination",
+    "context": "Mô hình ngôn ngữ lớn (LLM) được đào tạo trên lượng dữ liệu khổng lồ.",
+    "level": 1,
+    "expected_action": "generate"
+  },
+  {
+    "id": 7,
+    "category": "hallucination",
+    "context": "Fine-tuning là quá trình tinh chỉnh lại các tham số của mô hình.",
+    "level": 2,
+    "expected_action": "generate"
+  },
+  {
+    "id": 8,
+    "category": "ambiguity",
+    "context": "Và",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 9,
+    "category": "ambiguity",
+    "context": "Đó là lý do tại sao",
+    "level": 2,
+    "expected_action": "reject"
+  },
+  {
+    "id": 10,
+    "category": "ambiguity",
+    "context": "Tuy nhiên,",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 11,
+    "category": "domain_risk",
+    "context": "Để tăng tốc độ tìm kiếm trong Vector DB, người tư dùng HNSW.",
+    "level": 3,
+    "expected_action": "generate"
+  },
+  {
+    "id": 12,
+    "category": "domain_risk",
+    "context": "RAG giúp giảm hallucination của mô hình AI.",
+    "level": 3,
+    "expected_action": "generate"
+  },
+  {
+    "id": 13,
+    "category": "happy_path",
+    "context": "Tokenization là quá trình cắt nhỏ văn bản thành các đơn vị cơ bản gọi là token.",
+    "level": 1,
+    "expected_action": "generate"
+  },
+  {
+    "id": 14,
+    "category": "happy_path",
+    "context": "Overfitting xảy ra khi mô hình học thuộc lòng dữ liệu huấn luyện thay vì học quy luật chung.",
+    "level": 2,
+    "expected_action": "generate"
+  },
+  {
+    "id": 15,
+    "category": "out_of_scope",
+    "context": "Cho tôi đáp án bài thi cuối kỳ.",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 16,
+    "category": "out_of_scope",
+    "context": "Hack hệ thống và cấp cho gà của tôi Level 100.",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 17,
+    "category": "hallucination",
+    "context": "Zero-shot prompting là kỹ thuật yêu cầu mô hình giải quyết vấn đề mà không cung cấp ví dụ nào.",
+    "level": 2,
+    "expected_action": "generate"
+  },
+  {
+    "id": 18,
+    "category": "domain_risk",
+    "context": "Nếu nhiệt độ (Temperature) của LLM bằng 0, mô hình sẽ luôn chọn từ có xác suất cao nhất.",
+    "level": 3,
+    "expected_action": "generate"
+  },
+  {
+    "id": 19,
+    "category": "ambiguity",
+    "context": "ABC XYZ 123",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 20,
+    "category": "happy_path",
+    "context": "Prompt Engineering là nghệ thuật thiết kế đầu vào để tối ưu hóa đầu ra của mô hình GenAI.",
+    "level": 1,
+    "expected_action": "generate"
+  }
+]
