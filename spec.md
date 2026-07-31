@@ -80,8 +80,8 @@ Loại: [ ] Tối ưu tính năng có sẵn  [x] Tính năng mới
   - Báo cáo chi tiết được lưu tại `backend/eval/eval_report_final.json`.
 
 ## §8. Phân công & kế hoạch
-- **Phân công có tên:** [Điền tên] (Spec), [Điền tên] (Evidence & Data), [Điền tên] (Prompt & Eval), [Điền tên] (Code UI Thú Cưng), [Điền tên] (Demo)
-- **Willing users (≥3 tên) + kế hoạch vòng validation CP5:** [Điền 3 tên học viên Zone khác]. Kế hoạch: Hỏi 3 câu CP5, [Điền tên] phụ trách log feedback.
+- **Phân công có tên:** Nguyễn Thị Việt Vinh (Spec, Demo), Hoàng Thị Trà My (Evidence & Data), Tạ Hồng Quí (Prompt & Eval), Hoàng Văn Quang (Code UI Thú Cưng)
+- **Willing users (≥3 tên) + kế hoạch vòng validation CP5:** Trịnh Bá Khánh Trình, Nguyễn Tuấn Vũ, Phạm Xuân Phong. Kế hoạch: Hỏi 3 câu CP5, Nguyễn Thị Việt Vinh phụ trách log feedback.
 - **Multi-prototype (nếu làm):** So sánh giữa (1) Thú cưng dùng Emoji tĩnh và (2) Thú cưng dùng CSS Animation để xem mức độ tương tác của học viên.
 
 ## §9. Changelog
@@ -89,3 +89,5 @@ Loại: [ ] Tối ưu tính năng có sẵn  [x] Tính năng mới
 |---|---|---|
 | [Ngày giờ] | Tạo bản Spec Draft v1 | Hoàn thành theo CP1 Canvas |
 | 31/07/2026 | Cập nhật kết quả Eval CP3 | Cập nhật số liệu kiểm thử thật với mô hình AI |
+| 31/07/2026 | Thêm nút "Bỏ qua thử thách" | Từ feedback vòng validation của Trịnh Bá Khánh Trình: bypass quiz khi cần hỏi nhanh |
+| 31/07/2026 | Cơ chế khóa thử thách 1 phút | Từ feedback vòng validation của Phạm Xuân Phong: ngăn chặn click lụi cày level |

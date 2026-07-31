@@ -21,7 +21,24 @@ Thumbs.db
 .env.test.local
 .env.production.local
 *.env
-data/vlearn-pack/chatlog/.venv
-data/vlearn-pack/chatlog/eda_chat_history.py
+data/
 .venv/
+venv/
+
+# Ignore draft, data, and unnecessary root files
+/mvp1.md
+/slides.html
+/slide.md
+/01-de-bai.md
+/02-guide.md
+/03-template-ai-spec.md
+/04-rubric.md
+/Full_Context_VLearn_AI_Tutor.md
+/Project_Overview.md
+/Stitch_AI_Prompts.md
+/NguyenThiVietVinh_2A202601836.md
+/flow.md
+/how_to_run.md
+/*.jpg
+/tham-khao/
 venv/
