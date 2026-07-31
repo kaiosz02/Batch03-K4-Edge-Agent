@@ -77,7 +77,8 @@ def generate_adaptive_quiz(request: QuizRequest) -> QuizInternalResponse:
         )
 
     try:
-        model = genai.GenerativeModel("gemini-2.0-flash")
+        model_name = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
+        model = genai.GenerativeModel(model_name)
         
         pet_state = get_session(request.session_id)
         history = pet_state.get("history", [])
