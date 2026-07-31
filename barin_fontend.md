@@ -60,7 +60,7 @@ sequenceDiagram
 - **Log Backend:** Viết thêm một Middleware trong FastAPI hoặc gọi hàm lưu log ra file `data/telemetry_logs.json`.
 - **API `POST /track`**: Một API chung để Frontend bắn mọi sự kiện (Event Name, Payload, Timestamp) xuống Backend lưu lại.
 - **Tạo Script Export:** Viết 1 file python ngắn (`generate_report.py`) để đọc log và in ra thống kê giả lập (Ví dụ: "70% học viên hiểu bài RAG sau khi làm quiz"). Show file này lúc thuyết trình sẽ rất ấn tượng.
-
+giờ 
 ### Phase 2: Production (Thực tế)
 - **Frontend Analytics:** Tích hợp `Google Analytics 4` hoặc `Mixpanel` để tracking sự kiện trên giao diện.
 - **Backend Logging:** Dùng ELK Stack (Elasticsearch, Logstash, Kibana) hoặc GCP Cloud Logging để theo dõi health của AI.

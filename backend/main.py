@@ -9,7 +9,7 @@ app = FastAPI(title="V-Pet Tutor Backend API")
 # Allow CORS for Next.js frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -26,8 +26,7 @@ def read_root():
         "endpoints": [
             "POST /quiz/generate",
             "GET /hotspot/{slide_id}",
-            "GET /pet/status",
-            "POST /pet/update"
+            "GET /pet/status"
         ]
     }
 
