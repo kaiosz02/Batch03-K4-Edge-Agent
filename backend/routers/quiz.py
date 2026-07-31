@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from models.quiz_model import QuizRequest, QuizGenerateResponse, QuizSubmitRequest, QuizSubmitResponse
-from services.gemini_service import generate_adaptive_quiz
+from services.deepseek_service import generate_adaptive_quiz
 from services.hotspot_service import get_hotspots_by_slide
 from services.telemetry_service import log_event
 import time

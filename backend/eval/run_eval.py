@@ -5,7 +5,7 @@ import time
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from models.quiz_model import QuizRequest
-from services.gemini_service import generate_adaptive_quiz
+from services.deepseek_service import generate_adaptive_quiz
 
 def run_eval():
     eval_file = os.path.join(os.path.dirname(__file__), "test_cases.json")
