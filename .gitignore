@@ -24,3 +24,4 @@ Thumbs.db
 data/vlearn-pack/chatlog/.venv
 data/vlearn-pack/chatlog/eda_chat_history.py
 \n.venv/\n
+.venv

@@ -1,70 +1,50 @@
-# 📈 Thiết kế Hệ thống Tracking & Telemetry (V-Pet Tutor)
+# 🧠 Brainstorm: Trải Nghiệm Người Dùng (UX) trên Frontend
 
-Để đánh giá chính xác hiệu quả học tập và tối ưu hóa hệ thống AI, chúng ta cần một cơ chế tracking (thu thập dữ liệu) chia làm 3 tầng: **Hành vi người dùng**, **Hiệu suất AI**, và **Gamification (Game hóa)**. 
-
-Dưới đây là ý tưởng tracking toàn diện, từ chuẩn bị cho Hackathon (MVP) đến Mở rộng (Production).
+Tài liệu này tập trung vào thiết kế luồng tương tác giữa **Sinh viên** và **Thú cưng (Pet)** trên giao diện Frontend để đảm bảo tính tự nhiên, không gây gượng ép và tối đa hóa yếu tố Gamification.
 
 ---
 
-## 1. Các Metric (Chỉ số) Cần Track
-
-### 📍 Tầng 1: Tracking Hành Vi (Frontend)
-- `slide_view`: Học viên đang ở slide nào, dừng lại bao lâu.
-- `text_highlight`: Đoạn text cụ thể học viên bôi đen. Đo lường để vẽ **Heatmap (Vùng nóng)** các kiến thức khó.
-- `quiz_trigger`: Tỉ lệ hiển thị popup câu hỏi so với tỉ lệ học viên thực sự bấm "Bắt đầu làm".
-
-### 🧠 Tầng 2: Tracking Hiệu Quả Học Tập & AI (Backend)
-- `ai_generation_time`: Thời gian (latency) API Gemini phản hồi. 
-- `ai_error_rate`: Tỉ lệ AI trả về lỗi (Rate Limit, từ chối trả lời do Out of Scope, Hallucination...).
-- `quiz_accuracy`: Học viên trả lời Đúng/Sai (Map với độ khó của câu hỏi).
-- `knowledge_gap`: Những keyword hoặc concept mà học viên trả lời sai nhiều nhất.
-
-### 🎮 Tầng 3: Tracking Gamification (Pet)
-- `exp_gained_per_day`: Số EXP thu thập được mỗi ngày.
-- `pet_level_up`: Tỉ lệ học viên đạt level cao (VD: Bao nhiêu người đạt Gà Trống 🐔).
-- `streak_maintained`: Số ngày học liên tục (Đánh giá mức độ giữ chân - Retention Rate).
+## 🎯 Vấn đề của luồng cũ (Bị ép buộc)
+- **Hiện trạng:** Sinh viên bôi đen text -> Nhấn nút "Tạo Quiz" -> Hệ thống tự động đẩy ra câu hỏi luôn.
+- **Tại sao chưa tốt?** 
+  - Thiếu tính "người" (human-touch). AI giống như một cái máy móc sinh đề chứ không phải bạn đồng hành.
+  - Có thể sinh viên chỉ lỡ tay bôi đen hoặc muốn hỏi khái niệm khác chứ chưa sẵn sàng làm bài test ngay.
 
 ---
 
-## 2. Luồng Dữ Liệu (Data Flow)
+## 💡 Ý tưởng mới: "Luồng Bạn Đồng Hành" (Pet Trigger Flow)
 
-```mermaid
-sequenceDiagram
-    participant U as User (Next.js)
-    participant B as Backend (FastAPI)
-    participant AI as Gemini API
-    participant DB as Database / Logs
+Chúng ta cần chèn **Thú cưng (Pet)** vào giữa như một người gợi mở. Luồng UX chuẩn sẽ diễn ra như sau:
 
-    U->>B: Gửi sự kiện [text_highlight]
-    B->>DB: Lưu tọa độ & text vào Hotspot DB
-    
-    U->>B: Gọi API sinh Quiz (POST /quiz/generate)
-    B->>AI: Request sinh câu hỏi
-    AI-->>B: Trả kết quả JSON
-    B->>DB: Log [ai_generation] (thời gian, tokens, status)
-    B-->>U: Hiển thị câu hỏi
-    
-    U->>B: Nộp đáp án (POST /pet/update)
-    B->>DB: Log [quiz_answer] (đúng/sai, độ khó)
-    B->>DB: Cập nhật Pet Status & Streak
-```
+### Bước 1: Gợi ý (The Hook)
+Sinh viên bôi đen một đoạn text (Ví dụ: *"Vector Database"*). Hệ thống KHÔNG gọi API Gemini ngay, mà Thú cưng sẽ "nhảy" ra chat:
+> **Thú cưng 🐣:** "🐾 Meo! Mình thấy bạn vừa bôi đen đoạn: *'Vector Database...'* Chỗ này khá khoai đấy! Bạn có muốn làm 1 câu trắc nghiệm nhanh để nhận **+10 EXP** tiến hóa cho mình không?"
+> 
+> `[Bắt Đầu 🎯]`  |  `[Thôi, lúc khác]`
+
+### Bước 2: Cam kết (The Commitment)
+- Nếu người dùng chọn **[Thôi, lúc khác]**: Pet trả lời "Oki, khi nào sẵn sàng thì gọi mình nhé!" (Hủy action).
+- Nếu người dùng chọn **[Bắt Đầu 🎯]**: 
+  - Frontend sẽ render hiệu ứng Pet đang suy nghĩ (Loading state).
+  - Lúc này Frontend mới chính thức gọi API `POST /quiz/generate` xuống Backend.
+
+### Bước 3: Thử thách & Phần thưởng (Challenge & Reward)
+- AI trả về Quiz Card.
+- Học sinh chọn đáp án:
+  - **Đúng:** Pet vui mừng (Emotion: Excited) + Hiện hiệu ứng pháo hoa + "Ting! +10 EXP". Thanh máu/kinh nghiệm đầy lên.
+  - **Sai:** Pet an ủi (Emotion: Hungry/Sad) + "Không sao, cố lên! +2 EXP khích lệ".
 
 ---
 
-## 3. Lộ Trình Triển Khai
+## 🛠 Cách triển khai vào Code hiện tại (`useTutorChat.ts`)
 
-> [!TIP]
-> Đối với giai đoạn thi Hackathon, chúng ta không nên cài cắm các hệ thống quá phức tạp. Hãy ưu tiên **File-based Logging** hoặc **SQLite** để dễ dàng show ra cho giám khảo.
+Để đưa ý tưởng này vào thực tế, chúng ta sẽ áp dụng pattern **Message States** trong Chat:
 
-### Phase 1: MVP (Dùng cho Demo Hackathon)
-- **Log Backend:** Viết thêm một Middleware trong FastAPI hoặc gọi hàm lưu log ra file `data/telemetry_logs.json`.
-- **API `POST /track`**: Một API chung để Frontend bắn mọi sự kiện (Event Name, Payload, Timestamp) xuống Backend lưu lại.
-- **Tạo Script Export:** Viết 1 file python ngắn (`generate_report.py`) để đọc log và in ra thống kê giả lập (Ví dụ: "70% học viên hiểu bài RAG sau khi làm quiz"). Show file này lúc thuyết trình sẽ rất ấn tượng.
-giờ 
-### Phase 2: Production (Thực tế)
-- **Frontend Analytics:** Tích hợp `Google Analytics 4` hoặc `Mixpanel` để tracking sự kiện trên giao diện.
-- **Backend Logging:** Dùng ELK Stack (Elasticsearch, Logstash, Kibana) hoặc GCP Cloud Logging để theo dõi health của AI.
-- **Database Tracking:** Đẩy dữ liệu câu hỏi đúng/sai vào BigQuery để phân tích chuyên sâu năng lực học viên.
+1. Thêm một loại tin nhắn đặc biệt (Type: `confirm_quiz`) vào state của tin nhắn.
+2. Khi gọi hàm `triggerQuizFromSelection()`, thay vì fetch API ngay, ta đẩy một tin nhắn `confirm_quiz` chứa nội dung text bôi đen vào khung chat.
+3. Component render tin nhắn sẽ hiển thị 2 nút bấm.
+4. Khi user click "Bắt đầu", nó sẽ trigger một hàm mới `executeQuizGeneration(text)` để thực sự gọi API.
 
-## ❓ Câu hỏi mở
-Anh thấy ý tưởng triển khai luồng **Phase 1 (MVP)** bằng file JSON có hợp lý để làm tiếp ngay bây giờ không? Em có thể bổ sung API `/track` vào backend luôn nếu anh duyệt thiết kế này.
+---
+
+Bằng cách này, chúng ta vừa tối ưu chi phí API (chỉ gọi khi user thực sự muốn), vừa tăng sự tương tác cảm xúc giữa người và Thú cưng, làm bật lên đúng tính chất **Gamification** của dự án!
