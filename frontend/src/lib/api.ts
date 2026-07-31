@@ -173,3 +173,30 @@ export async function loadHeatmap(
   if (!res.ok) throw new Error(`Không tải được heatmap: ${res.status}`);
   return res.json();
 }
+
+export interface TrackEventPayload {
+  event: string;
+  session_id?: string;
+  timestamp?: string;
+  payload?: Record<string, unknown>;
+}
+
+/**
+ * Fire-and-forget telemetry event
+ * POST /track — fetch + keepalive so events survive page unload and pass CORS.
+ */
+export function trackEvent(payload: TrackEventPayload): void {
+  fetch(`${BASE_URL}/track`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      event: payload.event,
+      session_id: payload.session_id,
+      timestamp: payload.timestamp || new Date().toISOString(),
+      payload: payload.payload || {},
+    }),
+    keepalive: true,
+  }).catch(() => {
+    // Không block UX nếu track lỗi
+  });
+}

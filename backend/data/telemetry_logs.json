@@ -1,0 +1,62 @@
+[
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T04:13:12.315Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "dwell_ms": 595
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T04:29:56.247Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 23288
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T04:32:42.608Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 166360
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T04:32:52.884Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 10276
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T04:33:40.968Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 48083
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T04:38:56.528Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 315559
+    }
+  }
+]

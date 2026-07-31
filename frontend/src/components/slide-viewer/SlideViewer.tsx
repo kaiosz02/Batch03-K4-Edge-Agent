@@ -1,7 +1,8 @@
 "use client";
 
 import { useSlideViewer } from "@/features/slide-viewer/useSlideViewer";
-import { useEffect } from "react";
+import { track } from "@/features/telemetry/useTelemetry";
+import { useEffect, useRef } from "react";
 
 interface SlideViewerProps {
   /** Callback để TutorPanel biết slide_id và page_num hiện tại khi bôi đen */
@@ -24,12 +25,67 @@ export default function SlideViewer({ onSlideContextChange }: SlideViewerProps) 
     prevPage,
   } = useSlideViewer();
 
+  const viewStartedAt = useRef<number>(Date.now());
+  const lastViewRef = useRef<{ slideId: string; pageNum: number } | null>(null);
+
   // Notify context change whenever slide or page changes
   useEffect(() => {
     if (currentSlide) {
       onSlideContextChange?.(currentSlide.slide_id, currentPageNumber);
     }
   }, [currentSlide, currentPageNumber, onSlideContextChange]);
+
+  // slide_view: flush previous dwell, start new timer
+  useEffect(() => {
+    if (!currentSlide) return;
+
+    const prev = lastViewRef.current;
+    if (prev) {
+      const dwellMs = Date.now() - viewStartedAt.current;
+      if (dwellMs >= 500) {
+        track("slide_view", {
+          slide_id: prev.slideId,
+          page_num: prev.pageNum,
+          dwell_ms: dwellMs,
+        });
+      }
+    }
+
+    lastViewRef.current = {
+      slideId: currentSlide.slide_id,
+      pageNum: currentPageNumber,
+    };
+    viewStartedAt.current = Date.now();
+  }, [currentSlide, currentPageNumber]);
+
+  // Flush dwell on unmount / page hide
+  useEffect(() => {
+    const flush = () => {
+      const prev = lastViewRef.current;
+      if (!prev) return;
+      const dwellMs = Date.now() - viewStartedAt.current;
+      if (dwellMs < 500) return;
+      track("slide_view", {
+        slide_id: prev.slideId,
+        page_num: prev.pageNum,
+        dwell_ms: dwellMs,
+      });
+      // Reset so we don't double-count if both hide + unmount fire
+      viewStartedAt.current = Date.now();
+    };
+
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") flush();
+    };
+
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("pagehide", flush);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("pagehide", flush);
+      flush();
+    };
+  }, []);
 
   const handleNextPage = () => {
     nextPage();
@@ -131,4 +187,3 @@ export default function SlideViewer({ onSlideContextChange }: SlideViewerProps) 
     </div>
   );
 }
-

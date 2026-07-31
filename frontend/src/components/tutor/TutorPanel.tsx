@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useTutorChat } from "@/features/tutor/useTutorChat";
-import CanvasPet, { PetType } from "@/components/gamification/CanvasPet";
 import QuizCard from "@/components/tutor/QuizCard";
 import { PetStatusResponse } from "@/lib/api";
 
@@ -22,7 +21,6 @@ export default function TutorPanel({ slideId, pageNum }: TutorPanelProps) {
   } = useTutorChat();
 
   const [inputValue, setInputValue] = useState("");
-  const [petType, setPetType] = useState<PetType>("spider");
   const [petStatus, setPetStatus] = useState<PetStatusResponse | null>(null);
 
   const handleSend = () => {
@@ -40,9 +38,6 @@ export default function TutorPanel({ slideId, pageNum }: TutorPanelProps) {
 
   return (
     <aside className="w-full md:w-80 lg:w-96 glass-panel border-l border-white/10 flex flex-col h-full bg-surface-container-low/30 relative z-20">
-      {/* Background Interactive Canvas Pet */}
-      <CanvasPet isTyping={isTyping} petType={petType} />
-
       <div className="p-6 border-b border-white/10 flex items-center justify-between relative z-20">
         <div className="flex flex-col">
           <h2 className="font-headline-md text-[18px] text-on-surface">VLearn AI Tutor</h2>
@@ -51,17 +46,6 @@ export default function TutorPanel({ slideId, pageNum }: TutorPanelProps) {
             Đang trực tuyến
           </div>
         </div>
-        <select
-          value={petType}
-          onChange={(e) => setPetType(e.target.value as PetType)}
-          className="bg-white/5 border border-white/10 rounded-lg px-2 py-1 text-xs text-on-surface-variant focus:outline-none focus:border-tertiary"
-        >
-          <option value="spider">Nhện</option>
-          <option value="dog">Chó</option>
-          <option value="cat">Mèo</option>
-          <option value="dino">Khủng Long</option>
-          <option value="chicken">Gà</option>
-        </select>
       </div>
 
       {/* EXP status bar (hiển thị khi đã có pet status từ backend) */}

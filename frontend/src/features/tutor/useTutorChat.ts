@@ -1,14 +1,11 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { ChatMessage, QuizState } from '@/lib/types';
 import { generateQuiz, submitAnswer, PetStatusResponse } from '@/lib/api';
+import { getTelemetrySessionId, track } from '@/features/telemetry/useTelemetry';
 
-const SESSION_ID = 'user-' + (typeof window !== 'undefined'
-  ? (localStorage.getItem('vpet_session') || (() => {
-      const id = Math.random().toString(36).slice(2);
-      localStorage.setItem('vpet_session', id);
-      return id;
-    })())
-  : 'ssr');
+function getSessionId(): string {
+  return getTelemetrySessionId();
+}
 
 const INITIAL_MESSAGES: ChatMessage[] = [
   {
@@ -83,6 +80,18 @@ export function useTutorChat(): TutorChatHook {
       return;
     }
 
+    track('text_highlight', {
+      slide_id: slideId,
+      page_num: pageNum,
+      text: selectedText.slice(0, 500),
+    });
+    track('quiz_trigger', {
+      slide_id: slideId,
+      page_num: pageNum,
+      text_len: selectedText.length,
+      started: true,
+    });
+
     // Hiển thị tin nhắn của user (đoạn bôi đen)
     const userMsg: ChatMessage = {
       id: `msg-user-${Date.now()}`,
@@ -98,7 +107,7 @@ export function useTutorChat(): TutorChatHook {
         context_text: selectedText,
         slide_id: slideId,
         page_num: pageNum,
-        session_id: SESSION_ID,
+        session_id: getSessionId(),
       });
 
       // Nhúng quiz vào tin nhắn AI
@@ -142,7 +151,7 @@ export function useTutorChat(): TutorChatHook {
     onPetUpdate?: (pet: PetStatusResponse) => void
   ) => {
     try {
-      const result = await submitAnswer(quizId, answer, SESSION_ID);
+      const result = await submitAnswer(quizId, answer, getSessionId());
 
       // Cập nhật quiz message với kết quả
       setMessages((prev) =>
@@ -195,7 +204,7 @@ export function useTutorChat(): TutorChatHook {
   return {
     messages,
     isTyping,
-    sessionId: SESSION_ID,
+    sessionId: getSessionId(),
     sendMessage,
     triggerQuizFromSelection,
     handleAnswerSelect,

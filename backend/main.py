@@ -4,12 +4,22 @@ from routers.quiz import router as quiz_router
 from routers.pet import router as pet_router
 from routers.analytics import router as analytics_router
 from routers.slide import router as slide_router
+from routers.track import router as track_router
 import uvicorn
 import os
+import sys
 import glob
 from fastapi.staticfiles import StaticFiles
 from routers.slide import _parse_pdf_bytes
 from services.slide_store import store_slide
+
+# Windows console often uses cp1252 — force UTF-8 for startup logs
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 app = FastAPI(title="V-Pet Tutor Backend API")
 
 # Allow CORS for Next.js frontend
@@ -25,6 +35,7 @@ app.include_router(quiz_router)
 app.include_router(pet_router)
 app.include_router(analytics_router)
 app.include_router(slide_router)
+app.include_router(track_router)
 
 # Mount thư mục tĩnh cho PDF
 slides_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "vlearn-pack", "slides"))
@@ -62,6 +73,7 @@ def read_root():
             "GET  /pet/status        — Trạng thái thú cưng",
             "GET  /analytics/heatmap — Dashboard giảng viên",
             "GET  /hotspot/{slide_id}— Vùng nóng của slide",
+            "POST /track             — Ghi sự kiện telemetry (MVP)",
         ]
     }
 
