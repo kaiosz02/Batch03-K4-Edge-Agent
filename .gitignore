@@ -20,49 +20,5 @@ Thumbs.db
 .env.test.local
 .env.production.local
 *.env
-
-# --- FRONTEND (Node.js & Next.js) ---
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-.npm/
-
-# Next.js build output
-.next/
-out/
-build/
-dist/
-
-# Vercel
-.vercel/
-
-# --- BACKEND (Python & FastAPI) ---
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Virtual environments
-venv/
-env/
-.venv/
-env.bak/
-venv.bak/
-
-# Testing and coverage
-.pytest_cache/
-.coverage
-htmlcov/
-coverage.xml
-
-# Databases
-*.sqlite3
-*.db
-
-# --- Miscellaneous ---
-# Log files
-*.log
-
-# Temp or scratch files
-spider.html
+data/vlearn-pack/chatlog/.venv
+data/vlearn-pack/chatlog/eda_chat_history.py
