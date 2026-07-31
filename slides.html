@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>V-Pet Tutor — Slide Thuyết Trình 6 Trang (Chuẩn 02-guide.md)</title>
+  <title>V-Pet Tutor — Edge - Agent · 7 Slides</title>
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- Google Fonts -->
@@ -315,7 +315,48 @@
     }
 
     .progress-bar-container { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: rgba(244, 114, 182, 0.2); }
-    .progress-bar-fill { height: 100%; background: var(--primary-gradient); width: 16.666%; transition: width 0.4s ease; }
+    .progress-bar-fill { height: 100%; background: var(--primary-gradient); width: 14.285%; transition: width 0.4s ease; }
+
+    /* Intro slide */
+    .slide-intro {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .slide-intro .intro-logo {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 8px 20px rgba(236, 72, 153, 0.3));
+    }
+    .slide-intro .intro-team {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #831843;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+    .slide-intro .intro-title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    .slide-intro .intro-tagline {
+      font-size: 1.1rem;
+      color: #0369a1;
+      font-weight: 600;
+      max-width: 520px;
+      margin: 0 auto 2rem;
+    }
+    .slide-intro .intro-meta {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 <body>
@@ -339,11 +380,28 @@
   <main>
     <div class="slide-container">
 
-      <!-- SLIDE 1: User & Job -->
-      <div class="slide active" id="slide-1">
+      <!-- SLIDE 1: Giới thiệu -->
+      <div class="slide slide-intro active" id="slide-1">
+        <div>
+          <div class="slide-header" style="justify-content: center;">
+            <span class="slide-number-badge">Slide 01 / 07 — Giới thiệu</span>
+          </div>
+          <div class="intro-logo">🐥</div>
+          <div class="intro-team">Nhóm Edge - Agent</div>
+          <h1 class="intro-title">V-Pet Tutor</h1>
+          <p class="intro-tagline">Nuôi thú cưng bằng cách học chủ động — Adaptive Quiz khi bôi đen bài giảng</p>
+          <div class="intro-meta">
+            <span class="badge-pill badge-purple">Batch03 · K4 AI Product Hackathon</span>
+            <span class="badge-pill badge-cyan">Gemini AI và DeepSeek· Gamification</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: User & Job -->
+      <div class="slide" id="slide-2">
         <div>
           <div class="slide-header">
-            <span class="slide-number-badge">Slide 01 / 06 — User & Job</span>
+            <span class="slide-number-badge">Slide 02 / 07 — User & Job</span>
             <span class="badge-pill badge-rose">Chatlog Mining & Survey N=40</span>
           </div>
           <h1 class="slide-title">User & Job: Học Viên K4 Tự Học Bài Giảng</h1>
@@ -381,11 +439,11 @@
         </div>
       </div>
 
-      <!-- SLIDE 2: Vì sao chọn tính năng này -->
-      <div class="slide" id="slide-2">
+      <!-- SLIDE 3: Vì sao chọn tính năng này -->
+      <div class="slide" id="slide-3">
         <div>
           <div class="slide-header">
-            <span class="slide-number-badge">Slide 02 / 06 — Vì sao chọn tính năng</span>
+            <span class="slide-number-badge">Slide 03 / 07 — Vì sao chọn tính năng</span>
             <span class="badge-pill badge-purple">Ý Tưởng Cân Nhắc (Q6) & Impact Table</span>
           </div>
           <h1 class="slide-title">Vì Sao Chọn V-Pet Tutor & Adaptive Quiz Engine</h1>
@@ -449,11 +507,11 @@
         </div>
       </div>
 
-      <!-- SLIDE 3: Giải pháp & Demo live -->
-      <div class="slide" id="slide-3">
+      <!-- SLIDE 4: Giải pháp & Demo live -->
+      <div class="slide" id="slide-4">
         <div>
           <div class="slide-header">
-            <span class="slide-number-badge">Slide 03 / 06 — Giải pháp & Architecture Flow</span>
+            <span class="slide-number-badge">Slide 04 / 07 — Giải pháp & Architecture Flow</span>
             <span class="badge-pill badge-cyan">Conditional Automation</span>
           </div>
           <h1 class="slide-title">Giải Pháp & Sơ Đồ Luồng Kiến Trúc V-Pet Tutor</h1>
@@ -489,11 +547,11 @@
         </div>
       </div>
 
-      <!-- SLIDE 4: Kết quả đo -->
-      <div class="slide" id="slide-4">
+      <!-- SLIDE 5: Kết quả đo -->
+      <div class="slide" id="slide-5">
         <div>
           <div class="slide-header">
-            <span class="slide-number-badge">Slide 04 / 06 — Kết quả đo</span>
+            <span class="slide-number-badge">Slide 05 / 07 — Kết quả đo</span>
             <span class="badge-pill badge-green">Golden Set 20/20 Passed</span>
           </div>
           <h1 class="slide-title">Kết Quả Đo Bằng Máy: 20/20 Test Cases Passed</h1>
@@ -524,11 +582,11 @@
         </div>
       </div>
 
-      <!-- SLIDE 5: User thật nói gì -->
-      <div class="slide" id="slide-5">
+      <!-- SLIDE 6: User thật nói gì -->
+      <div class="slide" id="slide-6">
         <div>
           <div class="slide-header">
-            <span class="slide-number-badge">Slide 05 / 06 — User thật nói gì</span>
+            <span class="slide-number-badge">Slide 06 / 07 — User thật nói gì</span>
             <span class="badge-pill badge-cyan">CP5 Validation Log</span>
           </div>
           <h1 class="slide-title">User Thật Nói Gì: Phản Hồi Vòng Validation CP5</h1>
@@ -558,11 +616,11 @@
         </div>
       </div>
 
-      <!-- SLIDE 6: Nếu có thêm 1 tuần -->
-      <div class="slide" id="slide-6">
+      <!-- SLIDE 7: Nếu có thêm 1 tuần -->
+      <div class="slide" id="slide-7">
         <div>
           <div class="slide-header">
-            <span class="slide-number-badge">Slide 06 / 06 — Nếu có thêm 1 tuần</span>
+            <span class="slide-number-badge">Slide 07 / 07 — Nếu có thêm 1 tuần</span>
             <span class="badge-pill badge-orange">Backlog & Lesson Learned</span>
           </div>
           <h1 class="slide-title">Nếu Có Thêm 1 Tuần: Backlog & Bài Học Rút Ra</h1>
@@ -621,29 +679,30 @@
     <div style="font-size: 0.8rem; color: #475569;">Dùng phím <kbd>←</kbd> <kbd>→</kbd> hoặc <kbd>Space</kbd> để chuyển slide</div>
     <div style="display: flex; gap: 12px; align-items: center;">
       <button class="btn" onclick="prevSlide()">◀ Trước</button>
-      <span style="font-family: var(--font-code); font-weight:800; color:#831843;" id="slideIndicator">01 / 06</span>
+      <span style="font-family: var(--font-code); font-weight:800; color:#831843;" id="slideIndicator">01 / 07</span>
       <button class="btn btn-primary" onclick="nextSlide()">Sau ▶</button>
     </div>
   </footer>
 
   <script>
-    const totalSlides = 6;
+    const totalSlides = 7;
     let currentSlide = 1;
 
     const presenterNotes = {
-      1: `<b>Slide 1 Notes (45s):</b><br>"Con số bằng chứng thuyết phục nhất là: 28.4% (358/1.261) câu hỏi của học viên trên nền tảng chỉ là các lệnh hoàn toàn thụ động như 'Giải thích đoạn bôi đen ở Trang X'. Cách đếm: Lấy dữ liệu chatlog thực tế, lọc các prompt yêu cầu giải thích nguyên văn đoạn text đã highlight. Thêm vào đó, khảo sát (N=40) chỉ ra 64% học viên (26/40) xác nhận họ 'chỉ xem bài giảng, không tương tác gì khác' và đánh giá 3.5/5 điểm mong muốn có cơ chế ghi nhận tiến trình học (streak). Hai con số này chứng minh sự thụ động nghiêm trọng (39.02% thụ động tổng thể) khi gặp vùng kiến thức khó và khao khát có động lực học tập."`,
-      2: `<b>Slide 2 Notes (45s):</b><br>"Nhóm đã cân nhắc 3 ý tưởng: (1) Bảng xếp hạng Leaderboard: Bị loại vì khảo sát cho thấy dễ tạo áp lực tiêu cực cho người học yếu. (2) AI tóm tắt toàn bộ bài: Bị loại vì đi ngược triết lý giáo dục chủ động, làm học viên lười thêm. (3) V-Pet Tutor (Nuôi thú bằng cách giải Adaptive Quiz tại các đoạn highlight). Nhóm quyết định CHỌN V-Pet Tutor vì nó giải quyết triệt để 28.4% case lười tư duy (bắt người dùng tự suy nghĩ thay vì đưa đáp án ngay), đồng thời đáp ứng mong muốn có yếu tố đồng hành và ghi nhận nỗ lực qua điểm EXP/Streak."`,
-      3: `<b>Slide 3 Notes (2 min):</b><br>"Sơ đồ luồng giải pháp V-Pet Tutor: Khi học viên bôi đen đoạn khó, chú thú cưng V-Pet xuất hiện mời làm Quiz nhận EXP. Khi đồng ý, Gemini AI sinh Quiz Thích ứng. Làm đúng -> Thú cưng tăng EXP/Lên cấp & log vị trí bôi đen cho Giảng viên xem Heatmap. Live demo: Case 1 bôi đen 'Grounding RAG' nhận EXP + trích dẫn [Slide 12]; Case 2 bôi đen quá ngắn / hack EXP bị API chặn nhã nhặn."`,
-      4: `<b>Slide 4 Notes (45s):</b><br>"Đo bằng máy: Mô hình Gemini 3.1 Flash Lite đạt 100% (20/20 cases passed) so với Quality Bar 80% chốt từ 23:59 N1. Nhóm thừa nhận 1 failure lượt 1 bị 429 Quota Exceeded do hardcode model 2.0 và đã khắc phục ngay. Chatlog chỉ ra độ trễ P50 1.76s rất mượt!"`,
-      5: `<b>Slide 5 Notes (45s):</b><br>"Validation CP5 với ≥5 user ngoài nhóm: Học viên đánh giá cao tính minh bạch trích dẫn [Slide 12] và sự hào hứng của chú gà V-Pet. Từ feedback thật, nhóm đã làm ngay 2 nâng cấp: Thêm nút 'Bỏ qua thử thách' bypass quiz & Khóa thử thách 1 phút chống click lụi!"`,
-      6: `<b>Slide 6 Notes (30s):</b><br>"Nếu có thêm 1 tuần: Nhóm ưu tiên gắn Redis Session lưu state bền vững, áp dụng Semantic Vector Caching tiết kiệm 90% chi phí API LLM, và nâng tỷ lệ AI chủ động hỏi từ 0.08% lên 20%. Bài học lớn nhất: Hãy để dữ liệu chatlog & feedback thật dẫn dắt sản phẩm!"`
+      1: `<b>Slide 1 (20s):</b><br>"Xin chào, chúng em là nhóm Edge - Agent. Đề tài của nhóm là V-Pet Tutor — giải pháp nuôi thú cưng ảo bằng cách học chủ động qua Adaptive Quiz khi bôi đen bài giảng."`,
+      2: `<b>Slide 2 Notes (45s):</b><br>"Con số bằng chứng thuyết phục nhất là: 28.4% (358/1.261) câu hỏi của học viên trên nền tảng chỉ là các lệnh hoàn toàn thụ động như 'Giải thích đoạn bôi đen ở Trang X'. Cách đếm: Lấy dữ liệu chatlog thực tế, lọc các prompt yêu cầu giải thích nguyên văn đoạn text đã highlight. Thêm vào đó, khảo sát (N=40) chỉ ra 64% học viên (26/40) xác nhận họ 'chỉ xem bài giảng, không tương tác gì khác' và đánh giá 3.5/5 điểm mong muốn có cơ chế ghi nhận tiến trình học (streak). Hai con số này chứng minh sự thụ động nghiêm trọng (39.02% thụ động tổng thể) khi gặp vùng kiến thức khó và khao khát có động lực học tập."`,
+      3: `<b>Slide 3 Notes (45s):</b><br>"Nhóm đã cân nhắc 3 ý tưởng: (1) Bảng xếp hạng Leaderboard: Bị loại vì khảo sát cho thấy dễ tạo áp lực tiêu cực cho người học yếu. (2) AI tóm tắt toàn bộ bài: Bị loại vì đi ngược triết lý giáo dục chủ động, làm học viên lười thêm. (3) V-Pet Tutor (Nuôi thú bằng cách giải Adaptive Quiz tại các đoạn highlight). Nhóm quyết định CHỌN V-Pet Tutor vì nó giải quyết triệt để 28.4% case lười tư duy (bắt người dùng tự suy nghĩ thay vì đưa đáp án ngay), đồng thời đáp ứng mong muốn có yếu tố đồng hành và ghi nhận nỗ lực qua điểm EXP/Streak."`,
+      4: `<b>Slide 4 Notes (2 min):</b><br>"Sơ đồ luồng giải pháp V-Pet Tutor: Khi học viên bôi đen đoạn khó, chú thú cưng V-Pet xuất hiện mời làm Quiz nhận EXP. Khi đồng ý, Gemini AI sinh Quiz Thích ứng. Làm đúng -> Thú cưng tăng EXP/Lên cấp & log vị trí bôi đen cho Giảng viên xem Heatmap. Live demo: Case 1 bôi đen 'Grounding RAG' nhận EXP + trích dẫn [Slide 12]; Case 2 bôi đen quá ngắn / hack EXP bị API chặn nhã nhặn."`,
+      5: `<b>Slide 5 Notes (45s):</b><br>"Đo bằng máy: Mô hình Gemini 3.1 Flash Lite đạt 100% (20/20 cases passed) so với Quality Bar 80% chốt từ 23:59 N1. Nhóm thừa nhận 1 failure lượt 1 bị 429 Quota Exceeded do hardcode model 2.0 và đã khắc phục ngay. Chatlog chỉ ra độ trễ P50 1.76s rất mượt!"`,
+      6: `<b>Slide 6 Notes (45s):</b><br>"Validation CP5 với ≥5 user ngoài nhóm: Học viên đánh giá cao tính minh bạch trích dẫn [Slide 12] và sự hào hứng của chú gà V-Pet. Từ feedback thật, nhóm đã làm ngay 2 nâng cấp: Thêm nút 'Bỏ qua thử thách' bypass quiz & Khóa thử thách 1 phút chống click lụi!"`,
+      7: `<b>Slide 7 Notes (30s):</b><br>"Nếu có thêm 1 tuần: Nhóm ưu tiên gắn Redis Session lưu state bền vững, áp dụng Semantic Vector Caching tiết kiệm 90% chi phí API LLM, và nâng tỷ lệ AI chủ động hỏi từ 0.08% lên 20%. Bài học lớn nhất: Hãy để dữ liệu chatlog & feedback thật dẫn dắt sản phẩm!"`
     };
 
     function updateSlide() {
       document.querySelectorAll('.slide').forEach((slide, idx) => {
         slide.classList.toggle('active', idx + 1 === currentSlide);
       });
-      document.getElementById('slideIndicator').innerText = `0${currentSlide} / 06`;
+      document.getElementById('slideIndicator').innerText = `${String(currentSlide).padStart(2, '0')} / 07`;
       document.getElementById('progressBar').style.width = `${(currentSlide / totalSlides) * 100}%`;
       document.getElementById('notesContent').innerHTML = presenterNotes[currentSlide];
     }

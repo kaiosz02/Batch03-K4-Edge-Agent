@@ -2495,5 +2495,575 @@
       "page_num": 1,
       "dwell_ms": 128478
     }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:58:27.571Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 155210
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:58:28.367Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "dwell_ms": 733
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:58:29.997Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1261
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:58:35.379Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 9,
+      "text": "ChatGPT xuất hiện như một trải nghiệm đại chúng Lần đầu tiên rất đông người dùng phổ thông có thể trực tiếp chạm vào một mô hình ngôn ngữ mạnh, thông qua một giao diện đơn giản đến mức ai cũng hiểu cách dùng"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:58:35.379Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 9,
+      "text_len": 207
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:58:36.293Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 9
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:58:36.293Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 9,
+      "text_len": 207,
+      "started": true
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:58:42.536288+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 6240,
+      "slide_id": "static_0",
+      "page_num": 9,
+      "quiz_id": "f3ca9da7-caf0-482a-8c8e-126e04a01b97",
+      "difficulty_level": 1
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:58:50.482244+00:00",
+    "payload": {
+      "quiz_id": "f3ca9da7-caf0-482a-8c8e-126e04a01b97",
+      "is_correct": true,
+      "difficulty": 1,
+      "exp_added": 5,
+      "slide_id": "static_0",
+      "page_num": 9,
+      "text_snippet": "ChatGPT xuất hiện như một trải nghiệm đại chúng Lần đầu tiên rất đông người dùng phổ thông có thể trực tiếp chạm vào một mô hình ngôn ngữ mạnh, thông qua một giao diện đơn giản đến mức ai cũng hiểu cách dùng",
+      "selected_answer": "B"
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:58:53.066Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 9,
+      "dwell_ms": 22740
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:58:59.049Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 11,
+      "text_len": 109
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:58:59.049Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 11,
+      "text": "Với mọi ngữ cảnh, model chấm điểm MỌI từ trong từ vựng — “landˮ 22%, “forestˮ 9%… — rồi chọn theo xác suất đó"
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:59:00.008Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 11
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:59:00.008Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 11,
+      "text_len": 109,
+      "started": true
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:59:08.206488+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 8197,
+      "slide_id": "static_0",
+      "page_num": 11,
+      "quiz_id": "3d5c24be-1d73-426d-8cd4-658a99284b67",
+      "difficulty_level": 1
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:59:12.019Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 11,
+      "dwell_ms": 18898
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T07:59:23.167Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 10595
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:26:45.068Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text": "Bạn đang dùng AI mỗi ngày — nhưng thực sự bên trong nó đang làm gì? A I I N AC T I O N - H A"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:26:45.069Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_len": 92
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:26:46.571Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1643403
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:26:48.714Z",
+    "payload": {
+      "accepted": false,
+      "slide_id": "static_0",
+      "page_num": 1
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:26:53.871Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 5,
+      "text": "2 lần mùa đông, cách tiếp cận chạm trần"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:26:53.872Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 5,
+      "text_len": 39
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:26:56.653Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 5
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:26:56.653Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 5,
+      "text_len": 39,
+      "started": true
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:27:05.075051+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 8406,
+      "slide_id": "static_0",
+      "page_num": 5,
+      "quiz_id": "3f8396e0-b4ac-4aa9-8cbc-1d655e4d2d4c",
+      "difficulty_level": 1
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:27:07.243201+00:00",
+    "payload": {
+      "quiz_id": "3f8396e0-b4ac-4aa9-8cbc-1d655e4d2d4c",
+      "is_correct": true,
+      "difficulty": 1,
+      "exp_added": 5,
+      "slide_id": "static_0",
+      "page_num": 5,
+      "text_snippet": "2 lần mùa đông, cách tiếp cận chạm trần",
+      "selected_answer": "A"
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:27:08.290Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 5,
+      "dwell_ms": 21317
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:27:13.545Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "text": "Đặt lại vấn đề: \"Nếu AI chỉ giải thật tốt một loại bài toán chuyên môn hẹp thì sao?\" → Sự ra đời của expert systems AI đổi chiến lược: thôi theo đuổi trí tuệ tổng quát và tập trung giải thật tốt một miền hẹp bằng cách mã hóa tri thức chuyên gia thành luật"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:27:13.545Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "text_len": 255
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:27:15.675Z",
+    "payload": {
+      "accepted": false,
+      "slide_id": "static_0",
+      "page_num": 6
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:27:18.295Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "dwell_ms": 10004
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:42:54.572Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 6,
+      "dwell_ms": 936277
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:43:05.295Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 9802
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:43:11.323Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text": "anh AI & các tầng của AI"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:43:11.323Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text_len": 24
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:43:13.182Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text": "Bức tranh AI & các tầng của AI"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:43:13.183Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text_len": 30
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:43:29.031Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 2
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:43:29.031Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text_len": 30,
+      "started": true
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:43:38.930460+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 9586,
+      "slide_id": "static_0",
+      "page_num": 2,
+      "quiz_id": "e9494ada-fc30-4471-bf52-7fab6f70437c",
+      "difficulty_level": 2
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:43:49.576579+00:00",
+    "payload": {
+      "quiz_id": "e9494ada-fc30-4471-bf52-7fab6f70437c",
+      "is_correct": true,
+      "difficulty": 2,
+      "exp_added": 10,
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text_snippet": "Bức tranh AI & các tầng của AI",
+      "selected_answer": "A"
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:44:06.868Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "dwell_ms": 61573
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:44:10.345Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text": "AI — chiếc ô lớn nhất: mọi hệ thống có yếu tố “thông minhˮ. Machine learning — học từ dữ liệu thay vì viết luật tay. Deep learning — mạng nơ-ron nhiều tầng tự học đặc trưng. Generative AI — sinh nội dung mới: văn bản, ảnh, code. LLM — model nền chuyên ngôn ngữ, tim của làn sóng hiện nay. ARTIFICIAL INTELLIGENCE MACHINE LEARNING DEEP LEARNING GENERATIVE AI LLM GPT · Claude · Kimi kể cả hệ luật tay, robot… lọc spam · gợi ý phim nhận diện ảnh · giọng nói văn bản · ảnh · code từ rộng đến hẹp LLM khô"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:44:10.346Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_len": 620
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:44:16.971Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text": "AI — chiếc ô lớn nhất: mọi hệ thống có yếu tố “thông"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:44:16.971Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_len": 52
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:44:18.069Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 3
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:44:18.069Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_len": 52,
+      "started": true
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:44:25.780424+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 7707,
+      "slide_id": "static_0",
+      "page_num": 3,
+      "quiz_id": "b04e0e5e-f280-4894-b4c6-c97fbb728a6b",
+      "difficulty_level": 2
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:44:30.660724+00:00",
+    "payload": {
+      "quiz_id": "b04e0e5e-f280-4894-b4c6-c97fbb728a6b",
+      "is_correct": false,
+      "difficulty": 2,
+      "exp_added": 2,
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_snippet": "AI — chiếc ô lớn nhất: mọi hệ thống có yếu tố “thông",
+      "selected_answer": "C"
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:50:19.582Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "dwell_ms": 372713
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-kilm7u78pr8",
+    "timestamp": "2026-07-31T08:50:25.372Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "dwell_ms": 5790
+    }
   }
 ]
