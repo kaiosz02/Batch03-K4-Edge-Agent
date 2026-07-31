@@ -12,6 +12,8 @@ export interface ChatMessage {
   citations?: string[];
   has_evidence?: boolean;
   timestamp: string;
+  // Quiz được nhúng trong tin nhắn AI
+  quiz?: QuizState;
 }
 
 // Slide Viewer Types
@@ -20,6 +22,28 @@ export interface SlideData {
   pageNumber: number;
   pdfUrl: string;
   title: string;
+}
+
+// Backend Slide (Static)
+export interface BackendSlide {
+  slide_id: string;
+  title: string;
+  total_pages: number;
+  pdf_url: string; // URL tĩnh trỏ đến backend (VD: http://localhost:8000/static/slides/...)
+}
+
+// Quiz State — quản lý quiz đang làm trong chat
+export interface QuizState {
+  quiz_id: string;
+  question: string;
+  options: string[];
+  difficulty_level: number;
+  selected_answer?: "A" | "B" | "C" | "D";
+  is_correct?: boolean;
+  correct_answer?: string;
+  explanation?: string;
+  exp_added?: number;
+  phase: "pending" | "answered";
 }
 
 // Gamification Types
