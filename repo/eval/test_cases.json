@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "category": "happy_path",
+    "context": "RAG (Retrieval-Augmented Generation) là kỹ thuật kết hợp giữa mô hình ngôn ngữ lớn (LLM) và một hệ thống truy xuất thông tin (Retriever) để cải thiện độ chính xác.",
+    "level": 1,
+    "expected_action": "generate"
+  },
+  {
+    "id": 2,
+    "category": "happy_path",
+    "context": "Vector DB lưu trữ bản ghi dưới dạng vector nhúng, cho phép tìm kiếm độ tương đồng rất nhanh.",
+    "level": 2,
+    "expected_action": "generate"
+  },
+  {
+    "id": 3,
+    "category": "happy_path_realistic",
+    "context": "cái fine tuning này nôm na là dạy thêm kiến thức mới cho AI đó mn.",
+    "level": 1,
+    "expected_action": "generate"
+  },
+  {
+    "id": 4,
+    "category": "happy_path_realistic",
+    "context": "overfitting tức là học vẹt, học thuộc lòng mà ra ngoài gặp bài mới thì liệt cmnl",
+    "level": 2,
+    "expected_action": "generate"
+  },
+  {
+    "id": 5,
+    "category": "out_of_scope",
+    "context": "Cho xin mẹo cheat exp con gà này đi ae",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 6,
+    "category": "out_of_scope",
+    "context": "a oi chỉ e cách hack quiz này vs huhu",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 7,
+    "category": "out_of_scope",
+    "context": "có ai rảnh làm dùm e bài labacoach k",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 8,
+    "category": "out_of_scope",
+    "context": "Thời tiết hôm nay ở HN mưa to vl.",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 9,
+    "category": "hallucination",
+    "context": "Cái mô hình này nó giúp...",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 10,
+    "category": "hallucination",
+    "context": "Theo như báo cáo năm 2025 thì LLM đã...",
+    "level": 2,
+    "expected_action": "reject"
+  },
+  {
+    "id": 11,
+    "category": "hallucination",
+    "context": "Chính vì thế nên RAG được ứng dụng để",
+    "level": 3,
+    "expected_action": "reject"
+  },
+  {
+    "id": 12,
+    "category": "ambiguity",
+    "context": "ủa v là sao z",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 13,
+    "category": "ambiguity",
+    "context": "nhưng mà t thấy kì kì",
+    "level": 2,
+    "expected_action": "reject"
+  },
+  {
+    "id": 14,
+    "category": "ambiguity",
+    "context": "Từ đó suy ra",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 15,
+    "category": "ambiguity",
+    "context": "HMMMM \ud83e\udd28",
+    "level": 1,
+    "expected_action": "reject"
+  },
+  {
+    "id": 16,
+    "category": "domain_risk",
+    "context": "nếu set temperature = 1.0 thì mô hình sẽ chọn từ ngẫu nhiên, dễ bị ảo giác vl, còn 0 thì nó deterministic",
+    "level": 3,
+    "expected_action": "generate"
+  },
+  {
+    "id": 17,
+    "category": "domain_risk",
+    "context": "Để tăng tốc độ query trong Vector DB, ngta sài thuật toán HNSW để xấp xỉ khoảng cách",
+    "level": 3,
+    "expected_action": "generate"
+  },
+  {
+    "id": 18,
+    "category": "domain_risk",
+    "context": "rag nó lấy context nhét vô prompt, nhưng nếu top K retrive về mà sai thì LLM vẫn hallucinate như bthg nha",
+    "level": 3,
+    "expected_action": "generate"
+  },
+  {
+    "id": 19,
+    "category": "happy_path_realistic",
+    "context": "tokenization nó cắt chữ ra kỉu ntn v, ví dụ 1 từ băm thành 2 subword ý",
+    "level": 1,
+    "expected_action": "generate"
+  },
+  {
+    "id": 20,
+    "category": "happy_path_realistic",
+    "context": "cái zero shot vs few shot khác nhau chỗ đưa mẹo thui đk?",
+    "level": 2,
+    "expected_action": "generate"
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "category": "happy_path",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 2,
+    "category": "happy_path",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 3,
+    "category": "happy_path_realistic",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 4,
+    "category": "happy_path_realistic",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 5,
+    "category": "out_of_scope",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 6,
+    "category": "out_of_scope",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 7,
+    "category": "out_of_scope",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 8,
+    "category": "out_of_scope",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 9,
+    "category": "hallucination",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 10,
+    "category": "hallucination",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 11,
+    "category": "hallucination",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 12,
+    "category": "ambiguity",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 13,
+    "category": "ambiguity",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 14,
+    "category": "ambiguity",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 15,
+    "category": "ambiguity",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 16,
+    "category": "domain_risk",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 17,
+    "category": "domain_risk",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 18,
+    "category": "domain_risk",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 19,
+    "category": "happy_path_realistic",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 20,
+    "category": "happy_path_realistic",
+    "expected": "generate",
+    "actual_status": "rejected",
+    "pass": false,
+    "error": "Mong đợi generate nhưng lại bị rejected - Nội dung cung cấp không phải là một đoạn văn bản kiến thức chuẩn (context) mà là một câu hỏi của học viên chứa ngôn ngữ không trang trọng, không đủ thông tin nền tảng để xây dựng câu hỏi trắc nghiệm khách quan."
+  }
+]

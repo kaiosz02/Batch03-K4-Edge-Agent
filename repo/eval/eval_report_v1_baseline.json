@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "category": "happy_path",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 2,
+    "category": "happy_path",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 3,
+    "category": "out_of_scope",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 4,
+    "category": "out_of_scope",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 5,
+    "category": "out_of_scope",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 6,
+    "category": "hallucination",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 7,
+    "category": "hallucination",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 8,
+    "category": "ambiguity",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 9,
+    "category": "ambiguity",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 10,
+    "category": "ambiguity",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 11,
+    "category": "domain_risk",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 12,
+    "category": "domain_risk",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 13,
+    "category": "happy_path",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 14,
+    "category": "happy_path",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 15,
+    "category": "out_of_scope",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 16,
+    "category": "out_of_scope",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 17,
+    "category": "hallucination",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 18,
+    "category": "domain_risk",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 19,
+    "category": "ambiguity",
+    "expected": "reject",
+    "actual_status": "rejected",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "id": 20,
+    "category": "happy_path",
+    "expected": "generate",
+    "actual_status": "success",
+    "pass": true,
+    "error": ""
+  }
+]
