@@ -42,11 +42,18 @@ export interface SubmitAnswerResponse {
 
 export interface HeatmapResponse {
   document_id: string;
+  total_students: number;
+  total_answers: number;
+  total_wrong: number;
   highlights: Array<{
-    segment_id: string;
-    text_snippet: string;
+    id: string;
+    text_segment: string;
     highlight_count: number;
     difficulty_score: number;
+    wrong_answer_count: number;
+    page_num: number | null;
+    slide_id: string;
+    is_demo: boolean;
   }>;
 }
 

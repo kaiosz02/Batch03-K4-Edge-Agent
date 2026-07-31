@@ -5,7 +5,10 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url
+).toString();
 
 interface PdfSlidePageProps {
   url: string;
@@ -59,7 +62,7 @@ export default function PdfSlidePage({
         </div>
       }
       onLoadSuccess={onDocumentLoadSuccess}
-      onLoadError={(err) => onLoadError?.(err.message)}
+      onLoadError={(err: Error) => onLoadError?.(err.message)}
       className="flex justify-center leading-none"
     >
       <Page

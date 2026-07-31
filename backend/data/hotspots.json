@@ -15,5 +15,52 @@
         "label": "🔥 Vùng nóng #2 (50 người thắc mắc)"
       }
     ]
+  },
+  {
+    "slide_id": "static_0",
+    "hotspots": [
+      {
+        "rank": 1,
+        "text": "AI, ML, Deep Learning, GenAI, LLM — nằm ở đâu trong cùng một hệ? AI — chiếc ô lớn nhất: mọi hệ thống có yếu tố “thông minhˮ. Machine learning — học từ dữ liệu thay vì viết luật tay. Deep learning — mạ",
+        "highlight_count": 3,
+        "page_num": 3,
+        "label": "Vung nong #1 (3 luot thac mac)"
+      },
+      {
+        "rank": 2,
+        "text": "AI IN ACTION  Day 1 AI & LLM Foun",
+        "highlight_count": 2,
+        "page_num": 1,
+        "label": "Vung nong #2 (2 luot thac mac)"
+      },
+      {
+        "rank": 3,
+        "text": "Foundation",
+        "highlight_count": 2,
+        "page_num": 1,
+        "label": "Vung nong #3 (2 luot thac mac)"
+      },
+      {
+        "rank": 4,
+        "text": "AI IN ACTION  Day 1 Agenda • Bức tranh AI & các tầng của AI • Lịch sử AI 70 năm • Bên trong LLM: cơ chế vận hành • Từ LLM đến AI Agent • Landscape: model hôm nay & cuộc đua hiện tại •",
+        "highlight_count": 1,
+        "page_num": 2,
+        "label": "Vung nong #4 (1 luot thac mac)"
+      },
+      {
+        "rank": 5,
+        "text": "AI & LLM Foundatio",
+        "highlight_count": 1,
+        "page_num": 2,
+        "label": "Vung nong #5 (1 luot thac mac)"
+      },
+      {
+        "rank": 6,
+        "text": "LM không phải toàn bộ AI — nhưng nó là tầng nền của gần hết trải nghiệm AI b",
+        "highlight_count": 1,
+        "page_num": 3,
+        "label": "Vung nong #6 (1 luot thac mac)"
+      }
+    ]
   }
 ]

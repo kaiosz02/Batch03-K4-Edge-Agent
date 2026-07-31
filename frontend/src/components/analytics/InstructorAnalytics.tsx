@@ -1,175 +1,285 @@
 "use client";
 
 import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
+import { HeatmapResponse, loadHeatmap } from "@/lib/api";
 
-// Mock data cho Dashboard
-const MOCK_STATS = {
-  totalStudents: 128,
-  totalQuestions: 1261,
-  unansweredQuestions: 582, // AI Tutor trả lời thiếu căn cứ
-};
-
-const BLIND_SPOTS = [
-  {
-    id: 1,
-    slideNumber: 12,
-    term: "Retrieval-Augmented Generation (RAG)",
-    count: 45,
-    status: "critical",
-    suggestion: "Nên bổ sung thêm sơ đồ luồng hoạt động của RAG.",
-  },
-  {
-    id: 2,
-    slideNumber: 15,
-    term: "Vector Embeddings",
-    count: 32,
-    status: "warning",
-    suggestion: "Học viên gặp khó khăn trong việc phân biệt Vector DB và SQL DB.",
-  },
-  {
-    id: 3,
-    slideNumber: 8,
-    term: "Hallucination trong LLM",
-    count: 28,
-    status: "warning",
-    suggestion: "Cần đưa ra ví dụ thực tế về Hallucination.",
-  },
-  {
-    id: 4,
-    slideNumber: 21,
-    term: "Chunking Strategy",
-    count: 15,
-    status: "normal",
-    suggestion: "Slide có thể hơi dài, cần ngắt nhỏ ý.",
+function getSuggestion(score: number, highlights: number): string {
+  if (score >= 0.7) {
+    return "Tỷ lệ trả lời sai cao; nên giảng lại và bổ sung một ví dụ trực quan.";
   }
-];
+  if (highlights >= 5) {
+    return "Nhiều học viên dừng ở đoạn này; nên rút gọn câu chữ hoặc thêm chú thích.";
+  }
+  return "Tiếp tục theo dõi khi có thêm lượt học và làm quiz.";
+}
+
+function quoteCsv(value: string | number): string {
+  return `"${String(value).replaceAll('"', '""')}"`;
+}
 
 export default function InstructorAnalytics() {
-  const notImplemented = () => {
-    alert("Tính năng đang phát triển!");
+  const [data, setData] = useState<HeatmapResponse | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const refresh = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      setData(await loadHeatmap("all"));
+    } catch (loadError) {
+      setError(
+        loadError instanceof Error
+          ? loadError.message
+          : "Không tải được dữ liệu heatmap."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    loadHeatmap("all")
+      .then((heatmap) => {
+        if (!cancelled) setData(heatmap);
+      })
+      .catch((loadError) => {
+        if (!cancelled) {
+          setError(
+            loadError instanceof Error
+              ? loadError.message
+              : "Không tải được dữ liệu heatmap."
+          );
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const exportCsv = () => {
+    if (!data) return;
+    const rows = [
+      [
+        "slide_id",
+        "page_num",
+        "text_segment",
+        "highlight_count",
+        "wrong_answer_count",
+        "difficulty_score",
+      ],
+      ...data.highlights.map((item) => [
+        item.slide_id,
+        item.page_num ?? "",
+        item.text_segment,
+        item.highlight_count,
+        item.wrong_answer_count,
+        item.difficulty_score,
+      ]),
+    ];
+    const csv = rows.map((row) => row.map(quoteCsv).join(",")).join("\n");
+    const url = URL.createObjectURL(
+      new Blob(["\uFEFF", csv], { type: "text/csv;charset=utf-8" })
+    );
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "vpet-knowledge-heatmap.csv";
+    anchor.click();
+    URL.revokeObjectURL(url);
   };
 
   return (
-    <div className="relative z-10 w-full max-w-5xl glass-panel rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-500 mx-auto mt-24 mb-12">
-      {/* Header / Banner Section */}
-      <div className="relative h-48 flex flex-col items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-surface-container-highest to-teal-900/50 opacity-90"></div>
-        <div className="absolute inset-0 opacity-30 mix-blend-overlay">
-          <div 
-            className="absolute top-0 left-0 w-full h-full" 
-            style={{ backgroundImage: 'radial-gradient(circle at 20% 30%, #4facfe 0%, transparent 50%), radial-gradient(circle at 80% 70%, #00f2fe 0%, transparent 50%)' }}
-          ></div>
-        </div>
-        <div className="relative z-10 text-center space-y-2">
-          <span className="material-symbols-outlined text-blue-400 text-5xl mb-2 filter drop-shadow-[0_0_8px_rgba(79,172,254,0.8)]" style={{ fontVariationSettings: "'FILL' 1" }}>
-            monitoring
-          </span>
-          <h1 className="font-display-lg text-[32px] md:text-[40px] text-white tracking-tight font-bold">Analytics Dashboard</h1>
-          <p className="font-label-sm text-sm text-blue-300 uppercase tracking-[0.2em]">Khóa 4 • AI Product Hackathon</p>
+    <div className="relative z-10 mx-auto mb-12 mt-24 w-full max-w-5xl overflow-hidden rounded-3xl glass-panel shadow-2xl">
+      <div className="relative flex h-48 flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950/80 via-surface-container-highest to-teal-950/80">
+        <div className="relative z-10 space-y-2 text-center">
+          <span className="text-5xl">📊</span>
+          <h1 className="text-[32px] font-bold tracking-tight text-white md:text-[40px]">
+            Knowledge Heatmap
+          </h1>
+          <p className="text-sm uppercase tracking-[0.2em] text-blue-300">
+            Dữ liệu tương tác thật + bộ demo minh họa
+          </p>
         </div>
       </div>
-      
-      {/* Content Area */}
-      <div className="p-stack-lg space-y-stack-lg p-6">
-        {/* Top Stats Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="glass-panel p-6 rounded-2xl flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300">
-            <span className="font-label-sm text-sm text-white/70 mb-1">Tổng Số Học Viên</span>
-            <div className="text-white font-headline-md text-3xl font-bold flex items-center gap-2 mt-2">
-              <span className="material-symbols-outlined text-blue-400 text-2xl">group</span>
-              <span>{MOCK_STATS.totalStudents}</span>
-            </div>
+
+      <div className="space-y-8 p-6">
+        {error && (
+          <div className="flex items-center justify-between gap-4 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
+            <span>{error}</span>
+            <button
+              type="button"
+              onClick={() => void refresh()}
+              className="rounded-lg bg-red-500/20 px-3 py-1.5 font-bold"
+            >
+              Thử lại
+            </button>
           </div>
-          
-          <div className="glass-panel p-6 rounded-2xl flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300">
-            <span className="font-label-sm text-sm text-white/70 mb-1">Tổng Số Câu Hỏi AI Tutor</span>
-            <div className="text-white font-headline-md text-3xl font-bold flex items-center gap-2 mt-2">
-              <span className="material-symbols-outlined text-purple-400 text-2xl">forum</span>
-              <span>{MOCK_STATS.totalQuestions}</span>
+        )}
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {[
+            {
+              label: "Học viên đã tương tác",
+              value: data?.total_students ?? 0,
+              icon: "👥",
+            },
+            {
+              label: "Lượt trả lời quiz",
+              value: data?.total_answers ?? 0,
+              icon: "🧠",
+            },
+            {
+              label: "Lượt trả lời sai",
+              value: data?.total_wrong ?? 0,
+              icon: "⚠️",
+            },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              className="flex flex-col items-center rounded-2xl p-6 text-center glass-panel"
+            >
+              <span className="mb-1 text-sm text-white/70">{stat.label}</span>
+              <div className="mt-2 flex items-center gap-2 text-3xl font-bold text-white">
+                <span className="text-2xl">{stat.icon}</span>
+                <span>{isLoading ? "…" : stat.value}</span>
+              </div>
             </div>
-          </div>
-          
-          <div className="glass-panel p-6 rounded-2xl flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300 border border-red-500/30 relative overflow-hidden">
-            <div className="absolute inset-0 bg-red-500/5 animate-pulse"></div>
-            <span className="font-label-sm text-sm text-white/70 mb-1 relative z-10">Câu Hỏi Không Tìm Thấy Căn Cứ</span>
-            <div className="text-red-400 font-headline-md text-3xl font-bold flex items-center gap-2 mt-2 relative z-10">
-              <span className="material-symbols-outlined text-red-400 text-2xl">warning</span>
-              <span className="animate-pulse">{MOCK_STATS.unansweredQuestions}</span>
-            </div>
-            <div className="w-full h-1 bg-white/10 rounded-full mt-4 overflow-hidden relative z-10">
-              <div className="h-full bg-red-500 w-[46%] shadow-[0_0_8px_rgba(255,82,82,0.6)]"></div>
-            </div>
-          </div>
+          ))}
         </div>
-        
-        {/* Heatmap / Blind Spots Section */}
-        <div className="space-y-6 mt-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-white/10 gap-4">
-            <h3 className="font-headline-md text-[20px] text-white flex items-center gap-2 font-bold">
-              <span className="material-symbols-outlined text-orange-400 text-[24px]">visibility_off</span>
-              Điểm Mù Kiến Thức (Heatmap)
-            </h3>
-            <span className="px-3 py-1 bg-white/10 rounded-full text-xs font-medium text-white self-start md:self-auto flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-              Cập nhật trực tiếp
-            </span>
+
+        <section className="space-y-5">
+          <div className="flex flex-col justify-between gap-3 border-b border-white/10 pb-4 md:flex-row md:items-center">
+            <h2 className="flex items-center gap-2 text-[20px] font-bold text-white">
+              🔥 Điểm mù kiến thức
+            </h2>
+            <button
+              type="button"
+              onClick={() => void refresh()}
+              disabled={isLoading}
+              className="self-start rounded-full bg-white/10 px-3 py-1 text-xs text-white disabled:opacity-50 md:self-auto"
+            >
+              {isLoading ? "Đang cập nhật…" : "Cập nhật dữ liệu"}
+            </button>
           </div>
-          
+
+          {data?.highlights.some((item) => item.is_demo) && (
+            <div className="rounded-xl border border-blue-400/20 bg-blue-400/10 px-4 py-3 text-xs text-blue-200">
+              ℹ️ Các thẻ có nhãn <strong>DEMO</strong> là dữ liệu mô phỏng để
+              minh họa rõ ba mức nhiệt. Log tương tác thật vẫn được tổng hợp
+              song song.
+            </div>
+          )}
+
+          {!isLoading && data && data.highlights.length === 0 && (
+            <div className="rounded-2xl border border-dashed border-white/15 p-8 text-center text-sm text-white/60">
+              Chưa có dữ liệu. Hãy bôi đen một đoạn slide, làm quiz rồi quay lại
+              dashboard.
+            </div>
+          )}
+
           <div className="space-y-4">
-            {BLIND_SPOTS.map((spot) => (
-              <div key={spot.id} className="glass-panel p-5 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between hover:bg-white/5 transition-colors border-l-4 group" style={{ borderLeftColor: spot.status === 'critical' ? '#ff5252' : spot.status === 'warning' ? '#fb8c00' : '#4caf50' }}>
-                <div className="flex items-start gap-4 flex-1">
-                  <div className="flex flex-col items-center justify-center w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex-shrink-0">
-                    <span className="text-xs text-white/50 uppercase">Slide</span>
-                    <span className="text-2xl font-bold text-white">{spot.slideNumber}</span>
+            {data?.highlights.map((spot) => {
+              const severity =
+                spot.difficulty_score >= 0.7
+                  ? "#ff5252"
+                  : spot.difficulty_score >= 0.4
+                    ? "#fb8c00"
+                    : "#4caf50";
+              const severityLabel =
+                spot.difficulty_score >= 0.7
+                  ? "Rất khó"
+                  : spot.difficulty_score >= 0.4
+                    ? "Cần chú ý"
+                    : "Ổn định";
+              return (
+                <article
+                  key={spot.id}
+                  className="flex flex-col gap-4 rounded-2xl border-l-4 p-5 glass-panel md:flex-row md:items-center"
+                  style={{ borderLeftColor: severity }}
+                >
+                  <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                    <span className="text-[10px] uppercase text-white/50">
+                      Trang
+                    </span>
+                    <span className="text-2xl font-bold text-white">
+                      {spot.page_num ?? "—"}
+                    </span>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-3 mb-1">
-                      <h4 className="font-body-lg text-[16px] text-white font-semibold">"{spot.term}"</h4>
-                      <span className="flex items-center gap-1 bg-red-500/20 text-red-400 px-2 py-0.5 rounded text-xs font-bold font-mono">
-                        <span className="material-symbols-outlined text-[14px]">local_fire_department</span>
-                        {spot.count} học viên hỏi
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-start gap-2">
+                      <p className="min-w-0 flex-1 break-words font-semibold text-white">
+                        “{spot.text_segment}”
+                      </p>
+                      {spot.is_demo && (
+                        <span className="rounded-full border border-blue-400/30 bg-blue-400/15 px-2 py-0.5 text-[10px] font-bold tracking-wider text-blue-300">
+                          DEMO
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-2 flex flex-wrap gap-2 text-xs">
+                      <span className="rounded bg-orange-500/20 px-2 py-1 text-orange-300">
+                        {spot.highlight_count} lượt bôi đen
+                      </span>
+                      <span className="rounded bg-red-500/20 px-2 py-1 text-red-300">
+                        {spot.wrong_answer_count} lượt sai
+                      </span>
+                      <span className="rounded bg-blue-500/20 px-2 py-1 text-blue-300">
+                        Độ khó {Math.round(spot.difficulty_score * 100)}%
                       </span>
                     </div>
-                    <p className="text-white/70 text-[14px] flex items-start gap-2 mt-2">
-                      <span className="material-symbols-outlined text-[18px] text-yellow-400 flex-shrink-0 mt-0.5">lightbulb</span>
-                      <span><strong className="text-white/90">Gợi ý AI: </strong>{spot.suggestion}</span>
+                    <div className="mt-3">
+                      <div className="mb-1 flex items-center justify-between text-[11px]">
+                        <span className="text-white/50">Cường độ điểm mù</span>
+                        <span className="font-bold" style={{ color: severity }}>
+                          {severityLabel}
+                        </span>
+                      </div>
+                      <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                        <div
+                          className="h-full rounded-full transition-all duration-700"
+                          style={{
+                            width: `${Math.max(
+                              spot.difficulty_score * 100,
+                              3
+                            )}%`,
+                            backgroundColor: severity,
+                            boxShadow: `0 0 12px ${severity}80`,
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <p className="mt-3 text-sm text-white/65">
+                      💡 {getSuggestion(spot.difficulty_score, spot.highlight_count)}
                     </p>
                   </div>
-                </div>
-                
-                <div className="mt-4 md:mt-0 md:ml-4 flex gap-2 w-full md:w-auto">
-                  <button onClick={notImplemented} className="flex-1 md:flex-none px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm transition-colors flex items-center justify-center gap-2">
-                    <span className="material-symbols-outlined text-[18px]">edit</span>
-                    Sửa Slide
-                  </button>
-                  <button onClick={notImplemented} className="flex-1 md:flex-none px-4 py-2 rounded-lg bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 border border-blue-500/30 text-sm transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
-                    <span className="material-symbols-outlined text-[18px]">smart_toy</span>
-                    Tạo giải thích mẫu
-                  </button>
-                </div>
-              </div>
-            ))}
+                </article>
+              );
+            })}
           </div>
-        </div>
-        
-        {/* Modal Actions */}
-        <div className="pt-8 mt-4 flex gap-4 justify-end border-t border-white/5">
-          <Link href="/">
-            <button className="px-6 py-3 rounded-xl glass-panel font-label-sm text-sm text-white hover:bg-white/10 active:scale-95 transition-all duration-300 flex items-center gap-2">
-              <span className="material-symbols-outlined text-[18px]">arrow_back</span>
-              Về trang học tập
-            </button>
+        </section>
+
+        <div className="flex justify-end gap-4 border-t border-white/5 pt-6">
+          <Link
+            href="/"
+            className="rounded-xl px-5 py-3 text-sm text-white glass-panel hover:bg-white/10"
+          >
+            ← Về trang học tập
           </Link>
-          <button onClick={notImplemented} className="py-3 px-6 rounded-xl font-label-sm text-sm text-white bg-blue-600 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] active:scale-95 transition-all duration-300 flex items-center gap-2">
-            <span className="material-symbols-outlined text-[18px]">download</span>
-            Xuất Báo Cáo PDF
+          <button
+            type="button"
+            onClick={exportCsv}
+            disabled={!data || data.highlights.length === 0}
+            className="rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Xuất CSV
           </button>
         </div>
       </div>
-      
-      {/* Bottom Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-2 bg-gradient-to-r from-transparent via-blue-500/40 to-transparent blur-xl"></div>
     </div>
   );
 }

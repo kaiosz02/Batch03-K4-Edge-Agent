@@ -58,12 +58,12 @@
   --spacing-stack-md: 16px;
   --spacing-stack-lg: 32px;
 
-  --font-display-lg: "Outfit", sans-serif;
-  --font-display-lg-mobile: "Outfit", sans-serif;
-  --font-headline-md: "Outfit", sans-serif;
-  --font-body-lg: "Outfit", sans-serif;
-  --font-body-md: "Outfit", sans-serif;
-  --font-label-sm: "Outfit", sans-serif;
+  --font-display-lg: "Segoe UI", Arial, sans-serif;
+  --font-display-lg-mobile: "Segoe UI", Arial, sans-serif;
+  --font-headline-md: "Segoe UI", Arial, sans-serif;
+  --font-body-lg: "Segoe UI", Arial, sans-serif;
+  --font-body-md: "Segoe UI", Arial, sans-serif;
+  --font-label-sm: "Segoe UI", Arial, sans-serif;
 
   --text-display-lg: 48px;
   --text-display-lg--line-height: 56px;
@@ -140,7 +140,7 @@
 
 body {
   background-color: var(--color-background);
-  font-family: 'Outfit', sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   color: var(--color-on-surface);
   overflow: hidden;
 }

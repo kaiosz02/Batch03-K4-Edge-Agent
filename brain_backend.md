@@ -36,10 +36,11 @@ Trả lời nhận EXP & Pet Tiến hóa     →   Xuất "Knowledge Heatmap"
 
 **2. Bôi đen & Học tương tác (Just-in-time Learning):**
 - Khi sinh viên không hiểu 1 khái niệm, họ **bôi đen (highlight)** đoạn text đó.
-- Nhấn nút "Tạo câu hỏi ôn tập".
+- Pet hỏi người học có muốn làm quiz nhận EXP hay không.
+- Backend chỉ nhận request sinh quiz sau khi người học chọn **Bắt đầu**.
 
 **3. AI Sinh Đề Động (Adaptive Quiz):**
-- AI (Gemini) nhận Context (đoạn text bôi đen) + Trình độ hiện tại.
+- AI provider hiện tại (DeepSeek; có mock fallback khi chưa cấu hình key) nhận Context (đoạn text bôi đen) + lịch sử làm bài.
 - Trả về JSON một câu hỏi trắc nghiệm bám sát đúng nghĩa đoạn text đó.
 - *Lưu ý:* AI KHÔNG dùng ngân hàng đề tĩnh. Nó tự "đọc hiểu" cùng sinh viên.
 
@@ -61,7 +62,7 @@ Level 3 (Gà 🐔):      151 → 300 EXP
 
 ## 📚 TẦNG 2: Trải nghiệm Giảng viên (Knowledge Heatmap)
 
-Mỗi lần sinh viên tương tác (bôi đen, làm quiz), Backend ngầm thu thập dữ liệu:
+Mỗi lần sinh viên tương tác (bôi đen, xác nhận, làm quiz), Backend ngầm thu thập dữ liệu:
 ```json
 {
   "slide_id": "static_0",
@@ -85,7 +86,7 @@ Mỗi lần sinh viên tương tác (bôi đen, làm quiz), Backend ngầm thu t
 | **R1 — Bằng chứng** | Data: 58% bỏ cuộc sớm khi tự học qua slide tĩnh; Giảng viên thiếu data thực tế về chỗ khó của sinh viên. |
 | **R2 — AI quyết định** | AI đánh giá trình độ và ngữ cảnh để **quyết định độ khó** và nội dung câu hỏi sinh ra. |
 | **R3 — Giải quyết chỗ khó** | Khắc phục vấn đề AI hay "ảo giác": Ép Prompt chỉ được dùng đúng đoạn text bôi đen làm căn cứ sinh câu hỏi. |
-| **R5 — Prototype chạy** | Đã hoàn thiện luồng: Load Static PDF → Bôi đen Text → Sinh Quiz bằng Gemini → Tính EXP → Lưu Log cho Heatmap. |
+| **R5 — Prototype chạy** | Đã hoàn thiện luồng: Load Static PDF → Bôi đen Text → Pet xác nhận → AI sinh Quiz → Tính EXP → Lưu Log cho Heatmap. |
 
 ---
 

@@ -58,5 +58,406 @@
       "page_num": 1,
       "dwell_ms": 315559
     }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:24:52.265Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text": "AI IN ACTION  Day 1 AI & LLM Foun"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:24:52.266Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_len": 34
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:24:58.280Z",
+    "payload": {
+      "accepted": false,
+      "slide_id": "static_0",
+      "page_num": 1
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:25:08.779Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 20781
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:25:11.008Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text": "AI IN ACTION  Day 1 Agenda • Bức tranh AI & các tầng của AI • Lịch sử AI 70 năm • Bên trong LLM: cơ chế vận hành • Từ LLM đến AI Agent • Landscape: model hôm nay & cuộc đua hiện tại •"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:25:11.008Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text_len": 184
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:25:14.107Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 2
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:25:14.108Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text_len": 184,
+      "started": true
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:33:34.913Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "dwell_ms": 506134
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:33:59.725Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 24446
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:43:35.020Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1641
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:53:28.708Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 2486
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:54:47.858Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 1132
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:54:51.350Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text": "AI IN ACTION  Day 1 AI & LLM Foundation Bạn đang dùng AI mỗi ngày — nhưng thực sự bên trong nó đang làm gì? A I I N AC T I O N"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:54:51.350Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_len": 127
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:54:56.382Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_len": 10
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:54:56.382Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text": "Foundation"
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:55:00.089Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 1
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:55:00.089Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_len": 10,
+      "started": true
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:55:18.645Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 30544
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:55:22.199Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text": "LLM Foundation"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:55:22.199Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_len": 14
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:55:24.343Z",
+    "payload": {
+      "accepted": true,
+      "slide_id": "static_0",
+      "page_num": 1
+    }
+  },
+  {
+    "event": "quiz_trigger",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:55:24.343Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_len": 14,
+      "started": true
+    }
+  },
+  {
+    "event": "ai_generation",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:55:38.692263+00:00",
+    "payload": {
+      "status": "ok",
+      "latency_ms": 14345,
+      "slide_id": "static_0",
+      "page_num": 1,
+      "quiz_id": "3c5f1a06-ca32-4f91-9ab0-9b2c91d67175",
+      "difficulty_level": 1
+    }
+  },
+  {
+    "event": "quiz_answer",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:55:44.144843+00:00",
+    "payload": {
+      "quiz_id": "3c5f1a06-ca32-4f91-9ab0-9b2c91d67175",
+      "is_correct": true,
+      "difficulty": 1,
+      "exp_added": 5,
+      "slide_id": "static_0",
+      "page_num": 1,
+      "text_snippet": "LLM Foundation",
+      "selected_answer": "A"
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:56:33.628Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 1,
+      "dwell_ms": 74713
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:58:25.640Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text": "AI & LLM Foundatio"
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:58:25.640Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "text_len": 18
+    }
+  },
+  {
+    "event": "quiz_offer_response",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:58:50.837Z",
+    "payload": {
+      "accepted": false,
+      "slide_id": "static_0",
+      "page_num": 2
+    }
+  },
+  {
+    "event": "slide_view",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:58:55.097Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 2,
+      "dwell_ms": 141469
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:58:57.812Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text": "AI, ML, Deep Learning, GenAI, LLM — nằm ở đâu trong cùng một hệ? AI — chiếc ô lớn nhất: mọi hệ thống có yếu tố “thông minhˮ. Machine learning — học từ dữ liệu thay vì viết luật tay. Deep learning — mạng nơ-ron nhiều tầng tự học đặc trưng. Generative AI — sinh nội dung mới: văn bản, ảnh, code. LLM — model nền chuyên ngôn ngữ, tim của làn sóng hiện nay. ARTIFICIAL INTELLIGENCE MACHINE LEARNING DEEP LEARNING GENERATIVE AI LLM GPT · Claude · Kimi kể cả hệ luật tay, robot… lọc spam · gợi ý phim nhận "
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:58:57.812Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_len": 616
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:59:04.104Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text": "AI, ML, Deep Learning, GenAI, LLM — nằm ở đâu trong cùng một hệ? AI — chiếc ô lớn nhất: mọi hệ thống có yếu tố “thông minhˮ. Machine learning — học từ dữ liệu thay vì viết luật tay. Deep learning — mạng nơ-ron nhiều tầng tự học đặc trưng. Generative AI — sinh nội dung mới: văn bản, ảnh, code. LLM — model nền chuyên ngôn ngữ, tim của làn sóng hiện nay. ARTIFICIAL INTELLIGENCE MACHINE LEARNING DEEP LEARNING GENERATIVE AI LLM GPT · Claude · Kimi kể cả hệ luật tay, robot… lọc spam · gợi ý phim nhận "
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:59:04.104Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_len": 566
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:59:06.819Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_len": 649
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:59:06.819Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text": "AI, ML, Deep Learning, GenAI, LLM — nằm ở đâu trong cùng một hệ? AI — chiếc ô lớn nhất: mọi hệ thống có yếu tố “thông minhˮ. Machine learning — học từ dữ liệu thay vì viết luật tay. Deep learning — mạng nơ-ron nhiều tầng tự học đặc trưng. Generative AI — sinh nội dung mới: văn bản, ảnh, code. LLM — model nền chuyên ngôn ngữ, tim của làn sóng hiện nay. ARTIFICIAL INTELLIGENCE MACHINE LEARNING DEEP LEARNING GENERATIVE AI LLM GPT · Claude · Kimi kể cả hệ luật tay, robot… lọc spam · gợi ý phim nhận "
+    }
+  },
+  {
+    "event": "quiz_offer",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:59:09.538Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text_len": 76
+    }
+  },
+  {
+    "event": "text_highlight",
+    "session_id": "user-uy5d8q4mjur",
+    "timestamp": "2026-07-31T06:59:09.538Z",
+    "payload": {
+      "slide_id": "static_0",
+      "page_num": 3,
+      "text": "LM không phải toàn bộ AI — nhưng nó là tầng nền của gần hết trải nghiệm AI b"
+    }
   }
 ]

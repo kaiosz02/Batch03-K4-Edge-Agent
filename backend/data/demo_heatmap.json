@@ -1,0 +1,46 @@
+{
+  "enabled": true,
+  "student_count": 48,
+  "segments": [
+    {
+      "slide_id": "static_0",
+      "page_num": 12,
+      "text_segment": "Cơ chế Attention giúp mô hình xác định token nào quan trọng nhất trong ngữ cảnh.",
+      "highlight_count": 82,
+      "total_answers": 25,
+      "wrong_answer_count": 21
+    },
+    {
+      "slide_id": "static_0",
+      "page_num": 15,
+      "text_segment": "Vector Database lưu trữ dữ liệu dưới dạng vector nhúng để tìm kiếm theo độ tương đồng.",
+      "highlight_count": 64,
+      "total_answers": 22,
+      "wrong_answer_count": 13
+    },
+    {
+      "slide_id": "static_0",
+      "page_num": 18,
+      "text_segment": "RAG kết hợp truy xuất tri thức với mô hình ngôn ngữ để tạo câu trả lời có căn cứ.",
+      "highlight_count": 47,
+      "total_answers": 20,
+      "wrong_answer_count": 8
+    },
+    {
+      "slide_id": "static_0",
+      "page_num": 8,
+      "text_segment": "Tokenization chia văn bản thành các token trước khi đưa vào mô hình.",
+      "highlight_count": 29,
+      "total_answers": 18,
+      "wrong_answer_count": 4
+    },
+    {
+      "slide_id": "static_0",
+      "page_num": 21,
+      "text_segment": "AI Agent sử dụng mô hình, công cụ và bộ nhớ để hoàn thành một mục tiêu.",
+      "highlight_count": 18,
+      "total_answers": 14,
+      "wrong_answer_count": 2
+    }
+  ]
+}

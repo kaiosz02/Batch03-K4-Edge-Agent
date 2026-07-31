@@ -1,145 +1,316 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { PetStatusResponse } from "@/lib/api";
 
 const FRAME_SIZE = 16;
 const SCALE = 6;
-const SPEED = 2; // Tốc độ di chuyển
+const SPEED = 2;
 
 const CHARACTERS = [
-  { name: "V-Mage", file: "Necromancer_16x16.png", color: "text-purple-400", glow: "bg-purple-500/40" },
-  { name: "V-Toad", file: "Toad_16x16.png", color: "text-green-400", glow: "bg-green-500/40" },
-  { name: "V-Bear", file: "Bear_16x16.png", color: "text-amber-400", glow: "bg-amber-500/40" },
-  { name: "V-Ghost", file: "Ghost_16x16.png", color: "text-tertiary", glow: "bg-tertiary/40" },
-  { name: "V-Imp", file: "Imp_16x16.png", color: "text-red-400", glow: "bg-red-500/40" },
+  {
+    name: "V-Mage",
+    file: "Necromancer_16x16.png",
+    color: "text-purple-400",
+    glow: "bg-purple-500/40",
+  },
+  {
+    name: "V-Toad",
+    file: "Toad_16x16.png",
+    color: "text-green-400",
+    glow: "bg-green-500/40",
+  },
+  {
+    name: "V-Bear",
+    file: "Bear_16x16.png",
+    color: "text-amber-400",
+    glow: "bg-amber-500/40",
+  },
+  {
+    name: "V-Ghost",
+    file: "Ghost_16x16.png",
+    color: "text-tertiary",
+    glow: "bg-tertiary/40",
+  },
+  {
+    name: "V-Imp",
+    file: "Imp_16x16.png",
+    color: "text-red-400",
+    glow: "bg-red-500/40",
+  },
 ];
 
-export default function AnimatedPet() {
+export type PetBubbleKind =
+  | "confirm"
+  | "thinking"
+  | "success"
+  | "encourage"
+  | "notice"
+  | "error";
+
+export interface PetBubbleState {
+  id: string;
+  kind: PetBubbleKind;
+  message: string;
+  snippet?: string;
+}
+
+interface AnimatedPetProps {
+  bubble: PetBubbleState | null;
+  petStatus: PetStatusResponse | null;
+  onAccept: () => void;
+  onDecline: () => void;
+  onClose: () => void;
+}
+
+const BUBBLE_ICON: Record<PetBubbleKind, string> = {
+  confirm: "🐾",
+  thinking: "🧠",
+  success: "🎉",
+  encourage: "💪",
+  notice: "💬",
+  error: "😿",
+};
+
+export default function AnimatedPet({
+  bubble,
+  petStatus,
+  onAccept,
+  onDecline,
+  onClose,
+}: AnimatedPetProps) {
   const [frame, setFrame] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
-  
-  // Tọa độ và hướng di chuyển
-  const [position, setPosition] = useState({ x: 40, y: 40 }); // Cách lề phải/dưới 40px
-  const [direction, setDirection] = useState(2); // 0: down, 1: up, 2: left, 3: right
+  const [position, setPosition] = useState({ x: 40, y: 40 });
+  const [direction, setDirection] = useState(2);
   const [isMoving, setIsMoving] = useState(false);
-  
+
   const currentChar = CHARACTERS[charIndex];
-  const requestRef = useRef<number>();
-  
-  // Logic di chuyển ngẫu nhiên
+  const requestRef = useRef<number | null>(null);
+  const interactionActiveRef = useRef(false);
+
   useEffect(() => {
-    let targetX = position.x;
-    let targetY = position.y;
+    interactionActiveRef.current = bubble !== null;
+  }, [bubble]);
+
+  useEffect(() => {
+    let targetX = 40;
+    let targetY = 40;
     let idleTimeout: NodeJS.Timeout;
-    
+
     const pickNewTarget = () => {
-      // Chọn tọa độ ngẫu nhiên ở góc dưới bên phải màn hình (vùng hoạt động của pet)
-      targetX = Math.floor(Math.random() * 300) + 20; 
+      if (interactionActiveRef.current) return;
+      targetX = Math.floor(Math.random() * 300) + 20;
       targetY = Math.floor(Math.random() * 200) + 20;
       setIsMoving(true);
     };
 
     const updatePosition = () => {
-      setPosition(prev => {
-        let newX = prev.x;
-        let newY = prev.y;
-        let dx = targetX - prev.x;
-        let dy = targetY - prev.y;
-        
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        
-        if (dist < SPEED) {
-          setIsMoving(false);
-          // Đợi 2-5s rồi đi tiếp
-          clearTimeout(idleTimeout);
-          idleTimeout = setTimeout(pickNewTarget, Math.random() * 3000 + 2000);
-          return { x: targetX, y: targetY };
-        }
-        
-        // Di chuyển một bước
-        newX += (dx / dist) * SPEED;
-        newY += (dy / dist) * SPEED;
-        
-        // Xác định hướng nhìn (direction)
-        if (Math.abs(dx) > Math.abs(dy)) {
-          setDirection(dx > 0 ? 2 : 3); // dx > 0 đi sang trái (vì x là khoảng cách lề phải) => direction 2 (left)
-        } else {
-          setDirection(dy > 0 ? 1 : 0); // dy > 0 đi lên trên (vì y là lề dưới) => direction 1 (up)
-        }
-        
-        return { x: newX, y: newY };
-      });
-      
+      if (!interactionActiveRef.current) {
+        setPosition((previous) => {
+          const dx = targetX - previous.x;
+          const dy = targetY - previous.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < SPEED) {
+            setIsMoving(false);
+            clearTimeout(idleTimeout);
+            idleTimeout = setTimeout(
+              pickNewTarget,
+              Math.random() * 3000 + 2000
+            );
+            return { x: targetX, y: targetY };
+          }
+
+          if (Math.abs(dx) > Math.abs(dy)) {
+            setDirection(dx > 0 ? 2 : 3);
+          } else {
+            setDirection(dy > 0 ? 1 : 0);
+          }
+
+          return {
+            x: previous.x + (dx / distance) * SPEED,
+            y: previous.y + (dy / distance) * SPEED,
+          };
+        });
+      }
       requestRef.current = requestAnimationFrame(updatePosition);
     };
-    
-    // Khởi động loop
+
     idleTimeout = setTimeout(pickNewTarget, 2000);
     requestRef.current = requestAnimationFrame(updatePosition);
-    
+
     return () => {
-      cancelAnimationFrame(requestRef.current!);
+      if (requestRef.current !== null) {
+        cancelAnimationFrame(requestRef.current);
+      }
       clearTimeout(idleTimeout);
     };
   }, []);
 
-  // Frame animation loop
   useEffect(() => {
     const interval = setInterval(() => {
-      setFrame((prev) => {
-        if (!isMoving) return 0; // Đứng im thì frame 0
-        return (prev + 1) % 4;
+      setFrame((previous) => {
+        if (!isMoving || bubble) return 0;
+        return (previous + 1) % 4;
       });
     }, 150);
-
     return () => clearInterval(interval);
-  }, [isMoving]);
+  }, [bubble, isMoving]);
 
   const changeCharacter = () => {
-    setCharIndex((prev) => (prev + 1) % CHARACTERS.length);
+    if (bubble) return;
+    setCharIndex((previous) => (previous + 1) % CHARACTERS.length);
   };
 
-  // bgX: cột (frame), bgY: hàng (direction)
   const bgX = -(frame * FRAME_SIZE);
   const bgY = -(direction * FRAME_SIZE);
+  const expPercentage = petStatus
+    ? Math.min((petStatus.current_exp / petStatus.max_exp) * 100, 100)
+    : 0;
+  const isResult =
+    bubble?.kind === "success" || bubble?.kind === "encourage";
 
   return (
-    <div 
-      className="fixed z-50 flex flex-col items-center justify-end group transition-all"
+    <div
+      className="group fixed z-50 flex flex-col items-center justify-end transition-all duration-300"
       style={{
-        right: `${position.x}px`,
+        right: `${bubble ? Math.max(position.x, 120) : position.x}px`,
         bottom: `${position.y}px`,
         width: FRAME_SIZE * SCALE,
       }}
     >
-      {/* Speech bubble */}
-      <div className="absolute bottom-full mb-8 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 bg-surface/90 backdrop-blur-sm p-3 rounded-2xl rounded-br-none border border-white/20 shadow-2xl text-xs text-white w-48 text-center pointer-events-none z-10">
-        Hi! Mình là <span className={`${currentChar.color} font-bold`}>{currentChar.name}</span>.
-        <br />
-        Bôi đen slide để hỏi mình nhé!
-        <div className="mt-2 pt-2 border-t border-white/10 text-[10px] text-white/50">
-          (Click vào mình để đổi)
-        </div>
+      <div
+        className={`absolute bottom-full mb-5 w-72 max-w-[calc(100vw-2rem)] rounded-2xl rounded-br-none border p-4 text-left text-xs text-white shadow-2xl backdrop-blur-md transition-all duration-200 ${
+          bubble
+            ? "pointer-events-auto translate-y-0 border-tertiary/30 bg-surface/95 opacity-100"
+            : "pointer-events-none translate-y-2 border-white/20 bg-surface/90 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
+        }`}
+      >
+        {bubble ? (
+          <>
+            <div className="flex items-start gap-2">
+              <span className="text-xl leading-none">
+                {BUBBLE_ICON[bubble.kind]}
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="mb-1 flex items-center justify-between gap-2">
+                  <span className={`font-bold ${currentChar.color}`}>
+                    {currentChar.name}
+                  </span>
+                  {bubble.kind !== "confirm" &&
+                    bubble.kind !== "thinking" && (
+                      <button
+                        type="button"
+                        onClick={onClose}
+                        className="text-sm text-white/50 hover:text-white"
+                        aria-label="Đóng thông báo của Pet"
+                      >
+                        ×
+                      </button>
+                    )}
+                </div>
+                <p className="text-[13px] leading-relaxed text-white">
+                  {bubble.message}
+                </p>
+              </div>
+            </div>
+
+            {bubble.snippet && (
+              <div className="mt-3 max-h-20 overflow-hidden rounded-xl border border-white/10 bg-white/5 p-2.5 text-[11px] italic leading-relaxed text-white/70">
+                “{bubble.snippet}”
+              </div>
+            )}
+
+            {bubble.kind === "confirm" && (
+              <div className="mt-3 grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={onAccept}
+                  className="rounded-xl border border-tertiary/40 bg-tertiary/20 px-3 py-2 font-bold text-tertiary transition-colors hover:bg-tertiary/30 active:scale-95"
+                >
+                  OK, làm task 🎯
+                </button>
+                <button
+                  type="button"
+                  onClick={onDecline}
+                  className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-white/70 transition-colors hover:bg-white/10 active:scale-95"
+                >
+                  Để sau
+                </button>
+              </div>
+            )}
+
+            {bubble.kind === "thinking" && (
+              <div className="mt-3 flex items-center gap-1.5 text-tertiary">
+                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-tertiary" />
+                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-tertiary delay-75" />
+                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-tertiary delay-150" />
+                <span className="ml-1 text-[11px]">Đang chuẩn bị quiz…</span>
+              </div>
+            )}
+
+            {petStatus && (
+              <div
+                className={`mt-3 border-t border-white/10 pt-2 ${
+                  isResult ? "animate-pulse" : ""
+                }`}
+              >
+                <div className="mb-1 flex justify-between text-[10px] text-white/60">
+                  <span>{petStatus.level_name}</span>
+                  <span className="font-bold text-tertiary">
+                    {petStatus.current_exp}/{petStatus.max_exp} EXP
+                  </span>
+                </div>
+                <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
+                  <div
+                    className="h-full rounded-full bg-tertiary transition-all duration-700"
+                    style={{ width: `${expPercentage}%` }}
+                  />
+                </div>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            Hi! Mình là{" "}
+            <span className={`${currentChar.color} font-bold`}>
+              {currentChar.name}
+            </span>
+            .<br />
+            Bôi đen slide để gọi mình nhé!
+            {petStatus && (
+              <div className="mt-2 border-t border-white/10 pt-2 text-[10px] text-tertiary">
+                {petStatus.current_exp}/{petStatus.max_exp} EXP
+              </div>
+            )}
+          </>
+        )}
       </div>
-      
-      {/* Character Wrapper for correct scaling */}
-      <div style={{ width: FRAME_SIZE * SCALE, height: FRAME_SIZE * SCALE }} className="relative flex justify-center items-end">
-        <div 
+
+      <div
+        style={{ width: FRAME_SIZE * SCALE, height: FRAME_SIZE * SCALE }}
+        className="relative flex items-end justify-center"
+      >
+        <div
           onClick={changeCharacter}
-          className="cursor-pointer hover:brightness-125 hover:-translate-y-2 active:scale-95 transition-all z-10"
+          className={`z-10 transition-all ${
+            bubble ? "cursor-default" : "cursor-pointer hover:-translate-y-2 hover:brightness-125 active:scale-95"
+          }`}
           style={{
             width: FRAME_SIZE,
             height: FRAME_SIZE,
             backgroundImage: `url('/sprites/${currentChar.file}')`,
             backgroundPosition: `${bgX}px ${bgY}px`,
-            backgroundRepeat: 'no-repeat',
+            backgroundRepeat: "no-repeat",
             transform: `scale(${SCALE})`,
-            transformOrigin: 'bottom center',
-            imageRendering: 'pixelated',
+            transformOrigin: "bottom center",
+            imageRendering: "pixelated",
           }}
         />
-        {/* Glow effect under the character */}
-        <div className={`absolute bottom-0 w-10 h-3 rounded-full blur-md transition-colors duration-500 ${currentChar.glow}`}></div>
+        <div
+          className={`absolute bottom-0 h-3 w-10 rounded-full blur-md transition-colors duration-500 ${currentChar.glow}`}
+        />
       </div>
     </div>
   );

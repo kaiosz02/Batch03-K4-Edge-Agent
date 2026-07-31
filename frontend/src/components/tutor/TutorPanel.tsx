@@ -1,46 +1,39 @@
 "use client";
 
 import { useState } from "react";
-import { useTutorChat } from "@/features/tutor/useTutorChat";
+import type { TutorChatHook } from "@/features/tutor/useTutorChat";
 import QuizCard from "@/components/tutor/QuizCard";
-import { PetStatusResponse } from "@/lib/api";
+import type { PetStatusResponse } from "@/lib/api";
 
 interface TutorPanelProps {
-  slideId?: string;
-  pageNum?: number;
+  chat: TutorChatHook;
+  onPetUpdate: (pet: PetStatusResponse) => void;
 }
 
-export default function TutorPanel({ slideId, pageNum }: TutorPanelProps) {
+export default function TutorPanel({
+  chat,
+  onPetUpdate,
+}: TutorPanelProps) {
   const {
     messages,
     isTyping,
     sendMessage,
-    triggerQuizFromSelection,
     handleAnswerSelect,
     messagesEndRef,
-  } = useTutorChat();
+  } = chat;
 
   const [inputValue, setInputValue] = useState("");
-  const [petStatus, setPetStatus] = useState<PetStatusResponse | null>(null);
 
   const handleSend = () => {
     sendMessage(inputValue);
     setInputValue("");
   };
 
-  const handleGenerateQuiz = () => {
-    triggerQuizFromSelection(slideId, pageNum);
-  };
-
-  const handlePetUpdate = (pet: PetStatusResponse) => {
-    setPetStatus(pet);
-  };
-
   return (
     <aside className="w-full md:w-80 lg:w-96 glass-panel border-l border-white/10 flex flex-col h-full bg-surface-container-low/30 relative z-20">
       <div className="p-6 border-b border-white/10 flex items-center justify-between relative z-20">
         <div className="flex flex-col">
-          <h2 className="font-headline-md text-[18px] text-on-surface">VLearn AI Tutor</h2>
+          <h2 className="font-headline-md text-[18px] text-on-surface">V-Pet Tutor</h2>
           <div className="font-label-sm text-[11px] text-tertiary flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
             Đang trực tuyến
@@ -48,34 +41,12 @@ export default function TutorPanel({ slideId, pageNum }: TutorPanelProps) {
         </div>
       </div>
 
-      {/* EXP status bar (hiển thị khi đã có pet status từ backend) */}
-      {petStatus && (
-        <div className="px-6 py-2 border-b border-white/10 bg-white/3 relative z-20">
-          <div className="flex justify-between text-[10px] text-on-surface-variant mb-1">
-            <span>{petStatus.level_name}</span>
-            <span className="text-tertiary font-bold">
-              {petStatus.current_exp}/{petStatus.max_exp} EXP
-            </span>
-          </div>
-          <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
-            <div
-              className="h-full bg-tertiary rounded-full neon-cyan-glow transition-all duration-500"
-              style={{ width: `${(petStatus.current_exp / petStatus.max_exp) * 100}%` }}
-            />
-          </div>
-        </div>
-      )}
-
       {/* Quick Actions */}
       <div className="px-6 py-3 border-b border-white/10 overflow-x-auto custom-scrollbar flex gap-2 whitespace-nowrap shrink-0 relative z-20">
-        {/* Nút chính: Bôi đen → Tạo câu hỏi */}
-        <button
-          onClick={handleGenerateQuiz}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-tertiary/20 border border-tertiary/40 text-tertiary text-[12px] font-bold hover:bg-tertiary/30 transition-colors active:scale-95"
-        >
+        <span className="flex items-center gap-1.5 rounded-full border border-tertiary/30 bg-tertiary/10 px-3 py-1.5 text-[12px] font-bold text-tertiary">
           <span className="material-symbols-outlined text-[16px]">auto_awesome</span>
-          ✨ Tạo quiz từ bôi đen
-        </button>
+          Quiz do Pet gửi sẽ xuất hiện tại đây
+        </span>
         <button
           onClick={() => sendMessage("Hãy giải thích chi tiết slide này giúp tôi.")}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-[12px] font-bold hover:bg-secondary/20 transition-colors active:scale-95"
@@ -121,7 +92,7 @@ export default function TutorPanel({ slideId, pageNum }: TutorPanelProps) {
                 <QuizCard
                   quiz={msg.quiz}
                   onAnswerSelect={handleAnswerSelect}
-                  onPetUpdate={handlePetUpdate}
+                  onPetUpdate={onPetUpdate}
                 />
               )}
               {msg.citations && msg.citations.length > 0 && (
@@ -178,4 +149,3 @@ export default function TutorPanel({ slideId, pageNum }: TutorPanelProps) {
     </aside>
   );
 }
-

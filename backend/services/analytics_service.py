@@ -1,10 +1,27 @@
 """Aggregate hotspot + quiz_answer telemetry into instructor heatmap."""
 from __future__ import annotations
 
+import json
+import os
 from typing import Any, Optional
 
 from services.hotspot_service import load_all_hotspots
 from services.telemetry_service import load_events
+
+DEMO_HEATMAP_FILE = os.path.join(
+    os.path.dirname(__file__), "..", "data", "demo_heatmap.json"
+)
+
+
+def _load_demo_heatmap() -> dict[str, Any]:
+    if not os.path.exists(DEMO_HEATMAP_FILE):
+        return {}
+    try:
+        with open(DEMO_HEATMAP_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return data if isinstance(data, dict) else {}
+    except (json.JSONDecodeError, OSError):
+        return {}
 
 
 def _snippets_match(a: str, b: str) -> bool:
@@ -23,6 +40,7 @@ def build_heatmap(document_id: str = "doc_001") -> dict[str, Any]:
     """
     events = load_events()
     hotspots_data = load_all_hotspots()
+    demo_data = _load_demo_heatmap()
 
     # Unique students across all telemetry
     sessions = {
@@ -130,6 +148,7 @@ def build_heatmap(document_id: str = "doc_001") -> dict[str, Any]:
                     "wrong_answer_count": wrong,
                     "page_num": page_num_int,
                     "slide_id": slide_id,
+                    "is_demo": False,
                 }
             )
 
@@ -157,8 +176,49 @@ def build_heatmap(document_id: str = "doc_001") -> dict[str, Any]:
                 "wrong_answer_count": stats["wrong"],
                 "page_num": stats.get("page_num"),
                 "slide_id": slide_id,
+                "is_demo": False,
             }
         )
+
+    demo_segments = demo_data.get("segments") if demo_data.get("enabled") else []
+    matching_demo_segments = []
+    if isinstance(demo_segments, list):
+        matching_demo_segments = [
+            segment
+            for segment in demo_segments
+            if isinstance(segment, dict)
+            and (
+                document_id in ("", "doc_001", "all")
+                or str(segment.get("slide_id")) == document_id
+            )
+        ]
+
+    if matching_demo_segments:
+        total_students += max(0, int(demo_data.get("student_count") or 0))
+        for demo_idx, segment in enumerate(matching_demo_segments, start=1):
+            total_ans = max(0, int(segment.get("total_answers") or 0))
+            wrong = min(
+                total_ans,
+                max(0, int(segment.get("wrong_answer_count") or 0)),
+            )
+            answer_total += total_ans
+            wrong_total += wrong
+            highlights.append(
+                {
+                    "id": f"demo_seg_{demo_idx}",
+                    "text_segment": str(segment.get("text_segment") or ""),
+                    "highlight_count": max(
+                        0, int(segment.get("highlight_count") or 0)
+                    ),
+                    "difficulty_score": round(
+                        wrong / total_ans if total_ans else 0.0, 3
+                    ),
+                    "wrong_answer_count": wrong,
+                    "page_num": segment.get("page_num"),
+                    "slide_id": str(segment.get("slide_id") or "demo"),
+                    "is_demo": True,
+                }
+            )
 
     highlights.sort(
         key=lambda h: (h["difficulty_score"], h["highlight_count"]),

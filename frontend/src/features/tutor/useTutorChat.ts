@@ -1,214 +1,250 @@
-import { useState, useCallback, useRef, useEffect } from 'react';
-import { ChatMessage, QuizState } from '@/lib/types';
-import { generateQuiz, submitAnswer, PetStatusResponse } from '@/lib/api';
-import { getTelemetrySessionId, track } from '@/features/telemetry/useTelemetry';
-
-function getSessionId(): string {
-  return getTelemetrySessionId();
-}
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ChatMessage, QuizState } from "@/lib/types";
+import { generateQuiz, PetStatusResponse, submitAnswer } from "@/lib/api";
+import {
+  getTelemetrySessionId,
+  track,
+} from "@/features/telemetry/useTelemetry";
 
 const INITIAL_MESSAGES: ChatMessage[] = [
   {
-    id: 'msg-welcome',
-    sender: 'ai',
-    text: '👋 Chào bạn! Hãy **bôi đen** bất kỳ đoạn văn nào trong slide rồi nhấn nút ✨ để tôi tạo câu hỏi ôn tập cho bạn nhé!',
+    id: "msg-welcome",
+    sender: "ai",
+    text: "👋 Quiz và phần giải thích sẽ xuất hiện tại đây. Hãy bôi đen kiến thức trên slide để Pet gợi ý thử thách.",
     timestamp: new Date().toISOString(),
   },
 ];
 
+export interface QuizGenerationResult {
+  ok: boolean;
+  error?: string;
+}
+
 export interface TutorChatHook {
   messages: ChatMessage[];
   isTyping: boolean;
-  sessionId: string;
   sendMessage: (text: string) => void;
-  triggerQuizFromSelection: (slideId?: string, pageNum?: number) => Promise<void>;
-  handleAnswerSelect: (quizId: string, answer: 'A' | 'B' | 'C' | 'D', onPetUpdate?: (pet: PetStatusResponse) => void) => Promise<void>;
-  messagesEndRef: React.RefObject<HTMLDivElement>;
+  startQuizFromSelection: (
+    selectedText: string,
+    slideId: string,
+    pageNum: number
+  ) => Promise<QuizGenerationResult>;
+  handleAnswerSelect: (
+    quizId: string,
+    answer: "A" | "B" | "C" | "D",
+    onPetUpdate?: (pet: PetStatusResponse) => void
+  ) => Promise<void>;
+  messagesEndRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export function useTutorChat(): TutorChatHook {
   const [messages, setMessages] = useState<ChatMessage[]>(INITIAL_MESSAGES);
   const [isTyping, setIsTyping] = useState(false);
+  const messagesRef = useRef<ChatMessage[]>(INITIAL_MESSAGES);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const updateMessages = useCallback(
+    (updater: (previous: ChatMessage[]) => ChatMessage[]) => {
+      setMessages((previous) => {
+        const next = updater(previous);
+        messagesRef.current = next;
+        return next;
+      });
+    },
+    []
+  );
 
   useEffect(() => {
-    scrollToBottom();
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  // Gửi tin nhắn chat thông thường (chưa nối AI chat — sẽ làm sau nếu cần)
-  const sendMessage = useCallback((text: string) => {
-    if (!text.trim()) return;
-    const userMsg: ChatMessage = {
-      id: `msg-${Date.now()}`,
-      sender: 'user',
-      text,
-      timestamp: new Date().toISOString(),
-    };
-    setMessages((prev) => [...prev, userMsg]);
-    setIsTyping(true);
-    // Placeholder — sẽ nối real chat AI API ở iteration sau
-    setTimeout(() => {
-      const aiMsg: ChatMessage = {
-        id: `msg-ai-${Date.now()}`,
-        sender: 'ai',
-        text: `💡 Bạn hỏi: "${text}" — Tính năng chat tự do đang phát triển! Hiện tại hãy thử **bôi đen** đoạn văn trong slide để tôi tạo câu hỏi trắc nghiệm nhé.`,
+  const sendMessage = useCallback(
+    (text: string) => {
+      if (!text.trim()) return;
+      const userMsg: ChatMessage = {
+        id: `msg-${Date.now()}`,
+        sender: "user",
+        text,
         timestamp: new Date().toISOString(),
       };
-      setMessages((prev) => [...prev, aiMsg]);
-      setIsTyping(false);
-    }, 800);
-  }, []);
+      updateMessages((previous) => [...previous, userMsg]);
+      setIsTyping(true);
+
+      window.setTimeout(() => {
+        const aiMsg: ChatMessage = {
+          id: `msg-ai-${Date.now()}`,
+          sender: "ai",
+          text: `💡 Bạn hỏi: "${text}" — Chat tự do chưa nằm trong lát cắt MVP. Hãy bôi đen kiến thức trên slide để Pet tạo quiz có căn cứ nhé.`,
+          timestamp: new Date().toISOString(),
+        };
+        updateMessages((previous) => [...previous, aiMsg]);
+        setIsTyping(false);
+      }, 500);
+    },
+    [updateMessages]
+  );
 
   /**
-   * Khi học sinh bôi đen text trong slide → gọi POST /quiz/generate
-   * Backend trả về quiz → nhúng vào tin nhắn AI trong chat
+   * Chỉ được gọi sau khi người học đã đồng ý trong bubble của Pet.
+   * Tutor chịu trách nhiệm hiển thị task/quiz, không hiển thị lời thoại Pet.
    */
-  const triggerQuizFromSelection = useCallback(async (slideId?: string, pageNum?: number) => {
-    const selectedText = window.getSelection()?.toString().trim();
-    if (!selectedText || selectedText.length < 10) {
-      const warnMsg: ChatMessage = {
-        id: `msg-warn-${Date.now()}`,
-        sender: 'ai',
-        text: '⚠️ Hãy bôi đen đoạn văn dài hơn (ít nhất 10 ký tự) để tôi có thể tạo câu hỏi nhé!',
-        timestamp: new Date().toISOString(),
-      };
-      setMessages((prev) => [...prev, warnMsg]);
-      return;
-    }
+  const startQuizFromSelection = useCallback(
+    async (
+      selectedText: string,
+      slideId: string,
+      pageNum: number
+    ): Promise<QuizGenerationResult> => {
+      const contextText = selectedText.replace(/\s+/g, " ").trim();
+      if (contextText.length < 10) {
+        return {
+          ok: false,
+          error: "Đoạn được chọn cần dài ít nhất 10 ký tự.",
+        };
+      }
 
-    track('text_highlight', {
-      slide_id: slideId,
-      page_num: pageNum,
-      text: selectedText.slice(0, 500),
-    });
-    track('quiz_trigger', {
-      slide_id: slideId,
-      page_num: pageNum,
-      text_len: selectedText.length,
-      started: true,
-    });
-
-    // Hiển thị tin nhắn của user (đoạn bôi đen)
-    const userMsg: ChatMessage = {
-      id: `msg-user-${Date.now()}`,
-      sender: 'user',
-      text: `📌 Tạo câu hỏi từ đoạn: "${selectedText.slice(0, 80)}${selectedText.length > 80 ? '...' : ''}"`,
-      timestamp: new Date().toISOString(),
-    };
-    setMessages((prev) => [...prev, userMsg]);
-    setIsTyping(true);
-
-    try {
-      const quiz = await generateQuiz({
-        context_text: selectedText,
+      setIsTyping(true);
+      track("quiz_trigger", {
         slide_id: slideId,
         page_num: pageNum,
-        session_id: getSessionId(),
+        text_len: contextText.length,
+        started: true,
       });
 
-      // Nhúng quiz vào tin nhắn AI
-      const quizState: QuizState = {
-        quiz_id: quiz.quiz_id,
-        question: quiz.question,
-        options: quiz.options,
-        difficulty_level: quiz.difficulty_level,
-        phase: 'pending',
-      };
+      try {
+        const quiz = await generateQuiz({
+          context_text: contextText,
+          slide_id: slideId,
+          page_num: pageNum,
+          session_id: getTelemetrySessionId(),
+        });
+        const quizState: QuizState = {
+          quiz_id: quiz.quiz_id,
+          question: quiz.question,
+          options: quiz.options,
+          difficulty_level: quiz.difficulty_level,
+          phase: "pending",
+        };
+        updateMessages((previous) => [
+          ...previous,
+          {
+            id: `msg-quiz-${Date.now()}`,
+            sender: "ai",
+            text: "✨ Thử thách mới của bạn:",
+            timestamp: new Date().toISOString(),
+            quiz: quizState,
+          },
+        ]);
+        return { ok: true };
+      } catch (error) {
+        const message =
+          error instanceof Error
+            ? error.message
+            : "Có lỗi xảy ra khi tạo câu hỏi.";
+        updateMessages((previous) => [
+          ...previous,
+          {
+            id: `msg-err-${Date.now()}`,
+            sender: "ai",
+            text: `❌ ${message}`,
+            timestamp: new Date().toISOString(),
+          },
+        ]);
+        return { ok: false, error: message };
+      } finally {
+        setIsTyping(false);
+      }
+    },
+    [updateMessages]
+  );
 
-      const aiMsg: ChatMessage = {
-        id: `msg-quiz-${Date.now()}`,
-        sender: 'ai',
-        text: '✨ Đây là câu hỏi dành cho bạn:',
-        timestamp: new Date().toISOString(),
-        quiz: quizState,
-      };
-      setMessages((prev) => [...prev, aiMsg]);
-    } catch (err) {
-      const errText = err instanceof Error ? err.message : 'Có lỗi xảy ra khi tạo câu hỏi.';
-      const errMsg: ChatMessage = {
-        id: `msg-err-${Date.now()}`,
-        sender: 'ai',
-        text: `❌ ${errText}`,
-        timestamp: new Date().toISOString(),
-      };
-      setMessages((prev) => [...prev, errMsg]);
-    } finally {
-      setIsTyping(false);
-    }
-  }, []);
+  const handleAnswerSelect = useCallback(
+    async (
+      quizId: string,
+      answer: "A" | "B" | "C" | "D",
+      onPetUpdate?: (pet: PetStatusResponse) => void
+    ) => {
+      const quizMessage = messagesRef.current.find(
+        (message) => message.quiz?.quiz_id === quizId
+      );
+      if (!quizMessage?.quiz || quizMessage.quiz.phase !== "pending") return;
 
-  /**
-   * Khi học sinh chọn đáp án trong Quiz Card → gọi POST /quiz/{id}/submit
-   * Nhận kết quả đúng/sai + EXP mới → cập nhật quiz trong messages + pet state
-   */
-  const handleAnswerSelect = useCallback(async (
-    quizId: string,
-    answer: 'A' | 'B' | 'C' | 'D',
-    onPetUpdate?: (pet: PetStatusResponse) => void
-  ) => {
-    try {
-      const result = await submitAnswer(quizId, answer, getSessionId());
-
-      // Cập nhật quiz message với kết quả
-      setMessages((prev) =>
-        prev.map((msg) => {
-          if (msg.quiz?.quiz_id === quizId) {
-            return {
-              ...msg,
-              quiz: {
-                ...msg.quiz,
-                selected_answer: answer,
-                is_correct: result.is_correct,
-                correct_answer: result.correct_answer,
-                explanation: result.explanation,
-                exp_added: result.exp_added,
-                phase: 'answered' as const,
-              },
-            };
-          }
-          return msg;
-        })
+      updateMessages((previous) =>
+        previous.map((message) =>
+          message.quiz?.quiz_id === quizId
+            ? {
+                ...message,
+                quiz: {
+                  ...message.quiz,
+                  selected_answer: answer,
+                  phase: "submitting",
+                },
+              }
+            : message
+        )
       );
 
-      // Thêm tin nhắn feedback
-      const feedbackMsg: ChatMessage = {
-        id: `msg-feedback-${Date.now()}`,
-        sender: 'ai',
-        text: result.is_correct
-          ? `🎉 Chính xác! ${result.pet_status.message || `Bạn nhận được +${result.exp_added} EXP!`}`
-          : `💪 Chưa đúng rồi! Đáp án là **${result.correct_answer}**. ${result.explanation}`,
-        timestamp: new Date().toISOString(),
-      };
-      setMessages((prev) => [...prev, feedbackMsg]);
-
-      // Callback cập nhật pet state cho component cha
-      if (onPetUpdate) {
-        onPetUpdate(result.pet_status);
+      try {
+        const result = await submitAnswer(
+          quizId,
+          answer,
+          getTelemetrySessionId()
+        );
+        updateMessages((previous) =>
+          previous.map((message) =>
+            message.quiz?.quiz_id === quizId
+              ? {
+                  ...message,
+                  quiz: {
+                    ...message.quiz,
+                    selected_answer: answer,
+                    is_correct: result.is_correct,
+                    correct_answer: result.correct_answer,
+                    explanation: result.explanation,
+                    exp_added: result.exp_added,
+                    phase: "answered",
+                  },
+                }
+              : message
+          )
+        );
+        onPetUpdate?.(result.pet_status);
+      } catch (error) {
+        updateMessages((previous) =>
+          previous.map((message) =>
+            message.quiz?.quiz_id === quizId
+              ? {
+                  ...message,
+                  quiz: {
+                    ...message.quiz,
+                    selected_answer: undefined,
+                    phase: "pending",
+                  },
+                }
+              : message
+          )
+        );
+        const message =
+          error instanceof Error ? error.message : "Không thể nộp đáp án.";
+        updateMessages((previous) => [
+          ...previous,
+          {
+            id: `msg-submit-error-${Date.now()}`,
+            sender: "ai",
+            text: `❌ ${message}`,
+            timestamp: new Date().toISOString(),
+          },
+        ]);
       }
-    } catch (err) {
-      const errText = err instanceof Error ? err.message : 'Không thể nộp đáp án.';
-      const errMsg: ChatMessage = {
-        id: `msg-sub-err-${Date.now()}`,
-        sender: 'ai',
-        text: `❌ ${errText}`,
-        timestamp: new Date().toISOString(),
-      };
-      setMessages((prev) => [...prev, errMsg]);
-    }
-  }, []);
+    },
+    [updateMessages]
+  );
 
   return {
     messages,
     isTyping,
-    sessionId: getSessionId(),
     sendMessage,
-    triggerQuizFromSelection,
+    startQuizFromSelection,
     handleAnswerSelect,
     messagesEndRef,
   };
 }
-

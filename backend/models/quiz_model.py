@@ -1,5 +1,5 @@
-from pydantic import BaseModel
-from typing import List, Optional
+from pydantic import BaseModel, Field
+from typing import List, Literal, Optional
 
 # ==============================================================================
 # FRONTEND INTEGRATION GUIDE — quiz_model.py
@@ -50,7 +50,7 @@ class QuizHistoryItem(BaseModel):
 
 class QuizRequest(BaseModel):
     # Đoạn text học sinh bôi đen — NGUỒN CHÍNH để AI tạo câu hỏi
-    context_text: str
+    context_text: str = Field(min_length=10, max_length=5000)
 
     # Backend tự lấy bối cảnh slide từ slide_store dựa vào slide_id + page_num
     # FE chỉ cần truyền 2 trường này, KHÔNG cần truyền slide_context thủ công
@@ -60,7 +60,7 @@ class QuizRequest(BaseModel):
     # Fallback: FE vẫn có thể truyền slide_context thủ công nếu chưa upload PDF
     slide_context: Optional[str] = None
 
-    current_level: Optional[int] = 1
+    current_level: Optional[int] = Field(default=1, ge=1, le=3)
     session_id: Optional[str] = "demo-user"
 
 class QuizInternalResponse(BaseModel):
@@ -80,7 +80,7 @@ class QuizGenerateResponse(BaseModel):
     difficulty_level: int
 
 class QuizSubmitRequest(BaseModel):
-    selected_answer: str   # Chỉ gửi "A", "B", "C", hoặc "D"
+    selected_answer: Literal["A", "B", "C", "D"]
     session_id: Optional[str] = "demo-user"
 
 class QuizSubmitResponse(BaseModel):

@@ -2,14 +2,38 @@
 
 import { useSlideViewer } from "@/features/slide-viewer/useSlideViewer";
 import { track } from "@/features/telemetry/useTelemetry";
-import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+const PdfSlidePage = dynamic(
+  () => import("@/components/slide-viewer/PdfSlidePage"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex min-h-80 items-center justify-center text-sm text-slate-500">
+        Đang khởi tạo trình đọc PDF…
+      </div>
+    ),
+  }
+);
+
+export interface SlideSelection {
+  text: string;
+  slideId: string;
+  pageNum: number;
+  selectionId: string;
+}
 
 interface SlideViewerProps {
   /** Callback để TutorPanel biết slide_id và page_num hiện tại khi bôi đen */
   onSlideContextChange?: (slideId: string, pageNum: number) => void;
+  onTextSelected?: (selection: SlideSelection) => void;
 }
 
-export default function SlideViewer({ onSlideContextChange }: SlideViewerProps) {
+export default function SlideViewer({
+  onSlideContextChange,
+  onTextSelected,
+}: SlideViewerProps) {
   const {
     slides,
     currentSlide,
@@ -25,13 +49,55 @@ export default function SlideViewer({ onSlideContextChange }: SlideViewerProps) 
     prevPage,
   } = useSlideViewer();
 
-  const viewStartedAt = useRef<number>(Date.now());
+  const viewStartedAt = useRef<number>(0);
   const lastViewRef = useRef<{ slideId: string; pageNum: number } | null>(null);
+  const pdfContainerRef = useRef<HTMLDivElement>(null);
+  const lastSelectionRef = useRef("");
+  const [pdfWidth, setPdfWidth] = useState(720);
+  const [pdfError, setPdfError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const container = pdfContainerRef.current;
+    if (!container) return;
+
+    const updateWidth = () => {
+      setPdfWidth(Math.max(320, Math.min(container.clientWidth - 32, 960)));
+    };
+    updateWidth();
+
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [currentSlide?.slide_id]);
+
+  const captureSelection = useCallback(() => {
+    const container = pdfContainerRef.current;
+    const selection = window.getSelection();
+    if (!container || !selection || selection.rangeCount === 0) return;
+
+    const range = selection.getRangeAt(0);
+    if (!container.contains(range.commonAncestorContainer)) return;
+
+    const text = selection.toString().replace(/\s+/g, " ").trim();
+    if (!currentSlide || text.length < 10) return;
+
+    const signature = `${currentSlide.slide_id}:${currentPageNumber}:${text}`;
+    if (signature === lastSelectionRef.current) return;
+    lastSelectionRef.current = signature;
+
+    onTextSelected?.({
+      text,
+      slideId: currentSlide.slide_id,
+      pageNum: currentPageNumber,
+      selectionId: `${Date.now()}-${text.length}`,
+    });
+  }, [currentPageNumber, currentSlide, onTextSelected]);
 
   // Notify context change whenever slide or page changes
   useEffect(() => {
     if (currentSlide) {
       onSlideContextChange?.(currentSlide.slide_id, currentPageNumber);
+      lastSelectionRef.current = "";
     }
   }, [currentSlide, currentPageNumber, onSlideContextChange]);
 
@@ -88,11 +154,18 @@ export default function SlideViewer({ onSlideContextChange }: SlideViewerProps) 
   }, []);
 
   const handleNextPage = () => {
+    setPdfError(null);
     nextPage();
   };
 
   const handlePrevPage = () => {
+    setPdfError(null);
     prevPage();
+  };
+
+  const handleChangeSlide = (slideId: string) => {
+    setPdfError(null);
+    changeSlide(slideId);
   };
 
   if (isLoading) {
@@ -123,7 +196,7 @@ export default function SlideViewer({ onSlideContextChange }: SlideViewerProps) 
           </span>
           <select
             value={currentSlide.slide_id}
-            onChange={(e) => changeSlide(e.target.value)}
+            onChange={(e) => handleChangeSlide(e.target.value)}
             className="bg-surface-container/50 border border-white/10 rounded-xl px-4 py-2 font-headline-sm text-on-surface focus:outline-none focus:border-tertiary w-full truncate cursor-pointer hover:bg-white/5 transition-colors"
           >
             {slides.map((slide) => (
@@ -141,13 +214,25 @@ export default function SlideViewer({ onSlideContextChange }: SlideViewerProps) 
       </div>
 
       <div className="flex-1 glass-panel rounded-3xl relative group overflow-hidden shadow-2xl border border-white/10 min-h-0">
-        <div className="absolute inset-0 z-0 bg-white">
-          <iframe
-            key={`${currentSlide.slide_id}-page-${currentPageNumber}`}
-            title={currentSlide.title}
-            className="w-full h-full border-0"
-            src={`${currentSlide.pdf_url}#page=${currentPageNumber}&toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-          />
+        <div
+          ref={pdfContainerRef}
+          className="absolute inset-0 z-0 overflow-auto bg-white p-4 custom-scrollbar"
+          onMouseUp={() => window.setTimeout(captureSelection, 0)}
+          onTouchEnd={() => window.setTimeout(captureSelection, 0)}
+        >
+          {pdfError ? (
+            <div className="flex h-full items-center justify-center px-6 text-center text-red-500">
+              Không tải được PDF: {pdfError}
+            </div>
+          ) : (
+            <PdfSlidePage
+              key={`${currentSlide.slide_id}-${currentPageNumber}`}
+              url={currentSlide.pdf_url}
+              pageNumber={currentPageNumber}
+              width={pdfWidth}
+              onLoadError={setPdfError}
+            />
+          )}
         </div>
 
         {/* Navigation overlay */}

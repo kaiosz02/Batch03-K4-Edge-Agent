@@ -17,7 +17,7 @@ Tài liệu này tập trung vào thiết kế luồng tương tác giữa **Sin
 Chúng ta cần chèn **Thú cưng (Pet)** vào giữa như một người gợi mở. Luồng UX chuẩn sẽ diễn ra như sau:
 
 ### Bước 1: Gợi ý (The Hook)
-Sinh viên bôi đen một đoạn text (Ví dụ: *"Vector Database"*). Hệ thống KHÔNG gọi API Gemini ngay, mà Thú cưng sẽ "nhảy" ra chat:
+Sinh viên bôi đen một đoạn text (Ví dụ: *"Vector Database"*). Hệ thống KHÔNG gọi API AI ngay. Thú cưng dừng di chuyển và hiện **speech bubble ngay trên đầu Pet**:
 > **Thú cưng 🐣:** "🐾 Meo! Mình thấy bạn vừa bôi đen đoạn: *'Vector Database...'* Chỗ này khá khoai đấy! Bạn có muốn làm 1 câu trắc nghiệm nhanh để nhận **+10 EXP** tiến hóa cho mình không?"
 > 
 > `[Bắt Đầu 🎯]`  |  `[Thôi, lúc khác]`
@@ -36,14 +36,36 @@ Sinh viên bôi đen một đoạn text (Ví dụ: *"Vector Database"*). Hệ th
 
 ---
 
-## 🛠 Cách triển khai vào Code hiện tại (`useTutorChat.ts`)
+## 🛠 Cách triển khai trong code
 
-Để đưa ý tưởng này vào thực tế, chúng ta sẽ áp dụng pattern **Message States** trong Chat:
+State tương tác được điều phối tại trang học, tách biệt lời thoại Pet khỏi chatbot:
 
-1. Thêm một loại tin nhắn đặc biệt (Type: `confirm_quiz`) vào state của tin nhắn.
-2. Khi gọi hàm `triggerQuizFromSelection()`, thay vì fetch API ngay, ta đẩy một tin nhắn `confirm_quiz` chứa nội dung text bôi đen vào khung chat.
-3. Component render tin nhắn sẽ hiển thị 2 nút bấm.
-4. Khi user click "Bắt đầu", nó sẽ trigger một hàm mới `executeQuizGeneration(text)` để thực sự gọi API.
+1. `SlideViewer` render PDF bằng text layer để đoạn bôi đen nằm trong DOM của ứng dụng, thay vì nằm trong `iframe`.
+2. `SlideViewer` gửi `{ text, slideId, pageNum, selectionId }` lên `Home`.
+3. `Home` lưu `pendingSelection`, ghi telemetry và yêu cầu `AnimatedPet` hiện bubble có hai nút **OK, làm task** và **Để sau**.
+4. Pet tạm dừng di chuyển trong lúc bubble đang mở. Chỉ khi chọn **OK**, `useTutorChat.startQuizFromSelection()` mới gọi `POST /quiz/generate`.
+5. `TutorPanel` chỉ render Quiz Card/task; không hiển thị lời mời hoặc lời động viên của Pet.
+6. Sau khi chấm, `pet_status` từ backend được đưa lên `Home`, rồi hiển thị message, emotion và thanh EXP trong bubble trên đầu Pet.
+7. Khi nộp đáp án, Quiz Card chuyển sang trạng thái `submitting` để chặn double-click; backend cũng lấy quiz theo cơ chế một lần để không cộng EXP hai lần.
+
+### Contract dữ liệu bắt buộc
+
+```ts
+{
+  context_text: string;
+  slide_id: string;
+  page_num: number;
+  session_id: string;
+}
+```
+
+`context_text` phải được lưu trong `pendingSelection`. Không đọc lại bằng `window.getSelection()` lúc bấm **OK**, vì thao tác bấm nút có thể làm mất selection.
+
+### Ranh giới trách nhiệm
+
+- **Pet bubble:** thông báo ngắn, xác nhận, trạng thái đang xử lý, EXP và cảm xúc.
+- **TutorPanel:** quiz/task, đáp án và phần giải thích dài.
+- Pet không có ô nhập văn bản và không đóng vai trò chatbot thứ hai.
 
 ---
 

@@ -9,11 +9,11 @@
 ## 📋 Tổng quan luồng hoạt động
 
 ```
-1. App khởi động  →  GET /pet/status          (load trạng thái thú cưng)
-2. Chọn file PDF  →  POST /slide/upload        (upload 1 lần, lưu slide_id)
-3. Bôi đen chữ   →  POST /quiz/generate       (sinh câu hỏi, lưu quiz_id)
-4. Chọn đáp án   →  POST /quiz/{quiz_id}/submit (nộp bài, nhận EXP + kết quả)
-5. Instructor     →  GET /analytics/heatmap    (xem vùng khó của slide)
+1. App khởi động  →  GET /slide/list + GET /pet/status
+2. Bôi đen chữ   →  POST /track (`text_highlight`) + bubble trên đầu Pet hỏi xác nhận
+3. Chọn Bắt đầu  →  POST /quiz/generate (sinh câu hỏi, lưu quiz_id)
+4. Chọn đáp án   →  POST /quiz/{quiz_id}/submit (nộp một lần, nhận EXP)
+5. Instructor     →  GET /analytics/heatmap?document_id=all
 ```
 
 ---
@@ -94,9 +94,11 @@ async function loadPetStatus(sessionId: string) {
 
 ---
 
-## ❓ Bước 3 — Sinh câu hỏi khi học sinh bôi đen chữ
+## ❓ Bước 3 — Sinh câu hỏi sau khi người học xác nhận
 
-**Kích hoạt khi học sinh bôi đen text và nhấn nút "Hỏi AI".**
+**Chỉ kích hoạt sau khi học sinh bôi đen text và chọn “Bắt đầu” trong lời mời của Pet.**
+
+Lời mời, trạng thái đang xử lý và phản hồi EXP nằm trong speech bubble của Pet. `TutorPanel` chỉ hiển thị Quiz Card và giải thích.
 
 ```
 POST /quiz/generate
@@ -105,9 +107,13 @@ Content-Type: application/json
 
 **TypeScript:**
 ```typescript
-async function generateQuiz(sessionId: string, slideId: string, pageNum: number) {
-  // Lấy text học sinh vừa bôi đen
-  const selectedText = window.getSelection()?.toString().trim()
+async function generateQuiz(
+  selectedText: string,
+  sessionId: string,
+  slideId: string,
+  pageNum: number
+) {
+  // selectedText được lưu từ lúc bôi đen; không đọc lại selection sau khi bấm nút
   if (!selectedText || selectedText.length < 10) return
 
   const res = await fetch('http://localhost:8000/quiz/generate', {
@@ -241,7 +247,7 @@ async function loadHeatmap(documentId = 'doc_001') {
 | `400` | AI từ chối sinh câu hỏi (text mơ hồ/nội dung cấm) | Hiện thông báo: "Hãy chọn đoạn văn có nội dung học thuật cụ thể hơn nhé!" |
 | `404` từ `/quiz/submit` | `quiz_id` không tồn tại hoặc đã nộp rồi | Hiện thông báo: "Bài thi đã hết hạn. Hãy tạo câu hỏi mới!" |
 | `404` từ `/slide/{id}` | `slide_id` chưa upload | Gọi lại `POST /slide/upload` |
-| `500` | Lỗi Gemini API | Hiện thông báo: "AI đang bận, thử lại sau ít giây nhé!" |
+| `500` | Lỗi AI provider | Hiện thông báo: "AI đang bận, thử lại sau ít giây nhé!" |
 
 ---
 

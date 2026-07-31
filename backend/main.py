@@ -23,9 +23,17 @@ except Exception:
 app = FastAPI(title="V-Pet Tutor Backend API")
 
 # Allow CORS for Next.js frontend
+frontend_origins = [
+    origin.strip()
+    for origin in os.getenv(
+        "FRONTEND_ORIGINS",
+        "http://localhost:3000,http://127.0.0.1:3000",
+    ).split(",")
+    if origin.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=frontend_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -40,17 +48,18 @@ app.include_router(track_router)
 # Mount thư mục tĩnh cho PDF
 slides_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "vlearn-pack", "slides"))
 if not os.path.exists(slides_dir):
-    os.makedirs(slides_dir)
+    os.makedirs(slides_dir, exist_ok=True)
 app.mount("/static/slides", StaticFiles(directory=slides_dir), name="slides")
 
 @app.on_event("startup")
 async def load_static_slides():
-    pdf_files = glob.glob(os.path.join(slides_dir, "*.pdf"))
+    pdf_files = sorted(glob.glob(os.path.join(slides_dir, "*.pdf")))
+    public_base_url = os.getenv("BACKEND_PUBLIC_URL", "http://localhost:8000").rstrip("/")
     print(f"🔄 Đang load {len(pdf_files)} slides từ {slides_dir}...")
     for idx, pdf_path in enumerate(pdf_files):
         filename = os.path.basename(pdf_path)
         slide_id = f"static_{idx}"
-        pdf_url = f"http://localhost:8000/static/slides/{filename}"
+        pdf_url = f"{public_base_url}/static/slides/{filename}"
         
         with open(pdf_path, "rb") as f:
             pdf_bytes = f.read()

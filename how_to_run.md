@@ -46,31 +46,27 @@ npm run start
 
 ---
 
-## 3. Hướng dẫn chạy Backend (FastAPI) - [Tính năng đang phát triển]
+## 3. Hướng dẫn chạy Backend (FastAPI)
 
-> 🚧 **Đang phát triển:** Phần Backend hiện đang được lên kế hoạch và sẽ sớm được tích hợp. Khi hoàn thành, kiến trúc sẽ sử dụng FastAPI.
+Backend đã được tích hợp và chạy tại cổng `8000`.
 
-*Hướng dẫn dự kiến khi Backend hoàn thiện:*
 ```bash
-# 1. Di chuyển vào thư mục backend
-cd backend
-
-# 2. Tạo môi trường ảo (Virtual Environment)
+# Chạy từ thư mục gốc của dự án
 python -m venv venv
-
-# 3. Kích hoạt môi trường ảo
-# Trên Windows:
-venv\Scripts\activate
-# Trên macOS/Linux:
 source venv/bin/activate
-
-# 4. Cài đặt thư viện
 pip install -r requirements.txt
-
-# 5. Khởi chạy Backend
+cd backend
 uvicorn main:app --reload
 ```
-> Backend dự kiến sẽ chạy tại `http://localhost:8000`.
+
+Backend chạy tại `http://localhost:8000`; Swagger tại `http://localhost:8000/docs`.
+
+AI dùng mock fallback nếu chưa có key. Muốn gọi AI thật, tạo `.env` ở thư mục gốc:
+
+```dotenv
+DEEP_SEEK_API_KEY=your_key
+DEEP_SEEK_MODEL=deepseek-chat
+```
 
 ---
 
@@ -85,12 +81,11 @@ uvicorn main:app --reload
  ┃   ┗ 📂 slides
  ┃     ┗ 📜 d1-slide-hackathon.pdf  # File Slide PDF bắt buộc phải có
  ┣ 📂 frontend                 # Mã nguồn UI (Next.js)
- ┣ 📂 backend                  # Mã nguồn AI API (FastAPI) - Coming soon
+ ┣ 📂 backend                  # Mã nguồn AI API (FastAPI)
  ┗ 📜 how_to_run.md            # File hướng dẫn này
 ```
 
-**Lưu ý quan trọng về API PDF:** 
-Frontend hiện không trực tiếp đọc file PDF từ thư mục `public` (để đảm bảo tính bảo mật và tuân thủ nguyên tắc kiến trúc), mà đang thông qua một API Route nội bộ (`/api/slides`) để stream file trực tiếp từ thư mục `data/vlearn-pack/slides/` ở cấp độ thư mục cha. Hãy đảm bảo thư mục `data` luôn nằm cùng cấp với `frontend`.
+**Lưu ý quan trọng về PDF:** Backend tự nạp các file trong `data/vlearn-pack/slides/`, phục vụ qua `/static/slides` và trả metadata qua `/slide/list`. Frontend dùng PDF text layer để người học có thể bôi đen nội dung. Hãy khởi động backend trước frontend.
 
 ---
 *Chúc bạn có những trải nghiệm tuyệt vời với VLearn AI Tutor tại VinAI Hackathon! 🚀*

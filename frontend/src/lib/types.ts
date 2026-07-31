@@ -43,7 +43,7 @@ export interface QuizState {
   correct_answer?: string;
   explanation?: string;
   exp_added?: number;
-  phase: "pending" | "answered";
+  phase: "pending" | "submitting" | "answered";
 }
 
 // Gamification Types

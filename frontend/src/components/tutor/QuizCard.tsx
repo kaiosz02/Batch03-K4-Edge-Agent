@@ -24,9 +24,10 @@ const DIFFICULTY_LABELS: Record<number, { label: string; color: string }> = {
 export default function QuizCard({ quiz, onAnswerSelect, onPetUpdate }: QuizCardProps) {
   const diff = DIFFICULTY_LABELS[quiz.difficulty_level] ?? { label: "?", color: "text-white" };
   const isAnswered = quiz.phase === "answered";
+  const isSubmitting = quiz.phase === "submitting";
 
   const handleSelect = async (answer: "A" | "B" | "C" | "D") => {
-    if (isAnswered) return;
+    if (isAnswered || isSubmitting) return;
     await onAnswerSelect(quiz.quiz_id, answer, onPetUpdate);
   };
 
@@ -60,7 +61,10 @@ export default function QuizCard({ quiz, onAnswerSelect, onPetUpdate }: QuizCard
           let buttonStyle =
             "w-full text-left px-3 py-2.5 rounded-xl text-[13px] font-medium transition-all border ";
 
-          if (!isAnswered) {
+          if (isSubmitting && isSelected) {
+            buttonStyle +=
+              "bg-tertiary/15 border-tertiary/30 text-tertiary cursor-wait";
+          } else if (!isAnswered) {
             buttonStyle +=
               "bg-white/5 border-white/10 text-on-surface hover:bg-tertiary/10 hover:border-tertiary/30 active:scale-[0.98] cursor-pointer";
           } else if (isCorrectAnswer) {
@@ -74,7 +78,7 @@ export default function QuizCard({ quiz, onAnswerSelect, onPetUpdate }: QuizCard
           return (
             <button
               key={letter}
-              disabled={isAnswered}
+              disabled={isAnswered || isSubmitting}
               onClick={() => handleSelect(letter)}
               className={buttonStyle}
             >
@@ -85,6 +89,11 @@ export default function QuizCard({ quiz, onAnswerSelect, onPetUpdate }: QuizCard
               )}
               {isWrongSelected && (
                 <span className="ml-2 text-red-400">✗</span>
+              )}
+              {isSubmitting && isSelected && (
+                <span className="ml-2 animate-pulse text-tertiary">
+                  Đang chấm…
+                </span>
               )}
             </button>
           );
@@ -106,11 +115,6 @@ export default function QuizCard({ quiz, onAnswerSelect, onPetUpdate }: QuizCard
             </span>
             {quiz.explanation}
           </div>
-          {quiz.exp_added !== undefined && quiz.exp_added > 0 && (
-            <p className="text-[11px] text-tertiary font-bold mt-2 text-center">
-              +{quiz.exp_added} EXP nhận được 🎉
-            </p>
-          )}
         </div>
       )}
     </div>

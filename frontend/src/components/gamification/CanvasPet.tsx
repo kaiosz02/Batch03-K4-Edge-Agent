@@ -47,7 +47,7 @@ export default function CanvasPet({ isTyping = false, petType = 'spider' }: Canv
     };
 
     const resizeObserver = new ResizeObserver((entries) => {
-      for (let entry of entries) {
+          for (const entry of entries) {
         canvas.width = entry.contentRect.width;
         canvas.height = entry.contentRect.height;
         if (!petRef.current) spawnPet();
